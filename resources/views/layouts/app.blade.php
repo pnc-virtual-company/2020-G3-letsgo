@@ -79,9 +79,6 @@
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Events') }}
                                 </a>
-
-                               
-                           
                             {{-- Event --}}
                             {{-- Categories --}}
                             
@@ -90,8 +87,6 @@
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Categories') }}
                                 </a>
-
-                               
                             </div>
                             {{-- Categories --}}
                         </li>
