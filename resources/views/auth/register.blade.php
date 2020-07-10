@@ -84,7 +84,7 @@
                         @csrf
 
                 <div class="d-flex justify-content-center mx-auto" >
-                    <h2>Register</h2>
+                    <h2>Create account</h2>
                 </div>
                 <div class="form-group">
                             <label for="email">{{ __('E-Mail Address') }}</label>
