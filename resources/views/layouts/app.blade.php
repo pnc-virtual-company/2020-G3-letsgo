@@ -80,9 +80,7 @@
                                     {{ __('Events') }}
                                 </a>
 
-                                {{-- <form id="logout-form" action="" method="POST" style="display: none;">
-                                    @csrf
-                                </form> --}}
+                               
                            
                             {{-- Event --}}
                             {{-- Categories --}}
@@ -93,9 +91,7 @@
                                     {{ __('Categories') }}
                                 </a>
 
-                                {{-- <form id="logout-form" action="" method="POST" style="display: none;">
-                                    @csrf
-                                </form> --}}
+                               
                             </div>
                             {{-- Categories --}}
                         </li>
@@ -138,4 +134,3 @@
     </div>
 </body>
 </html>
-
