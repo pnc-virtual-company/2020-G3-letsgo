@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -10,14 +9,19 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -52,67 +56,31 @@
                                 </li>
                             @endif
                         @else
-                        {{-- ////Explore Event /// --}}
                         <li class="nav-item dropdown">
                             <a  class="nav-link " href="#" role="button" >
                             <span class="">Explore Event</span>
                             </a>
                         </li>
-                        {{-- ////Explore Event /// --}}
-                        {{-- ////Your Event /// --}}
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <span class="caret">Your Event</span>
-                            </a>
+                            <a class="nav-link" href="{{route('yourEvent.create')}}">Your Event</a>
                         </li>
-                        {{-- ////Your Event /// --}}
-
-                        {{-- ////Manage /// --}}
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <span class="caret">Manage</span>
                             </a>
-                            {{-- Event --}}
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Events') }}
-                                </a>
-
-                                {{-- <form id="logout-form" action="" method="POST" style="display: none;">
-                                    @csrf
-                                </form> --}}
-                           
-                            {{-- Event --}}
-                            {{-- Categories --}}
+                                <a class="dropdown-item" href="#">Event</a>
                             
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Categories') }}
-                                </a>
-
-                                {{-- <form id="logout-form" action="" method="POST" style="display: none;">
-                                    @csrf
-                                </form> --}}
+                            <a class="dropdown-item" href="#">Categories</a>
                             </div>
-                            {{-- Categories --}}
                         </li>
-                        {{-- ////Manage /// --}}
-
-                        {{-- ////name of current user /// --}}
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->firstname }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href=""
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Profile') }}
-                                </a>
+                                <a class="dropdown-item" href="#">Profile</a>
                                 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -125,7 +93,6 @@
                                 </form>
                             </div>
                         </li>
-                            {{-- ////name of current user /// --}}
                         @endguest
                     </ul>
                 </div>
