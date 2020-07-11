@@ -6,8 +6,8 @@
     <div class="container">
         <div class="row d-flex justify-content-center mx-auto">
             <div class="col-md-4 col-xs-12 div-style">
-            <form method="POST" action="{{ route('register') }}">
-                        @csrf
+            <form method="POST" action="{{route('register')}}">
+                    @csrf
 
                 <div class="d-flex justify-content-center mx-auto" >
                     
