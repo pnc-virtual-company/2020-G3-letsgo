@@ -69,7 +69,7 @@
                             <span class="caret">Manage</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Event</a>
+                            <a class="dropdown-item" href="{{route('event.index')}}">Event</a>
                                 <a class="dropdown-item" href="#">Categories</a>
                             </div>
                         </li>
@@ -104,3 +104,4 @@
     </div>
 </body>
 </html>
+
