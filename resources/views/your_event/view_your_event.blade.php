@@ -53,14 +53,31 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="title" id="title" placeholder="Title">
                                 </div>
-                                <div class="form-group">
-                                    Time: <input type="time" class="form-control" name="time" id="time" placeholder="Time">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            StartDate: <input type="date" class="form-control" name="start-date" id="start-date" placeholder="Start Date">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            Time: <br> 
+                                            <input type="time" name="start_time" placeholder="Time">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    StartDate: <input type="date" class="form-control" name="start-date" id="start-date" placeholder="Start Date">
-                                </div>
-                                <div class="form-group">
-                                    EndDate: <input type="date" class="form-control" name="end-date" id="end-date" placeholder="End Date">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            EndDate: <input type="date" class="form-control" name="end-date" id="end-date" placeholder="Start Date">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            Time: <br> 
+                                            <input type="time" name="end_time" placeholder="Time">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <select name="city" id="city" class="form-control">
@@ -131,14 +148,31 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="title" id="title" placeholder="Title">
                                             </div>
-                                            <div class="form-group">
-                                                Time: <input type="time" class="form-control" name="time" id="time" placeholder="Time">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        StartDate: <input type="date" class="form-control" name="start-date" id="start-date" placeholder="Start Date">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        Time: <br> 
+                                                        <input type="time" name="start_time" placeholder="Time">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                StartDate: <input type="date" class="form-control" name="start-date" id="start-date" placeholder="Start Date">
-                                            </div>
-                                            <div class="form-group">
-                                                EndDate: <input type="date" class="form-control" name="end-date" id="end-date" placeholder="End Date">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        EndDate: <input type="date" class="form-control" name="end-date" id="end-date" placeholder="Start Date">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        Time: <br> 
+                                                        <input type="time" name="end_time" placeholder="Time">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <select name="city" id="city" class="form-control">
