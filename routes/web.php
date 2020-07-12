@@ -23,5 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function (){
     return view('auth.login');
 });
+
+// Event
+Route::resource('event','EventController');
 Route::resource('yourEvent','YourEventController');
 Route::resource('exploreEvent','ExploreEventController');
