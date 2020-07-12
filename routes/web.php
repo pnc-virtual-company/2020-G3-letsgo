@@ -24,3 +24,4 @@ Route::get('/', function (){
     return view('auth.login');
 });
 Route::resource('yourEvent','YourEventController');
+Route::resource('exploreEvent','ExploreEventController');
