@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <body class="body-background">
     <div class="container">
         <div class="row d-flex justify-content-center mx-auto">

@@ -70,7 +70,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Event</a>
-                                <a class="dropdown-item" href="#">Categories</a>
+                                <a class="dropdown-item" href="{{route('Category.index')}}">Categories</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

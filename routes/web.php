@@ -24,3 +24,6 @@ Route::get('/', function (){
     return view('auth.login');
 });
 Route::resource('yourEvent','YourEventController');
+Route::resource('Category','CategoryController');
+// Route::get('/index','CategoryController@index')->name('index');
+// Route::get('/Category/','CategoryController@edit')->name('Category.edit');
