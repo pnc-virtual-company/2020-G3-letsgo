@@ -87,15 +87,15 @@
                         @else
                         <li class="nav-item dropdown">
                             <a  class="nav-link " href="{{route('exploreEvent.index')}}" role="button" >
-                            <span class="">Explore Event</span>
+                            <span class=""><h5>Explore Event</h5></span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{route('yourEvent.create')}}">Your Event</a>
+                            <a class="nav-link" href="{{route('yourEvent.create')}}"><h5>Your Event</h5></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <span class="caret">Manage</span>
+                            <span class="caret"><h5>Manage</h5></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('event.index')}}">Event</a>
@@ -103,8 +103,8 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->firstname }} <span class="caret"></span>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><h5>{{ Auth::user()->firstname }} </h5>
+                                <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
