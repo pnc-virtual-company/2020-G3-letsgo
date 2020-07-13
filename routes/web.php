@@ -31,4 +31,5 @@ Route::resource('yourEvent','YourEventController');
 Route::resource('user','UserController');
 
 Route::resource('exploreEvent','ExploreEventController');
+Route::resource('Category','CategoryController');
 
