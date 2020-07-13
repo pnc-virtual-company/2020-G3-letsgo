@@ -51,7 +51,7 @@
 <style>
 .div-styles{
     margin-top : 4rem;
-    padding : 3rem;
+    padding : 2rem;
     background: white;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0.5rem 1rem 0px;

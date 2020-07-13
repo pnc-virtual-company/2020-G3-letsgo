@@ -39,18 +39,7 @@ class UserController extends Controller
         $user->firstname = $request->get('firstname');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
-        $user->password = $request->get('password');
-        $user->picture = $request->get('picture');
-        $user->role = $request->get('role');
-
-        //  add image 
-
-        if($request->hasFile('picture')) {
-            $image = $request->file('picture');
-            $filename = $image->getClientOriginalName();
-            $image->move(public_path('image/'), $filename);
-            $student->picture = $request->file('picture')->getClientOriginalName();
-        }
+        $user->password = $request->get('password');      
         $user->save();
         return view('auth.login');
     }

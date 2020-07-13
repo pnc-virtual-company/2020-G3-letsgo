@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Category;
 use Illuminate\Http\Request;
 use Auth;
-
+use App\Category;
 class CategoryController extends Controller
 {
     /**
@@ -15,7 +14,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view ('Category.view_category');
+        $categories = Category::all();
+        $categories -> user_id = auth::id();
+        return view ('Category.view_category',compact('categories'));
     }
 
     /**
@@ -36,10 +37,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category;
-        $category -> name = $request -> get('category');
-        $category -> user_id = auth::id();
-        $category -> save();
+        $categories = new Category;
+        $categories -> name = $request -> get('category');
+        $categories -> user_id = auth::id();
+        $categories -> save();
         return back();
     }
 
@@ -63,6 +64,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+       
     }
 
     /**
@@ -74,7 +76,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -85,6 +87,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categories = Category::find($id);
+        $categories -> user_id = auth::id();
+        $categories->delete();
+        return back();
     }
 }

@@ -45,9 +45,23 @@
                         </div>
                       </div>
     
-                            {{-- field password --}}
 
                       <div class="form-row">
+
+                        {{-- field email --}}
+
+                        <div class="form-group col-md-6">
+                            <label for="email">{{ __('E-Mail Address') }}</label>
+    
+                            <input placeholder="email" id="email" type="email" class="form-control text-box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        {{-- password  --}}
                         <div class="form-group col-md-6">
                             <label for="password" >{{ __('Password') }}</label>    
                             <input placeholder="password" id="password" type="password" class="form-control text-box @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -58,49 +72,8 @@
                                 </span>
                             @enderror
 
-                        </div>
-
-                            {{-- field role --}}
-
-                        <div class="form-group col-md-6">
-                          <label for="inputState">Role</label>
-                          <select id="inputState" class="form-control" name="role">
-                            <option selected>role...</option>
-                            <option>...</option>
-                            <option>0</option>
-                            <option>1</option>
-                          </select>
-                        </div>
-                        </div>
-                            {{-- field picture --}} 
-                    <div class="form-row">
-
-                        <div class="form-group col-md-6">
-                            <label for="inputfirstname4">picture</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="form-control" name="picture" >
-                                    <label class="custom-file-lable"></label>
-                                </div>
-                              </div>
-                        </div>
-                      
-    
-                    {{-- field email --}}
-    
-                    <div class="form-group col-md-6">
-                                <label for="email">{{ __('E-Mail Address') }}</label>
-    
-                                    <input id="email" type="email" class="form-control text-box @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-    
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-    
-                            </div>
-                            </div>
+                        </div>                   
+                        </div>               
                               
                     <div class="form-group ">
                         <a style="color:red" class="nav-link" href="{{ route('login') }}">{{ __('Or back to sign in') }}</a>
