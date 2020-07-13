@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Category;
 use Illuminate\Http\Request;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +36,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category;
+        $category -> name = $request -> get('category');
+        $category -> user_id = auth::id();
+        $category -> save();
+        return back();
     }
 
     /**

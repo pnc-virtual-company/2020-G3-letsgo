@@ -9,7 +9,7 @@
     <div class="form-group has-search mt-4">
         <input type="text" class="form-control" placeholder="Search">
     </div>
-    
+
     <h3><b class="text-success"></b>Categories</h3>
     <div class="row">
         <div class="col-md-11"></div>
@@ -24,13 +24,13 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form action="#" method="POST">
-                        @csrf
-                        @method('POST')
+                   <form  action="{{route('Category.store')}}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      @method('POST')
                         <h3 class="mb-4"><b>Create Category</b></h3>
-                        <input type="text" name="category" class="form-control mb-4" placeholder="Category name">
+                        <input type="text" name="category" class="form-control mb-4" placeholder="Your category...">
                         <button type="submit" class="btn btn-warning float-right text-light ml-2">CREATE</button>
-                        <button type="button" class="btn btn-danger float-right" data-dismiss="modal">DISCARD</button>
+                        <button type="submit" class="btn btn-danger float-right" data-dismiss="modal">DISCARD</button>
                     </form>
                 </div>
             </div>
