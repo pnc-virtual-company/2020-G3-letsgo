@@ -40,13 +40,13 @@
     
 
     <table class="table table-hover mt-3">
-        
+        @foreach ($categories as $category)
         <tbody>
           <tr>
-            <td class=" text-info action">Game</td>
+            <td class=" text-info action">{{$category->name}}</td>
             <td class="action_hidden">
                 <a href="#" class="text-pimary" data-toggle="modal" data-target="#editCategory"><span class="material-icons">edit</span></a>
-                <a href="#" class="text-danger" data-toggle="modal" data-target="#removeCategory"><span class="material-icons text-danger">delete</span></a>
+                <a href="{{route('Category.destroy',$category->id)}}" class="text-danger" data-toggle="modal" data-target="#removeCategory{{$category->id}}"><span class="material-icons text-danger">delete</span></a>
                 @method('DELETE')
             </td>
 
@@ -69,11 +69,11 @@
             </div>
 
             <!-- Form Remove Category -->
-            <div class="modal" id="removeCategory">
+            <div class="modal" id="removeCategory{{$category->id}}">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <form action="#" method="POST">
+                        <form action="{{route('Category.destroy',$category->id)}}"  method="POST">
                             @csrf
                             @method('DELETE')
                             <h3 class="mb-4"><b>Remove Category</b></h3>
@@ -87,7 +87,7 @@
             </div>
           </tr>
         </tbody>
-       
+        @endforeach
       </table>
     
 </div>
