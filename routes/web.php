@@ -28,11 +28,11 @@ Route::get('/', function (){
 Route::resource('event','EventController');
 Route::resource('yourEvent','YourEventController');
 
-Route::resource('user','UserController');
 
 Route::resource('exploreEvent','ExploreEventController');
 Route::resource('Category','CategoryController');
 Route::get('/index','CategoryController@index')->name('index');
 Route::post('/category/store/','CategoryController@store')->name('category.store');
-Route::get('/existCategory','CategoryController@existCategory')->name('category.existCategory');
+Route::get('/category','CategoryController@existCategory')->name('category.exist');
+
 

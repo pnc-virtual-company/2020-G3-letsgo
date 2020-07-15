@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
   rel="stylesheet">
-@extends('layouts.app')
+@extends('admin.dashboard')
 
 @section('content')
 
@@ -27,7 +27,9 @@
                 <form  action="{{route('category.store')}}" method="POST">
                          @csrf
                         <h3 class="mb-4"><b>Create Category</b></h3>
-                        <input type="text" id="category" name="category" class="form-control mb-4" placeholder="Your category..." autocomplete="off">
+                        <input type="text" id="name" name="name" class="form-control mb-4" placeholder="Your category..." autocomplete="off">
+                       <!-- alert text when category already exist -->
+                        <span id="message" class="text-danger"></span>
                         <button type="submit" class="btn btn-warning float-right text-light ml-2">CREATE</button>
                         <button type="submit" class="btn btn-danger float-right" data-dismiss="modal">DISCARD</button>
                     </form>
@@ -88,7 +90,33 @@
         </tbody>
         @endforeach
       </table>
-    
+
+      <script>
+          $(document).ready(function(){
+             $(document).on('keyup','#name', function(){
+                   var result = $(this).val();
+                   message_exist(result);
+             });
+
+             message_exist();
+             function message_exist(result){
+                $.ajax({
+                    url:"{{route('category.exist')}}",
+                    method: 'get',
+                    data: {result:result},
+                    dataType: 'json',
+                    success: function(message) {
+                        if(message != '') {
+                            $('#message').html('This category already existed');
+                        }else {
+                            $('#message').html('');
+                        }
+                    }
+                })
+            }
+  });
+</script>
+
 </div>
 @endsection
 <style>
@@ -104,4 +132,6 @@
     }
 
 </style>
+
+
 
