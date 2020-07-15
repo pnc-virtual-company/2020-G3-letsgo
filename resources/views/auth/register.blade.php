@@ -2,7 +2,8 @@
 
 @section('content')
 
-<body class="body-background">
+<body class="body-background" style="background: #f1fcfd">
+    <img src="" alt="">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -88,16 +89,11 @@
                 </div>
             </div>
         </div>
+        <div class="col-3"></div>
+    
     </div>
+</div>
+    
 </body>
 @endsection
-<style>
-.div-style{
-    margin-top : 4rem;
-    padding : 3rem;
-    background: white;
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0.5rem 1rem 0px;
-}
 
-</style>
