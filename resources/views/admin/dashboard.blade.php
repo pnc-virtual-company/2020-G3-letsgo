@@ -57,7 +57,7 @@
                             @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a  class="nav-link " href="#" role="button" >
+                            <a  class="nav-link " href="{{route('exploreEvent.index')}}" role="button" >
                             <span class="">Explore Event</span>
                             </a>
                         </li>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.dashboard')
 @section('content')
 
 <body class="body-background">
@@ -12,9 +12,9 @@
                  <label class="float-right">Not too far from city</label>
                 </div>
                 <div class="col-4">
-                 <select name="city" id="" class="form-control" >
-                   <option value="">City</option>
-                 </select>
+                 <select id="city" class="form-control">
+                        <option value=""  disabled selected>Choose City</option>
+                </select>
                 </div>
         </div>
         <div class="event-join mt-5">
@@ -63,4 +63,45 @@
             </div>
         </div>
 </body>
+
+<script>
+$.ajax({
+//get api
+  url:
+    "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
+  dataType: "json",
+  success: function (data) {
+//declare array variable to store city of each country
+    let array =[];
+//loop city of Afghanistan country
+    for (let i = 0; i < data.Afghanistan.length; i++) {
+      array.push(data.Afghanistan[i])
+    }
+ //loop city of Albania country
+    for (let i = 0; i < data.Albania.length; i++) {
+      array.push(data.Albania[i])
+    }
+//loop city of Algeria country
+    for (let i = 0; i < data.Algeria.length; i++) {
+      array.push(data.Algeria[i])
+    }
+//loop city of Andorra country
+    for (let i = 0; i < data.Andorra.length; i++) {
+      array.push(data.Andorra[i])
+    }
+
+//declare select variable to give value to select box
+    var select = document.getElementById("city");
+// Optional: Clear all existing options first:
+    select.innerHTML = "";
+// Loop options of city:
+    for(var i = 0; i < array.length; i++) {
+     var city = array[i];
+     select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+    }
+   },
+ });
+
+</script>
 @endsection
+
