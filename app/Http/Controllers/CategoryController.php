@@ -104,9 +104,13 @@ class CategoryController extends Controller
         return back();
     }
 
+
     //function to check if category already exist
-    public function existCategory(Request $request ){
+
+    public function existCategory(Request $request )
+    {
             $category = $request->get('result');
+
             if($request->ajax()){
                 $dataCategory = DB::table('categories')->where('name', $category)->get();
                 return $dataCategory;

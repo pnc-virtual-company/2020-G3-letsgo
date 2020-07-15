@@ -28,8 +28,10 @@
                          @csrf
                         <h3 class="mb-4"><b>Create Category</b></h3>
                         <input type="text" id="name" name="name" class="form-control mb-4" placeholder="Your category..." autocomplete="off">
+
                        <!-- alert text when category already exist -->
                         <span id="message" class="text-danger"></span>
+
                         <button type="submit" class="btn btn-warning float-right text-light ml-2">CREATE</button>
                         <button type="submit" class="btn btn-danger float-right" data-dismiss="modal">DISCARD</button>
                     </form>
@@ -90,8 +92,8 @@
         </tbody>
         @endforeach
       </table>
-
-      <script>
+</div>
+ <script>
           $(document).ready(function(){
              $(document).on('keyup','#name', function(){
                    var result = $(this).val();
@@ -116,8 +118,6 @@
             }
   });
 </script>
-
-</div>
 @endsection
 <style>
     .action_hidden{
