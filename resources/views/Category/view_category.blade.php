@@ -108,4 +108,5 @@
     .has-search{
         border-radius: 10px;
     }
+
 </style>
