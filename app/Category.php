@@ -12,4 +12,6 @@ class Category extends Model
     public function events() {
         return $this->hasMany(Event::class);
     }
+    protected $table = 'categories';
+
 }

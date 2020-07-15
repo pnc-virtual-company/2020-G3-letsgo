@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Auth;
 use App\Category;
+use DB;
 class CategoryController extends Controller
 {
     /**
@@ -37,11 +39,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $categories = new Category;
-        $categories -> name = $request -> get('category');
-        $categories -> user_id = auth::id();
-        $categories -> save();
+        //validate form input
+        $messages = ['category.required'=> 'Name is required'];
+        $this->validate($request, [
+            'category' => 'required|unique:categories| |max:255',
+        ],$messages);
+
+        //For Data insertion
+        $category = new Category;
+        $category -> category = $request-> category;
+        $category -> user_id = auth::id();
+        $category-> save();
         return back();
+
+
     }
 
     /**
@@ -92,4 +103,6 @@ class CategoryController extends Controller
         $categories->delete();
         return back();
     }
+
+
 }

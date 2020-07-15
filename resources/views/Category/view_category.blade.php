@@ -24,11 +24,10 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                   <form  action="{{route('Category.store')}}" method="POST" enctype="multipart/form-data">
-                      @csrf
-                      @method('POST')
+                <form  action="{{route('category.store')}}" method="POST">
+                         @csrf
                         <h3 class="mb-4"><b>Create Category</b></h3>
-                        <input type="text" name="category" class="form-control mb-4" placeholder="Your category...">
+                        <input type="text" id="category" name="category" class="form-control mb-4" placeholder="Your category..." autocomplete="off">
                         <button type="submit" class="btn btn-warning float-right text-light ml-2">CREATE</button>
                         <button type="submit" class="btn btn-danger float-right" data-dismiss="modal">DISCARD</button>
                     </form>
@@ -105,3 +104,4 @@
     }
 
 </style>
+
