@@ -2,46 +2,32 @@
 
 @section('content')
 <body>
+    <!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Open modal
+  </button>
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-center">Edit profile</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            
+        </div>
+      </div>
+    </div>
+  </div>
     
 
-    <div class="container">
-        <div class="row">
-            <div class="col-9 div-styles">
-                <form action="">
-                    <div class="form-group">
-                        <label for="">Firstname</label>
-                            <input type="text" class="form-control" name="firstname"   value="{{$user->firstname}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Lastname</label>
-                            <input type="text" class="form-control" name="lastname"   value="{{$user->lastname}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Email</label>
-                            <input type="text" class="form-control" name="email"   value="{{$user->email}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">New Password</label>
-                        <input type="password" class="form-control" name="password">
-                    </div> 
-                    <div class="form-group">
-                        <label for="password">Confirm Password</label>
-                        <input type="password" class="form-control" name="password">
-                    </div> 
-                    <button type="submit" class="btn btn-warning float-right" data-dismiss="modal">UPDATE</button>
-                    <button type="submit" class="btn btn-primary ">DISCARD</button>
-                </form>
-               
-            </div>
-            <div class="col-3">
-                <img src="1.png" width="100px;" height="100px;">
-                <br>
-                <i class="material-icons">add</i>
-                <i class="material-icons">edit</i>
-                <i class="material-icons">delete</i>
-            </div>
-        </div>
-    </div>
+    
     </body>
 @endsection
 

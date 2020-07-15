@@ -35,13 +35,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
-        $user->firstname = $request->get('firstname');
-        $user->lastname = $request->get('lastname');
-        $user->email = $request->get('email');
-        $user->password = $request->get('password');      
-        $user->save();
-        return view('auth.login');
+        // $user = new User;
+        // $user->firstname = $request->get('firstname');
+        // $user->lastname = $request->get('lastname');
+        // $user->email = $request->get('email');
+        // $user->password = $request->get('password');      
+        // $user->save();
+        // return view('auth.login');
     }
 
     /**
@@ -63,8 +63,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('user.edit_user_profile',compact('user'));
+        // $user = User::find($id);
+        // return view('user.edit_user_profile',compact('user'));
     }
     /**
      * Update the specified resource in storage.
@@ -80,9 +80,10 @@ class UserController extends Controller
         $user ->firstname=$request->get('firstname');
         $user ->lastname=$request->get('lastname');
         $user ->email=$request->get('email');
-        $user ->password=$request->get('password');
+        // $user ->password=$request->get('password');
+        // $user->password = $request -> Hash::make(get('password'));
         $user->save();
-        return redirect('home');
+        return view('home');
     }
 
     /**
