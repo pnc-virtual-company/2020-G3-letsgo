@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
@@ -91,5 +90,11 @@ class CategoryController extends Controller
         $categories -> user_id = auth::id();
         $categories->delete();
         return back();
+    }
+    
+    public function search(Request $request) {
+        $search = $request->get('search');
+        $categories = Category::where('name','LIKE','%'.$search.'%')->get();
+        return view ('Category.view_category',compact('categories'));
     }
 }

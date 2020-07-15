@@ -6,10 +6,15 @@
 
 <div class="container">
     {{-- button search --}}
-    <div class="form-group has-search mt-4">
-        <input type="text" class="form-control" placeholder="Search">
-    </div>
-
+    <form action="search" method="get">
+        <div class="input-group">
+            <input type="search" name="search" class="form-control" placeholder="Search">
+            <span class="input-group-prepend">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </span>
+        </div>
+    </form>
+        
     <h3><b class="text-success"></b>Categories</h3>
     <div class="row">
         <div class="col-md-11"></div>
@@ -103,5 +108,4 @@
     .has-search{
         border-radius: 10px;
     }
-
 </style>

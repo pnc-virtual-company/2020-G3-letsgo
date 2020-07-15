@@ -33,4 +33,5 @@ Route::resource('user','UserController');
 Route::resource('exploreEvent','ExploreEventController');
 Route::resource('Category','CategoryController');
 Route::get('/index','CategoryController@index')->name('index');
+Route::get('/search','CategoryController@search');
 
