@@ -63,7 +63,6 @@
             </div>
         </div>
 </body>
-
 <script>
 $.ajax({
 //get api
@@ -103,5 +102,6 @@ $.ajax({
  });
 
 </script>
+
 @endsection
 
