@@ -1,4 +1,6 @@
 @extends('layouts.app')
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 @section('content')
 <style>
     .div-style{
@@ -33,11 +35,86 @@
 </style>
 <body class="body-background">
     <div class="container">
-        <div class="row">
-            <div class="col-4"><h3><strong>Your Events</strong></h3></div>
-            <div class="col-4"></div>
-            <div class="col-4"><a href="#"><button class="btn-create"><i class="fa fa-plus"></i> Create</button></a><br></div>
-        </div><br>
+        
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i> Create</button>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Create Event</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-9">
+                            <form action="">
+                                <div class="form-group">
+                                    <select name="category" id="" class="form-control" >
+                                        <option value="">event Category..</option>
+                                        <option value="Soccer">Soccer</option>
+                                        <option value="Music">Music</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            StartDate: <input type="date" class="form-control" name="start-date" id="start-date" placeholder="Start Date">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            Time: <br> 
+                                            <input type="time" name="start_time" placeholder="Time">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            EndDate: <input type="date" class="form-control" name="end-date" id="end-date" placeholder="Start Date">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            Time: <br> 
+                                            <input type="time" name="end_time" placeholder="Time">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <select name="city" id="city" class="form-control">
+                                        <option value="">city...</option>
+                                        <option value="Cambodia">Cambodia</option>
+                                        <option value="Thailand">Thailand</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
+                                </div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </form>
+                        </div>
+                        <div class="col-3">
+                            <img src="1.png" width="100px;" height="100px;">
+                            <a href="#"><i class="material-icons">add</i></a>
+                            <a href="#"><i class="material-icons">edit</i></a>
+                            <a href="#"><i class="material-icons">delete</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <br>
         <p><strong>Friday,july 20</strong></p>    
             <div class="card">
                 <div class="div-style">
@@ -54,7 +131,84 @@
                 </div>
                 <div class="col-4 ">
                     <a href="#"><button type="submit" class="btn-cancel"><strong>Cancel</strong></button></a>
-                    <a href="#"><button type="submit" class="btn-edit"><strong>Edit</strong></button></a>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal1">Edit</button>
+                    <!-- Modal -->
+                    <div id="myModal1" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Edit Event</h3>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <form action="">
+                                            <div class="form-group">
+                                                <select name="category" id="" class="form-control" >
+                                                    <option value="">event Category..</option>
+                                                    <option value="Soccer">Soccer</option>
+                                                    <option value="Music">Music</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        StartDate: <input type="date" class="form-control" name="start-date" id="start-date" placeholder="Start Date">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        Time: <br> 
+                                                        <input type="time" name="start_time" placeholder="Time">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        EndDate: <input type="date" class="form-control" name="end-date" id="end-date" placeholder="Start Date">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        Time: <br> 
+                                                        <input type="time" name="end_time" placeholder="Time">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="city" id="city" class="form-control">
+                                                    <option value="">city...</option>
+                                                    <option value="Cambodia">Cambodia</option>
+                                                    <option value="Thailand">Thailand</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
+                                            </div>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="1.png" width="100px;" height="100px;">
+                                        <i class="material-icons">add</i>
+                                        <i class="material-icons">edit</i>
+                                        <i class="material-icons">delete</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -75,7 +229,69 @@
                 </div>
                 <div class="col-4 ">
                     <a href="#"><button class="btn-cancel"><strong>Cancel</strong></button></a>
-                    <a href="#"><button class="btn-edit"><strong>Edit</strong></button></a>
+                   <!-- Trigger the modal with a button -->
+                   <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal1">Edit</button>
+                   <!-- Modal -->
+                   <div id="myModal1" class="modal fade" role="dialog">
+                   <div class="modal-dialog">
+                       <!-- Modal content-->
+                       <div class="modal-content">
+                       <div class="modal-header">
+                           <h3 class="modal-title">Edit Event</h3>
+                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       </div>
+                       <div class="modal-body">
+                           <div class="container">
+                               <div class="row">
+                                   <div class="col-9">
+                                       <form action="">
+                                           <div class="form-group">
+                                               <select name="category" id="" class="form-control" >
+                                                   <option value="">event Category..</option>
+                                                   <option value="Soccer">Soccer</option>
+                                                   <option value="Music">Music</option>
+                                               </select>
+                                           </div>
+                                           <div class="form-group">
+                                               <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+                                           </div>
+                                           <div class="form-group">
+                                               Time: <input type="time" class="form-control" name="time" id="time" placeholder="Time">
+                                           </div>
+                                           <div class="form-group">
+                                               StartDate: <input type="date" class="form-control" name="start-date" id="start-date" placeholder="Start Date">
+                                           </div>
+                                           <div class="form-group">
+                                               EndDate: <input type="date" class="form-control" name="end-date" id="end-date" placeholder="End Date">
+                                           </div>
+                                           <div class="form-group">
+                                               <select name="city" id="city" class="form-control">
+                                                   <option value="">city...</option>
+                                                   <option value="Cambodia">Cambodia</option>
+                                                   <option value="Thailand">Thailand</option>
+                                               </select>
+                                           </div>
+                                           <div class="form-group">
+                                               <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
+                                           </div>
+                                           <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+                                           <button type="submit" class="btn btn-success">Submit</button>
+                                       </form>
+                                   </div>
+                                   <div class="col-3">
+                                       <img src="1.png" width="100px;" height="100px;">
+                                       <i class="material-icons">add</i>
+                                       <i class="material-icons">edit</i>
+                                       <i class="material-icons">delete</i>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       </div>
+                   </div>
+                   </div>
+               </div>
+               </div>
                 </div>
                 </div>
             </div>

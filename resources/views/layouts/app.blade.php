@@ -15,6 +15,10 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
@@ -24,6 +28,31 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+    .div-style{
+        display: flex;
+    }
+    .btn-cancel,
+    .btn-edit{
+        border-radius: 5px;
+        margin-top: 10%;
+        border: none;
+        padding: 10px;
+    }
+    .time{
+        margin-top: 5%;
+        margin-left:40px ;
+    }
+    .image{
+        margin-top: 5%;
+    }
+    .card{
+        border-radius: 20px;
+    }
+    .col-4{
+        float: left;
+    }
+</style>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -58,25 +87,25 @@
                             @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a  class="nav-link " href="#" role="button" >
-                            <span class="">Explore Event</span>
+                            <a  class="nav-link " href="{{route('exploreEvent.index')}}" role="button" >
+                            <span class=""><h5>Explore Event</h5></span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{route('yourEvent.create')}}">Your Event</a>
+                            <a class="nav-link" href="{{route('yourEvent.create')}}"><h5>Your Event</h5></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <span class="caret">Manage</span>
+                            <span class="caret"><h5>Manage</h5></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('event.index')}}">Event</a>
-                                <a class="dropdown-item" href="#">Categories</a>
+                                <a class="dropdown-item" href="{{route('Category.index')}}">Categories</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->firstname }} <span class="caret"></span>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><h5>{{ Auth::user()->firstname }} </h5>
+                                <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -105,4 +134,5 @@
     </div>
 </body>
 </html>
+
 

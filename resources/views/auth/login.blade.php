@@ -2,11 +2,10 @@
 
 @section('content')
 
-
 <body class="body-background">
     <div class="container">
         <div class="row d-flex justify-content-center mx-auto">
-            <div class="col-md-4 col-xs-12 div-style">
+            <div class="col-md-5 col-xs-12 div-styles">
             <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -41,7 +40,7 @@
 
                 <div class="form-group ">
                     <a class="nav-link" href="{{ route('register') }}">{{ __('Create account') }}</a>
-                    <button type="submit" class="btn btn-primary float-right">Next</button>
+                    <button type="submit" class="btn btn-primary float-right">Login</button>
                 </div>
             </form>
         </div>
@@ -50,9 +49,9 @@
 </body>
 @endsection
 <style>
-.div-style{
+.div-styles{
     margin-top : 4rem;
-    padding : 3rem;
+    padding : 2rem;
     background: white;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0.5rem 1rem 0px;
