@@ -101,7 +101,9 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('event.index')}}">Event</a>
-                                <a class="dropdown-item" href="{{route('Category.index')}}">Categories</a>
+                            @if(auth::user()->role == 1)
+                            <a class="dropdown-item" href="{{route('Category.index')}}">Categories</a>
+                            @endif
                             </div>
                         </li>
                         <div class="modal" id="userPopup">
