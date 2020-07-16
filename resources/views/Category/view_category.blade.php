@@ -48,21 +48,21 @@
           <tr>
             <td class=" text-info action">{{$category->name}}</td>
             <td class="action_hidden">
-                <a href="#" class="text-pimary" data-toggle="modal" data-target="#editCategory"><span class="material-icons">edit</span></a>
+                <a href="{{route('Category.update',$category->id)}}" class="text-pimary" data-toggle="modal" data-target="#editCategory{{$category->id}}"><span class="material-icons">edit</span></a>
                 <a href="{{route('Category.destroy',$category->id)}}" class="text-danger" data-toggle="modal" data-target="#removeCategory{{$category->id}}"><span class="material-icons text-danger">delete</span></a>
                 @method('DELETE')
             </td>
 
             <!-- Form Update Category -->
-            <div class="modal" id="editCategory">
+            <div class="modal" id="editCategory{{$category->id}}">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
                         <h3 class="mb-4"><b>Update Category</b></h3>
-                        <form action="#" method="POST">
+                        <form action="{{route('Category.update',$category->id)}}" method="POST">
                             @csrf
                             @method('PUT')
-                            <input type="text" class="form-control mb-4" placeholder="Category name"  name="category">
+                            <input type="text" class="form-control mb-4" placeholder="Category name"  name="category" value="{{$category->name}}">
                             <button type="submit" class="btn btn-warning float-right text-light ml-2">UPDATE</button>
                             <button class="btn btn-danger float-right" data-dismiss="modal">DISCARD</button>
                         </form>
