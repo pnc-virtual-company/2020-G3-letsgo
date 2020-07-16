@@ -75,7 +75,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $request->validate([ 
+        //     'confirm' => ['same:password'],
+        // ]);
         // $user = User::find($id);
         // $user ->firstname=$request->get('firstname');
         // $user ->lastname=$request->get('lastname');
@@ -85,29 +87,20 @@ class UserController extends Controller
         // $user->save();
         // return view('home');
 
-        // if($request->input('password') == $request->input('confirm')){
-        //     $user = User::find($id);
-        //     $user->firstname = $request->get('firstname');
-        //     $user->lastname = $request->get('lastname');
-        //     $user->email = $request->get('email');
-        //     $user->password = bcrypt($request->get('password'));
-        //     $user->save();
-        //     return back();
-        // }else{
-        //     return "not match the new password and confirm password";
-        // }
-
-        $request->validate([ 
-          
-            'confirm' => ['same:newpassword'],
-        ]);
+        
         $user = User::find($id);
         $user->firstname = $request->get('firstname');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
         $user->save();
-        return back();
+        return view('home');
+
+       
+
+      
+
+        
     }
 
     /**

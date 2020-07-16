@@ -110,7 +110,7 @@
                          
                                <!-- Modal Header -->
                                <div class="modal-header">
-                                 <h4 class="modal-title">Edit profile</h4>
+                                 <h4 class="modal-title">Edit User</h4>
                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
                                </div>
                          
@@ -121,17 +121,16 @@
                                         <div class="col-9 div-styles">
                                           
                                         
-                                            <form action="{{route('user.update',Auth::user()->id)}}" method="POST">
+                                            <form action="{{route('user.update',Auth::user()->id)}}" method="POST" >
                                                 @csrf
                                                 @method('PUT')
                                                 @foreach ($errors->all() as $error)
-                                                 {{-- <p class="text-danger">{{ $error }}</p> --}}
-                                                 <div class="alert alert-danger alert-block">
-                                                    <button type="button" class="close" data-dismiss="alert">x</button>
-                                                    <strong>{{ $error}}</strong>
-                                                 </div>
-                                                
-                                                  @endforeach 
+                      {{-- <p class="text-danger">{{ $error }}</p> --}}
+                      <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $error }}</strong>
+                       </div>
+                   @endforeach  
                                                 <div class="form-group">
                                                     <label for="">Firstname</label>
                                                         <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
@@ -142,34 +141,28 @@
                                                 </div>
                                                 
                                                 <div class="form-group">
-                                                    <label for="email">{{ __('Email') }}</label>
-                        
-                                                        <input id="email" type="email" class="form-control text-box @error('email') is-invalid @enderror" name="email" value="{{(Auth::user()->email) }}" required >
-                        
-                                                        @error('email')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                        
+                                                    <label for="">Email</label>
+                                                        <input type="email" class="form-control" name="email" value="{{Auth::user()->email}}">
                                                 </div>
+                                                
                                                 <div class="form-group">
                                                     <label for="password">New Password</label>
-                                                    <input id="newpassword" type="password" class="form-control @error('password') is-invalid @enderror" name="newpassword" required autocomplete="new-password" placeholder="new password">
+                                                    <input  type="password" class="form-control" name="password" required  placeholder="new password">
                                                 </div> 
                                                 
                         
-                                                
+                                               
                                                 <div class="form-group">
-                                                    <label for="confirm">Confirm Password</label>
-                                                    <input id="confirm" type="password" class="form-control" name="confirm" required autocomplete="confirm" placeholder="confirm password">
-                                                </div> 
+                                                    <label for="password-confirm" class="">Confirm Password</label>
+                                                    <input  type="password" class="form-control" name="confirm" required  placeholder="confirm password">
+                                                </div>
                                                
                                 
                                                 <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
                                                 <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
                                             </form>
-                                            
+
+                                           
                                         </div>
                                         <div class="col-3">
                                             <img src="1.png" width="100px;" height="100px;">
