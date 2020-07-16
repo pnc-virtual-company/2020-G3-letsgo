@@ -3,7 +3,7 @@
 
 <body class="body-background">
     <div class="container">
-        <h1>Find your Event!</h1>
+        <h3>Find your Event!</h3>
         <div class="card-search">
                 <div class="col-4">
                   <input type="text" class="form-control" placeholder="Search..">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-4 mt-3">
                     <h6>Music</h6>
-                    <h3>The Party for finish project</h3>
+                    <h5>The Party for finish project</h5>
                     <p>5 Member</p>
                 </div>
                 <div class="col-2 image">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-4 mt-3">
                     <h6>Sport</h6>
-                    <h3>football matching</h3>
+                    <h5>football matching</h5>
                     <p>10 Member</p>
                 </div>
                 <div class="col-2 image">
