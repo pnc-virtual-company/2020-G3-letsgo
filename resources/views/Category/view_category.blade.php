@@ -6,10 +6,15 @@
 
 <div class="container">
     {{-- button search --}}
-    <div class="form-group has-search mt-4">
-        <input type="text" class="form-control" placeholder="Search">
-    </div>
-
+    <form action="search" method="get">
+        <div class="input-group">
+            <input type="search" name="search" class="form-control" placeholder="Search">
+            <span class="input-group-prepend">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </span>
+        </div>
+    </form>
+        
     <h3><b class="text-success"></b>Categories</h3>
     <div class="row">
         <div class="col-md-11"></div>
@@ -48,7 +53,7 @@
           <tr>
             <td class=" text-info action">{{$category->name}}</td>
             <td class="action_hidden">
-                <a href="{{route('Category.update',$category->id)}}" class="text-pimary" data-toggle="modal" data-target="#editCategory{{$category->id}}"><span class="material-icons">edit</span></a>
+                <a href="#" class="text-pimary" data-toggle="modal" data-target="#editCategory"><span class="material-icons">edit</span></a>
                 <a href="{{route('Category.destroy',$category->id)}}" class="text-danger" data-toggle="modal" data-target="#removeCategory{{$category->id}}"><span class="material-icons text-danger">delete</span></a>
                 @method('DELETE')
             </td>

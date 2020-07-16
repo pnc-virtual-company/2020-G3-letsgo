@@ -122,4 +122,10 @@ class CategoryController extends Controller
     }
 
 
+    
+    public function search(Request $request) {
+        $search = $request->get('search');
+        $categories = Category::where('name','LIKE','%'.$search.'%')->get();
+        return view ('Category.view_category',compact('categories'));
+    }
 }
