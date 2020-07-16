@@ -30,6 +30,7 @@ Route::resource('yourEvent','YourEventController');
 
 Route::resource('user','UserController');
 // route view to exlore event
+
 Route::resource('exploreEvent','ExploreEventController');
 
 Route::resource('Category','CategoryController');

@@ -35,13 +35,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
-        $user->firstname = $request->get('firstname');
-        $user->lastname = $request->get('lastname');
-        $user->email = $request->get('email');
-        $user->password = $request->get('password');      
-        $user->save();
-        return view('auth.login');
+        // $user = new User;
+        // $user->firstname = $request->get('firstname');
+        // $user->lastname = $request->get('lastname');
+        // $user->email = $request->get('email');
+        // $user->password = $request->get('password');      
+        // $user->save();
+        // return view('auth.login');
     }
 
     /**
@@ -63,9 +63,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $user = User::find($id);
+        // return view('user.edit_user_profile',compact('user'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -76,6 +76,38 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // $user = User::find($id);
+        // $user ->firstname=$request->get('firstname');
+        // $user ->lastname=$request->get('lastname');
+        // $user ->email=$request->get('email');
+        // $user->password = bcrypt($request->get('password'));
+       
+        // $user->save();
+        // return view('home');
+
+        // if($request->input('password') == $request->input('confirm')){
+        //     $user = User::find($id);
+        //     $user->firstname = $request->get('firstname');
+        //     $user->lastname = $request->get('lastname');
+        //     $user->email = $request->get('email');
+        //     $user->password = bcrypt($request->get('password'));
+        //     $user->save();
+        //     return back();
+        // }else{
+        //     return "not match the new password and confirm password";
+        // }
+
+        $request->validate([ 
+          
+            'confirm' => ['same:newpassword'],
+        ]);
+        $user = User::find($id);
+        $user->firstname = $request->get('firstname');
+        $user->lastname = $request->get('lastname');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+        return back();
     }
 
     /**

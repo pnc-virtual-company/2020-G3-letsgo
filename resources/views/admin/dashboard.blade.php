@@ -23,7 +23,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link re l="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -104,14 +104,94 @@
                                 <a class="dropdown-item" href="{{route('Category.index')}}">Categories</a>
                             </div>
                         </li>
+                        <div class="modal" id="userPopup">
+                            <div class="modal-dialog">
+                             <div class="modal-content">
+                         
+                               <!-- Modal Header -->
+                               <div class="modal-header">
+                                 <h4 class="modal-title">Edit profile</h4>
+                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               </div>
+                         
+                               <!-- Modal body -->
+                               <div class="modal-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-9 div-styles">
+                                          
+                                        
+                                            <form action="{{route('user.update',Auth::user()->id)}}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                @foreach ($errors->all() as $error)
+                                                 {{-- <p class="text-danger">{{ $error }}</p> --}}
+                                                 <div class="alert alert-danger alert-block">
+                                                    <button type="button" class="close" data-dismiss="alert">x</button>
+                                                    <strong>{{ $error}}</strong>
+                                                 </div>
+                                                
+                                                  @endforeach 
+                                                <div class="form-group">
+                                                    <label for="">Firstname</label>
+                                                        <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Lastname</label>
+                                                        <input type="text" class="form-control" name="lastname" value="{{Auth::user()->lastname}}">
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="email">{{ __('Email') }}</label>
+                        
+                                                        <input id="email" type="email" class="form-control text-box @error('email') is-invalid @enderror" name="email" value="{{(Auth::user()->email) }}" required >
+                        
+                                                        @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                        
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">New Password</label>
+                                                    <input id="newpassword" type="password" class="form-control @error('password') is-invalid @enderror" name="newpassword" required autocomplete="new-password" placeholder="new password">
+                                                </div> 
+                                                
+                        
+                                                
+                                                <div class="form-group">
+                                                    <label for="confirm">Confirm Password</label>
+                                                    <input id="confirm" type="password" class="form-control" name="confirm" required autocomplete="confirm" placeholder="confirm password">
+                                                </div> 
+                                               
+                                
+                                                <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
+                                                <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
+                                            </form>
+                                            
+                                        </div>
+                                        <div class="col-3">
+                                            <img src="1.png" width="100px;" height="100px;">
+                                            <br>
+                                            <i class="material-icons">add</i>
+                                            <i class="material-icons">edit</i>
+                                            <i class="material-icons">delete</i>
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->firstname }} <span class="caret"></span>
                             </a>
-
+                                <!-- The Modal -->
+       
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                
+                                <a data-toggle="modal" data-target="#userPopup" class="dropdown-item " href="{{Auth::user()->id}}">Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">

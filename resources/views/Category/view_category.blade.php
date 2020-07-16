@@ -53,7 +53,7 @@
           <tr>
             <td class=" text-info action">{{$category->name}}</td>
             <td class="action_hidden">
-                <a href="#" class="text-pimary" data-toggle="modal" data-target="#editCategory"><span class="material-icons">edit</span></a>
+            <a href="{{route('Category.update',$category->id)}}" class="text-pimary" data-toggle="modal"   data-target="#editCategory{{$category->id}}"><span class="material-icons">edit</span></a>
                 <a href="{{route('Category.destroy',$category->id)}}" class="text-danger" data-toggle="modal" data-target="#removeCategory{{$category->id}}"><span class="material-icons text-danger">delete</span></a>
                 @method('DELETE')
             </td>
