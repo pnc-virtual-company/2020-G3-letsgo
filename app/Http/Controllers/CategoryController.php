@@ -40,14 +40,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //validate form input
-        $messages = ['category.required'=> 'Name is required'];
+        $messages = ['name.required'=> 'Name is required'];
         $this->validate($request, [
-            'category' => 'required|unique:categories| |max:255',
+            'name' => 'required|unique:categories| |max:255',
         ],$messages);
 
         //For Data insertion
         $category = new Category;
-        $category -> category = $request-> category;
+        $category -> name = $request-> name;
         $category -> user_id = auth::id();
         $category-> save();
         return back();
