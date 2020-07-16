@@ -14,6 +14,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -129,11 +131,38 @@
                                            
                                         </div>
                                         <div class="col-3">
-                                            <img src="1.png" width="100px;" height="100px;">
-                                            <br>
-                                            <i class="material-icons">add</i>
-                                            <i class="material-icons">edit</i>
-                                            <i class="material-icons">delete</i>
+                                            
+                                                <img src="1.png" width="100px;" height="100px;">
+                                                <button type="button" class="btn" data-toggle="modal" data-target="#addProfile"><i class="material-icons">add</i></button>
+                                                <div class="modal" id="addProfile">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">App profile Picture</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <form action="{{route('addProfilePic')}}" method="post" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method("PUT")
+                                                                    <div class="form-group">
+                                                                        <input type="file"name="picture" id="img" class="form-control" >
+                                                                        <button type="submit" class="btn btn-warning float-right" >ADD</button>
+                                                                        <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
+                                                                    </div>
+                                                                </form>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <i class="material-icons">edit</i>
+                                                <i class="material-icons">delete</i>
+                                            
                                         </div>
                                     </div>
                                 </div>
