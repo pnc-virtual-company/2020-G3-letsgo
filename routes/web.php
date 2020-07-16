@@ -35,3 +35,6 @@ Route::resource('Category','CategoryController');
 Route::get('/index','CategoryController@index')->name('index');
 Route::get('/search','CategoryController@search');
 
+
+
+

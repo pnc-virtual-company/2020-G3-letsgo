@@ -36,10 +36,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $categories = new Category;
-        $categories -> name = $request -> get('category');
-        $categories -> user_id = auth::id();
-        $categories -> save();
+        $category = new Category;
+        $category -> name = $request -> get('category');
+        $category -> user_id = auth::id();
+        $category -> save();
         return back();
     }
 
