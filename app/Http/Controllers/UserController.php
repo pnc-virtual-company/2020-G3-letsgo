@@ -76,20 +76,38 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = User::find($id);
-        $user ->firstname=$request->get('firstname');
-        $user ->lastname=$request->get('lastname');
-        $user ->email=$request->get('email');
-        $user->password = bcrypt($request->get('password'));
-        // $user->password = bcrypt($request->get('password=password_confirmation'));
-        // $newUser = $this->user->create([
-        //     'password'      =>  \Hash::make($request->password),
-        // ]);
-        // $this->activationService->sendActivationMail($newUser);
+        // $user = User::find($id);
+        // $user ->firstname=$request->get('firstname');
+        // $user ->lastname=$request->get('lastname');
+        // $user ->email=$request->get('email');
+        // $user->password = bcrypt($request->get('password'));
        
-        // $user->password = $request -> Hash::make(get('password'));
+        // $user->save();
+        // return view('home');
+
+        // if($request->input('password') == $request->input('confirm')){
+        //     $user = User::find($id);
+        //     $user->firstname = $request->get('firstname');
+        //     $user->lastname = $request->get('lastname');
+        //     $user->email = $request->get('email');
+        //     $user->password = bcrypt($request->get('password'));
+        //     $user->save();
+        //     return back();
+        // }else{
+        //     return "not match the new password and confirm password";
+        // }
+
+        $request->validate([ 
+          
+            'confirm' => ['same:newpassword'],
+        ]);
+        $user = User::find($id);
+        $user->firstname = $request->get('firstname');
+        $user->lastname = $request->get('lastname');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
         $user->save();
-        return view('home');
+        return back();
     }
 
     /**
