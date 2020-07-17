@@ -29,8 +29,6 @@ Route::resource('event','EventController');
 Route::resource('yourEvent','YourEventController');
 
 Route::resource('user','UserController');
-// route view to exlore event
-
 Route::resource('exploreEvent','ExploreEventController');
 
 Route::resource('Category','CategoryController');
@@ -41,4 +39,8 @@ Route::post('/category/store/','CategoryController@store')->name('category.store
 Route::get('/category','CategoryController@existCategory')->name('category.exist');
 
 Route::get('/search','CategoryController@search');
+
+
+
+
 

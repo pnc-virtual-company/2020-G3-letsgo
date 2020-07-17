@@ -75,14 +75,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
         $user = User::find($id);
-        $user->firstname = $request->get('firstname');
-        $user->lastname = $request->get('lastname');
-        $user->email = $request->get('email');
-        $user->city = $request->get('city');
-        $user->password = bcrypt($request->get('password'));
+        $user ->firstname=$request->get('firstname');
+        $user ->lastname=$request->get('lastname');
+        $user ->email=$request->get('email');
+        // $user ->password=$request->get('password');
+        // $user->password = $request -> Hash::make(get('password'));
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save( public_path('image' . $filename ));
+            $user->picture = $filename;
+        }else{
+            return $request;
+            $user->image='';
+        }
         $user->save();
-        return view('home');  
+        return view('home');
     }
 
     /**

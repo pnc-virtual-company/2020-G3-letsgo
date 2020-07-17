@@ -1,5 +1,6 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  rel="stylesheet">
+{{-- javascript link --}}
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 @extends('admin.dashboard')
 
 @section('content')
@@ -8,10 +9,7 @@
     {{-- button search --}}
     <form action="search" method="get">
         <div class="input-group">
-            <input type="search" name="search" class="form-control" placeholder="Search">
-            <span class="input-group-prepend">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </span>
+            <input type="search" name="search" id="search" class="form-control" placeholder="Search">
         </div>
     </form>
         
@@ -49,7 +47,7 @@
 
     <table class="table table-hover mt-3">
         @foreach ($categories as $category)
-        <tbody>
+        <tbody id="myTable">
           <tr>
             <td class=" text-info action">{{$category->name}}</td>
             <td class="action_hidden">
@@ -137,6 +135,13 @@
     }
 
 </style>
-
-
-
+<script>
+    $(document).ready(function(){
+      $("#search").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
