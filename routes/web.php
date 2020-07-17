@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ Route::resource('event','EventController');
 Route::resource('yourEvent','YourEventController');
 
 Route::resource('user','UserController');
+Route::put('addPriflePic/{id}', 'UserController@addProfilePicture')->name('addProfilePic');
 Route::resource('exploreEvent','ExploreEventController');
 
 Route::resource('Category','CategoryController');
