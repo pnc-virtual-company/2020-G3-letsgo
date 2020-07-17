@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Category;
+use DB;
 class CategoryController extends Controller
 {
     /**
@@ -36,10 +37,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category;
-        $category -> name = $request -> get('category');
-        $category -> user_id = auth::id();
-        $category -> save();
+        $categories = new Category;
+        $categories -> name = $request -> get('category');
+        $categories -> user_id = auth::id();
+        $categories -> save();
         return back();
     }
 
@@ -90,11 +91,5 @@ class CategoryController extends Controller
         $categories -> user_id = auth::id();
         $categories->delete();
         return back();
-    }
-    
-    public function search(Request $request) {
-        $search = $request->get('search');
-        $categories = Category::where('name','LIKE','%'.$search.'%')->get();
-        return view ('Category.view_category',compact('categories'));
     }
 }
