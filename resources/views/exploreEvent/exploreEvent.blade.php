@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('admin.dashboard')
+
 @section('content')
 
 <body class="body-background">

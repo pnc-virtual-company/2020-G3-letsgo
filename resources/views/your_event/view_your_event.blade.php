@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.dashboard')
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 @section('content')

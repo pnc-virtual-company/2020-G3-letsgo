@@ -82,6 +82,15 @@ class UserController extends Controller
         $user ->email=$request->get('email');
         // $user ->password=$request->get('password');
         // $user->password = $request -> Hash::make(get('password'));
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save( public_path('image' . $filename ));
+            $user->picture = $filename;
+        }else{
+            return $request;
+            $user->image='';
+        }
         $user->save();
         return view('home');
     }
