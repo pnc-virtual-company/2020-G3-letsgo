@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -96,18 +96,18 @@ class UserController extends Controller
     {
         //
     }
-    function addProfilePicture(Request $request){
-        $user = new User();
+    function addProfilePicture(Request $request,$id){
+        $user = User::find($id);
         if($request->hasFile('picture')){
             $image = $request->file('picture');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save( public_path('image/' . $filename ) );
+            Image::make($image)->save( public_path('/image/' . $filename ) );
             $user->picture = $filename;
         }else{
             return $request;
             $user->image='';
         }
         $user->save();
-        return back();
+        return redirect('home');
     }
 }

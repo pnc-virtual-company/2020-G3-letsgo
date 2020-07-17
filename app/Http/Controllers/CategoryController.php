@@ -76,7 +76,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+       
+            $categories =Category::find($id);
+            $categories -> name = $request -> get('category');
+            $categories -> user_id = auth::id();
+            $categories -> save();
+            return back(); 
+
     }
 
     /**
