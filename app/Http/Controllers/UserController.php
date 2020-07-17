@@ -75,32 +75,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->validate([ 
-        //     'confirm' => ['same:password'],
-        // ]);
-        // $user = User::find($id);
-        // $user ->firstname=$request->get('firstname');
-        // $user ->lastname=$request->get('lastname');
-        // $user ->email=$request->get('email');
-        // $user->password = bcrypt($request->get('password'));
-       
-        // $user->save();
-        // return view('home');
-
-        
         $user = User::find($id);
         $user->firstname = $request->get('firstname');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
+        $user->city = $request->get('city');
         $user->password = bcrypt($request->get('password'));
         $user->save();
-        return view('home');
-
-       
-
-      
-
-        
+        return view('home');  
     }
 
     /**

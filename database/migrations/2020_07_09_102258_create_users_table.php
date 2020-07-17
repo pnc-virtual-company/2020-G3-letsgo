@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email')->unique();
+            $table->string('city');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('picture')->default('user.jpg');
             $table->string('password');
@@ -30,7 +31,8 @@ class CreateUsersTable extends Migration
                 'firstname'=>'Admin',
                 'lastname'=>'user',
                 'email'=>'admin@example.com',
-                'picture'=>'admin',
+                'picture'=>'user.png',
+                'city'=>'Cambodia',
                 'password'=>bcrypt('password'),
                 'role'=> 1,
                 'remember_token'=>Str::random(10)
