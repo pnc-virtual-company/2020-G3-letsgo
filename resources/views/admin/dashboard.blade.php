@@ -127,12 +127,12 @@
                                                 @csrf
                                                 @method('PUT')
                                                 @foreach ($errors->all() as $error)
-                      {{-- <p class="text-danger">{{ $error }}</p> --}}
-                      <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $error }}</strong>
-                       </div>
-                   @endforeach  
+                                                {{-- <p class="text-danger">{{ $error }}</p> --}}
+                                                <div class="alert alert-danger alert-block">
+                                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                                    <strong>{{ $error }}</strong>
+                                                </div>
+                                            @endforeach
                                                 <div class="form-group">
                                                     <label for="">Firstname</label>
                                                         <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
