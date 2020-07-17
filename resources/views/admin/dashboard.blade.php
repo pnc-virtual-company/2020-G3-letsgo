@@ -118,22 +118,41 @@
                                <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-9 div-styles">
+                                        <form action="{{route('user.update',Auth::user()->id)}}" method="POST" >
+                                            @csrf
+                                            @method('PUT')
+                                      
                                           
-                                        
-                                            <form action="{{route('user.update',Auth::user()->id)}}" method="POST" >
-                                                @csrf
-                                                @method('PUT')
-                                                @foreach ($errors->all() as $error)
-                      {{-- <p class="text-danger">{{ $error }}</p> --}}
-                      <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $error }}</strong>
-                       </div>
-                   @endforeach  
-                                                <div class="form-group">
-                                                    <label for="">Firstname</label>
-                                                        <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
+                                                        
+                                                <div class="form-row">
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="">Firstname</label>
+                                                            <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        @if (Auth::user()->picture)
+                                                        <img src="{{asset('image/'.Auth::user()->picture)}}" width="120px" style="border:2px solid" height="130px" />
+                                                        
+                                                        @else
+                                                        
+                                                        <img src="image/user.png" width="120px" style="border:2px solid" height="130px" />
+                                                        @endif
+                                                        <br>
+
+                                                    {{-- delete image  --}}
+                                                    <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"><li class="fa fa-trash"></li></button>
+                                                    </form>
+                                                    <br>
+                                                        <div class="row">
+
+                                                            <button type="submit" class="btn btn-primary " data-dismiss="modal" style="margin-right: 5px">DISCARD</button>
+                                                            <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Lastname</label>
@@ -158,19 +177,11 @@
                                                 </div>
                                                
                                 
-                                                <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
-                                                <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
-                                            </form>
-
-                                           
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="1.png" width="100px;" height="100px;">
-                                            <br>
-                                            <i class="material-icons">add</i>
-                                            <i class="material-icons">edit</i>
-                                            <i class="material-icons">delete</i>
-                                        </div>
+                                                
+                                                
+                                                                                  
+                                                                                    
+                                    </form>
                                     </div>
                                 </div>
                                </div>

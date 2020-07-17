@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
+use Auth;
 use Illuminate\Http\Request;
 use App\User;
 use Image;
+
 class UserController extends Controller
 {
     /**
@@ -93,6 +95,12 @@ class UserController extends Controller
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
+        if($request->hasFile('picture')) {
+            $image = $request->file('picture');
+            $filename = $image->getClientOriginalName();
+            $image->move(public_path('image/'), $filename);
+            $user->picture = $request->file('picture')->getClientOriginalName();
+        }
         $user->save();
         return view('home');
 
@@ -111,6 +119,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('users')
+        ->where('id', Auth::user()->id)
+        ->update([
+            'picture' => 'user.png', 
+        ]);
+        return back();
     }
 }
