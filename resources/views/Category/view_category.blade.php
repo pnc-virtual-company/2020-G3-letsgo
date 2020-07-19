@@ -13,12 +13,12 @@
         </div>
     </form>
         
-    <h3><b class="text-success"></b>Categories</h3>
-    <div class="row">
+    <h1 class="text-center">Categories</h1>
+    <div class="row mt-5">
         <div class="col-md-11"></div>
-        <div class="col-md-1">
+        <div class="col-md-11">
             <button class="btn btn-warning text-light" data-toggle="modal" data-target="#addCategory">Create</button>
-           
+
         </div>
 
        
@@ -45,11 +45,11 @@
     </div>
     
 
-    <table class="table table-hover mt-3">
+    <table class="table table-info table-hover mt-3">
         @foreach ($categories as $category)
         <tbody id="myTable">
           <tr>
-            <td class=" text-info action">{{$category->name}}</td>
+            <td class=" text-dark action">{{$category->name}}</td>
             <td class="action_hidden">
             <a href="{{route('Category.update',$category->id)}}" class="text-pimary" data-toggle="modal"   data-target="#editCategory{{$category->id}}"><span class="material-icons">edit</span></a>
                 <a href="{{route('Category.destroy',$category->id)}}" class="text-danger" data-toggle="modal" data-target="#removeCategory{{$category->id}}"><span class="material-icons text-danger">delete</span></a>
@@ -125,6 +125,7 @@
 <style>
     .action_hidden{
         float: right;
+        text: center;
         display: none;
     }
     .action:hover+ .action_hidden{

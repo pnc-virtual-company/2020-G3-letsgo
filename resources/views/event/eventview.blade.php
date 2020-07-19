@@ -15,7 +15,8 @@
             </span>
         </div>
     </form>
-   <table class="table table-hover" style="margin-top:15px">
+    <h1 class="text-center mt-3">Event view</h1>
+   <table class="table table-hover mt-3" style="margin-top:15px">
        <tr>
            <th>Organizer</th>
            <th>City</th>

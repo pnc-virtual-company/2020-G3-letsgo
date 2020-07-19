@@ -55,13 +55,16 @@
     .col-4{
         float: left;
     }
+    .py-4{
+        background-color: #f1fcfd;
+    }
 </style>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Let Go') }}
+                <a class="navbar-brand" href="">
+                    <h5>Let's Go</h5>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -117,7 +120,7 @@
                                  <h4 class="modal-title">Edit User</h4>
                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
                                </div>
-                         
+
                                <!-- Modal body -->
                                <div class="modal-body">
                                 <div class="container">
