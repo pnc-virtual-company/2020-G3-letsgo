@@ -12,9 +12,9 @@
                  <label class="float-right">Not too far from city</label>
                 </div>
                 <div class="col-4">
-                 <select id="city" class="form-control">
-                        <option value=""  disabled selected>Choose City</option>
-                </select>
+                <select class="form-control" name="city" id="city">
+                                                        <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
+                                                    </select>
                 </div>
         </div>
         <div class="event-join mt-5">
@@ -91,8 +91,7 @@ $.ajax({
 
 //declare select variable to give value to select box
     var select = document.getElementById("city");
-// Optional: Clear all existing options first:
-    select.innerHTML = "";
+
 // Loop options of city:
     for(var i = 0; i < array.length; i++) {
      var city = array[i];

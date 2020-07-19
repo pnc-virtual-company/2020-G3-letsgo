@@ -122,57 +122,74 @@
                                <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-9 div-styles">
-                                            <form action="{{route('user.update',Auth::user()->id)}}" method="POST" >
-                                                @csrf
-                                                @method('PUT')
-                                                @foreach ($errors->all() as $error)
-                                                {{-- <p class="text-danger">{{ $error }}</p> --}}
-                                                <div class="alert alert-danger alert-block">
-                                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                                    <strong>{{ $error }}</strong>
-                                                </div>
-                                            @endforeach
-                                                <div class="form-group">
-                                                    <label for="">Firstname</label>
-                                                        <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
-                                                </div>
-                                                <div class="form-group">
+                                        <div class="col-12 div-styles">
+                                        <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid rounded-circle">
+                                        <div class="form-row">
+                                        <!-- <button type="submit" class="" data-toggle="modal" data-target="#addProfile{{Auth::user()->id}}"><i class="material-icons">add</i></button> -->
+                                        <!-- <i class="material-icons text-center">add</i> -->
+                                            {{-- delete image  --}}
+                                                <!-- <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
+                                                    @csrf
+                                                    @method('delete') -->
+                                                    <!-- <i class="material-icons text-center">delete</i> -->
+                                                <!-- </form> -->
+                                        </div>
+
+
+                                        <form action="{{route('user.update',Auth::user()->id)}}" method="POST" >
+                                            @csrf
+                                            @method('PUT')
+                                                <div class="form-row">
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="">Firstname</label>
+                                                            <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
                                                     <label for="">Lastname</label>
                                                         <input type="text" class="form-control" name="lastname" value="{{Auth::user()->lastname}}">
                                                 </div>
-                                                
+
+                                                </div>
+
                                                 <div class="form-group">
                                                     <label for="">Email</label>
-                                                    <input type="email" class="form-control" name="email" value="{{old(Auth::user()->email)}}">
+                                                    <input type="email" class="form-control" name="email" value="{{Auth::user()->email}}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
+                                                    <label for="city" class="col-md-12">City</label>
                                                     <select class="form-control" name="city" id="city">
                                                         <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group">
+
+                                                <div class="form-row">
+
+                                                    <div class="form-group col-md-6">
                                                     <label for="password">New Password</label>
-                                                    <input  type="password" class="form-control" name="password" required  placeholder="new password">
-                                                </div> 
-                                                <div class="form-group">
+                                                        <input  type="password" class="form-control" name="password" required  placeholder="new password">
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
                                                     <label for="password-confirm" class="">Confirm Password</label>
-                                                    <input  type="password" class="form-control" name="confirm" required  placeholder="confirm password">
+                                                        <input  type="password" class="form-control" name="confirm" required  placeholder="confirm password">
                                                 </div>
+
+                                                </div>
+
                                                 <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
                                                 <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
                                             </form>
 
-                                           
+
                                         </div>
                                         <div class="col-3">
-                                                <img src="1.png" width="100px;" height="100px;">
-                                                <button type="button" class="btn" data-toggle="modal" data-target="#addProfile{{Auth::user()->id}}"><i class="material-icons">add</i></button>
+
                                                     <div class="modal" id="addProfile{{Auth::user()->id}}">
                                                     <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                
+
                                                     <!-- Modal Header -->
                                                     <div class="modal-header">
                                                         <h4 class="modal-title">App profile Picture</h4>
@@ -195,9 +212,7 @@
                                                     </div>
                                                 </div>
                                                 </div>
-                                                <i class="material-icons">edit</i>
-                                                <i class="material-icons">delete</i>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +225,7 @@
                                 {{ Auth::user()->firstname }} <span class="caret"></span>
                             </a>
                                 <!-- The Modal -->
-       
+
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a data-toggle="modal" data-target="#userPopup" class="dropdown-item " href="{{Auth::user()->id}}">Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -265,8 +280,7 @@ $.ajax({
 
 //declare select variable to give value to select box
     var select = document.getElementById("city");
-// Optional: Clear all existing options first:
- 
+
 // Loop options of city:
     for(var i = 0; i < array.length; i++) {
      var city = array[i];
