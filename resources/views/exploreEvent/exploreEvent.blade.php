@@ -3,7 +3,10 @@
 
 <body class="body-background">
     <div class="container">
-        <h3>Find your Event!</h3>
+    <div class="row">
+    <div class="col-md-1"></div>
+      <div class="col-md-10">
+      <h3>Find your Event!</h3>
         <div class="card-search">
                 <div class="col-4">
                   <input type="text" class="form-control" placeholder="Search..">
@@ -23,7 +26,7 @@
           <div class="date mt-5">
              <p><strong>Friday,july 20</strong></p>
           </div>
-            <div class="card ">
+            <div class="card">
                 <div class="div-style">
                 <div class="col-2 time">
                     <h5 class="text-secondary">2:00 PM</h5>
@@ -61,7 +64,10 @@
                 </div>
                 </div>
             </div>
-        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    </div>
 </body>
 <script>
 $.ajax({

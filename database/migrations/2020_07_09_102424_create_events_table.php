@@ -19,12 +19,11 @@ class CreateEventsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->time('time');
+            $table->string('city');
             $table->string('description');
             $table->string('picture');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

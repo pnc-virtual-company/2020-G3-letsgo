@@ -35,9 +35,11 @@
 </style>
 <body class="body-background">
     <div class="container">
-        
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i> Create</button>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+     <!-- Trigger the modal with a button -->
+     <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i> Create</button>
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -83,7 +85,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            Time: <br> 
+                                            Time: <br>
                                             <input type="time" name="end_time" placeholder="Time">
                                         </div>
                                     </div>
@@ -92,7 +94,6 @@
                                     <select name="city" id="city" class="form-control">
                                         <option value="">city...</option>
                                         <option value="Cambodia">Cambodia</option>
-                                        <option value="Thailand">Thailand</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -103,9 +104,15 @@
                             </form>
                         </div>
                         <div class="col-3">
-                            <img src="1.png" width="100px;" height="100px;">
-                            <a href="#"><i class="material-icons">add</i></a>
-                            <a href="#"><i class="material-icons">edit</i></a>
+                        @if(Auth::user()->picture)
+                                {{-- get profile from user insert --}}
+                            <img src="{{asset('asset/image/'.Auth::user()->picture)}}" width="100px" height="100px" id="">
+                        @else
+                                {{-- default profile --}}
+                            <img src="{{asset('asset/image/user.png')}}" width="100px" height="100px" id="">
+                        @endif
+                            <input id="file" style="display:none;" type="file" name="picture">
+                            <label for="file" class="btn"><i class="fa fa-plus text-dark"></i></label>
                             <a href="#"><i class="material-icons">delete</i></a>
                         </div>
                     </div>
@@ -165,7 +172,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        Time: <br> 
+                                                        Time: <br>
                                                         <input type="time" name="start_time" placeholder="Time">
                                                     </div>
                                                 </div>
@@ -178,7 +185,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        Time: <br> 
+                                                        Time: <br>
                                                         <input type="time" name="end_time" placeholder="Time">
                                                     </div>
                                                 </div>
@@ -213,7 +220,7 @@
                 </div>
             </div>
             <br>
-            
+
             <div class="card">
                 <div class="div-style">
                 <div class="col-2 time">
@@ -295,6 +302,9 @@
                 </div>
                 </div>
             </div>
+            </div>
+            <div class="col-md-1"></div>
         </div>
+    </div>
 </body>
 @endsection

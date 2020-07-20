@@ -4,8 +4,10 @@
 @extends('admin.dashboard')
 
 @section('content')
-
 <div class="container">
+  <div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
     {{-- button search --}}
     <form action="search" method="get">
         <div class="input-group">
@@ -45,11 +47,11 @@
     </div>
     
 
-    <table class="table table-info table-hover mt-3">
+    <table class="table table-warning table-hover mt-3">
         @foreach ($categories as $category)
         <tbody id="myTable">
           <tr>
-            <td class=" text-dark action">{{$category->name}}</td>
+            <td class="text-dark action">{{$category->name}}</td>
             <td class="action_hidden">
             <a href="{{route('Category.update',$category->id)}}" class="text-pimary" data-toggle="modal"   data-target="#editCategory{{$category->id}}"><span class="material-icons">edit</span></a>
                 <a href="{{route('Category.destroy',$category->id)}}" class="text-danger" data-toggle="modal" data-target="#removeCategory{{$category->id}}"><span class="material-icons text-danger">delete</span></a>
@@ -95,6 +97,9 @@
         </tbody>
         @endforeach
       </table>
+</div>
+<div class="col-md-1"></div>
+</div>
 </div>
  <script>
           $(document).ready(function(){
