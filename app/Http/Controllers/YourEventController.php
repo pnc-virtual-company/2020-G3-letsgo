@@ -14,7 +14,8 @@ class YourEventController extends Controller
      */
     public function index()
     {
-        //
+        // $yourevents = YourEvent::all();
+        // return view('your_event.view_your_event',compact('yourevents'));
     }
 
     /**
@@ -24,7 +25,7 @@ class YourEventController extends Controller
      */
     public function create()
     {
-        return view('your_event.view_your_event');
+        // return view('your_event.view_your_event',compact('yourevents')); 
     }
 
     /**

@@ -27,6 +27,7 @@ Route::get('/', function (){
 
 // Event
 Route::resource('event','EventController');
+Route::get('showYourEvent','EventController@showYourEvent')->name('showYourEvent');
 Route::resource('yourEvent','YourEventController');
 
 Route::resource('user','UserController');

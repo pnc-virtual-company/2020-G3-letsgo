@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\Category;
 class EventController extends Controller
 {
     /**
@@ -15,6 +16,11 @@ class EventController extends Controller
     {
         $events = Event::all();
         return view('event.eventview',compact('events'));
+    }
+    public function showYourEvent(){
+        // $Category = Category::all();
+        $yourEvents= Event::all();
+        return view('your_event.view_your_event',compact('yourEvents'));
     }
 
     /**

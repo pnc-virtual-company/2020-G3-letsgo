@@ -2,16 +2,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
     {{-- font-awesome --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{ asset('/js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -98,7 +95,7 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{route('yourEvent.create')}}">Your Event</a>
+                            <a class="nav-link" href="{{route('showYourEvent')}}">Your Event</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -126,16 +123,15 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-12 div-styles">
-                                        <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid rounded-circle">
+                                        <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid img-circle">
                                         <div class="form-row">
-                                        <!-- <button type="submit" class="" data-toggle="modal" data-target="#addProfile{{Auth::user()->id}}"><i class="material-icons">add</i></button> -->
-                                        <!-- <i class="material-icons text-center">add</i> -->
+                                         <button type="submit" class="text-center" data-toggle="modal" data-target="#addProfile{{Auth::user()->id}}"><i class="material-icons text-center">add</i></button> 
                                             {{-- delete image  --}}
-                                                <!-- <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
+                                                 <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
                                                     @csrf
-                                                    @method('delete') -->
-                                                    <!-- <i class="material-icons text-center">delete</i> -->
-                                                <!-- </form> -->
+                                                    @method('delete') 
+                                                     <i class="material-icons text-center">delete</i> 
+                                                 </form> 
                                         </div>
 
 
@@ -215,7 +211,6 @@
                                                     </div>
                                                 </div>
                                                 </div>
-
                                         </div>
                                     </div>
                                 </div>
