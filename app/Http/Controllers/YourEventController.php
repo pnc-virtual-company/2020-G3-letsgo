@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\YourEvent;
+use App\Event;
 use Illuminate\Http\Request;
 
 class YourEventController extends Controller
@@ -35,7 +36,7 @@ class YourEventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

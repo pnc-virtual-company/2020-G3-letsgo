@@ -113,7 +113,6 @@
                         @endif
                             <input id="file" style="display:none;" type="file" name="picture">
                             <label for="file" class="btn"><i class="fa fa-plus text-dark"></i></label>
-                            <a href="#"><i class="material-icons">delete</i></a>
                         </div>
                     </div>
                 </div>
