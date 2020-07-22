@@ -83,12 +83,12 @@ class UserController extends Controller
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
-        if($request->hasFile('picture')) {
-            $image = $request->file('picture');
-            $filename = $image->getClientOriginalName();
-            $image->move(public_path('image/'), $filename);
-            $user->picture = $request->file('picture')->getClientOriginalName();
-        }
+        request()->validate([
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+        request()->picture->move(public_path('/image/'), $imageName);
+        $user -> picture = $imageName;
         $user->save();
         return view('home');
     }
@@ -101,25 +101,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('users')
-        ->where('id', Auth::user()->id)
-        ->update([
-            'picture' => 'user.png', 
-        ]);
-        return back();
-    }
-    function addProfilePicture(Request $request,$id){
-        $user = User::find($id);
-        if($request->hasFile('picture')){
-            $image = $request->file('picture');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save( public_path('/image/' . $filename ) );
-            $user->picture = $filename;
-        }else{
-            return $request;
-            $user->image='';
-        }
-        $user->save();
-        return redirect('home');
+       
     }
 }

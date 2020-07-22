@@ -30,7 +30,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        // return view('your_event.view_your_event',compact('yourevents')); 
     }
 
     /**

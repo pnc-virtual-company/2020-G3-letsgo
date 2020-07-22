@@ -1,6 +1,8 @@
 @extends('admin.dashboard')
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+<link href="https://icon-library.net/icon/default-user-icon-16.html" rel="stylesheet">
+      
 @section('content')
 <style>
     .div-style{
@@ -115,8 +117,8 @@
         </div>
         </div>
         <br>
+        
         @foreach ($yourEvents as $yourEvent)
-        {{-- @foreach ($Category as $category) --}}
         <p><strong>Friday,july 20</strong></p>    
             <div class="card">
                 <div class="div-style">
@@ -129,7 +131,7 @@
                     <p>5 Member</p>
                 </div>
                 <div class="col-2 image">
-                    <img src="{{$yourEvent->picture}}" alt="png">
+                    <img src="{{asset('image/'.$yourEvent->picture)}}" alt="" width="100px" height="100px">
                 </div>
                 <div class="col-4 ">
                     <a href="#"><button type="submit" class="btn-cancel"><strong>Cancel</strong></button></a>

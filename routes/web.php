@@ -31,7 +31,7 @@ Route::get('showYourEvent','EventController@showYourEvent')->name('showYourEvent
 Route::resource('yourEvent','YourEventController');
 
 Route::resource('user','UserController');
-Route::put('addPriflePic/{id}', 'UserController@addProfilePicture')->name('addProfilePic');
+// Route::put('addPriflePic/{id}', 'UserController@addProfilePicture')->name('addProfilePic');
 Route::resource('exploreEvent','ExploreEventController');
 
 Route::resource('Category','CategoryController');

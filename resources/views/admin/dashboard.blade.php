@@ -55,6 +55,9 @@
     .py-4{
         background-color: #f1fcfd;
     }
+    .img{
+        border-radius: 40px;
+    }
 </style>
 <body>
     <div id="app">
@@ -123,21 +126,29 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-12 div-styles">
-                                        <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid img-circle">
-                                        <div class="form-row">
-                                         <button type="submit" class="text-center" data-toggle="modal" data-target="#addProfile{{Auth::user()->id}}"><i class="material-icons text-center">add</i></button> 
-                                            {{-- delete image  --}}
-                                                 <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
-                                                    @csrf
-                                                    @method('delete') 
-                                                     <i class="material-icons text-center">delete</i> 
-                                                 </form> 
+                                            <div class="form-image text-center">
+                                                @if(Auth::user()->picture)
+                                                {{-- get profile from user insert --}}
+                                                    <img src="{{asset('image/'.Auth::user()->picture)}}" style="border-radius: 40px;" width="70" height="70"  class="img-thumnail"  id="img">
+                                                @else
+                                                {{-- default profile --}}
+                                                    <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid img-circle">
+                                                @endif
+                                            </div>
+                                        <div class="form-row ">
+                                            <div class="col-2"></div>
+                                            <div class="col-8">
+                                                
+                                            </div>
+                                            <div class="col-2"></div>
                                         </div>
-
-
-                                        <form action="{{route('user.update',Auth::user()->id)}}" method="POST" >
+                                        <form action="{{route('user.update',Auth::user()->id)}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
+                                            <div class="edit text-center">
+                                                <input id="file" style="display:none;" type="file" name="picture">
+                                                <label for="file" class="btn"><i class="fa fa-plus text-dark"></i></label>
+                                            </div>
                                                 <div class="form-row">
 
                                                     <div class="form-group col-md-6">
@@ -183,7 +194,7 @@
 
 
                                         </div>
-                                        <div class="col-3">
+                                        {{-- <div class="col-3">
 
                                                     <div class="modal" id="addProfile{{Auth::user()->id}}">
                                                     <div class="modal-dialog">
@@ -191,7 +202,7 @@
 
                                                     <!-- Modal Header -->
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">App profile Picture</h4>
+                                                        <h4 class="modal-title">Add profile Picture</h4>
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     <!-- Modal body -->
@@ -201,7 +212,7 @@
                                                                 @csrf
                                                                 @method("PUT")
                                                                     <div class="form-group">
-                                                                        <input type="file"name="picture" id="img" class="form-control">
+                                                                        <input type="file" style="displaynone"name="picture" id="img" class="form-control">
                                                                         <button type="submit" class="btn btn-warning float-right" >ADD</button>
                                                                         <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
                                                                     </div>
@@ -211,7 +222,7 @@
                                                     </div>
                                                 </div>
                                                 </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                </div>

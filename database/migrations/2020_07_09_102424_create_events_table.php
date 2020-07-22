@@ -21,10 +21,9 @@ class CreateEventsTable extends Migration
             $table->time('time');
             $table->string('description');
             $table->string('picture');
+            $table->string('city');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
