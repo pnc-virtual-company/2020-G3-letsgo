@@ -27,10 +27,9 @@ Route::get('/', function (){
 
 // Event
 Route::resource('event','EventController');
-Route::resource('yourEvent','YourEventController');
+Route::resource('yourEvent','EventController');
 
 Route::resource('user','UserController');
-Route::put('addPriflePic/{id}', 'UserController@addProfilePicture')->name('addProfilePic');
 Route::resource('exploreEvent','ExploreEventController');
 
 Route::resource('Category','CategoryController');
@@ -41,8 +40,4 @@ Route::post('/category/store/','CategoryController@store')->name('category.store
 Route::get('/category','CategoryController@existCategory')->name('category.exist');
 
 Route::get('/search','CategoryController@search');
-
-
-
-
 

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\YourEvent;
 use App\Event;
+use Auth;
 class EventController extends Controller
 {
     /**
@@ -24,7 +27,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $events = Event::all();
+        return view('your_event.view_your_event', compact('events', 'categories'));
     }
 
     /**
@@ -35,7 +40,40 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request -> validate([
+            'title' => 'required',
+            'start_date' => 'required|date|date_format:Y-m-d|after:yesterday',
+            'start_time' => 'required',
+            'end_date' => 'required|date|date_format:Y-m-d|after:startDate',
+            'end_time' => 'required',
+            'description' => 'required',
+            'city' => 'required',
+        ]);
+        $user = Auth::id();
+        $yourevent = new Event;
+        $yourevent -> title = $request-> title;
+        $yourevent -> category_id = $request-> category;
+        $yourevent -> start_date = $request-> start_date;
+        $yourevent -> end_date = $request-> end_date;
+        $yourevent -> start_time = $request-> start_time;
+        $yourevent -> end_time = $request-> end_time;
+        $yourevent -> city = $request-> city;
+        $yourevent -> description = $request-> description;
+        $yourevent->user_id = auth::id();
+        if($request->picture != null){ 
+            request()->validate([
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+                $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+                request()->picture->move(public_path('/image/'), $imageName);
+                $yourevent->picture = $imageName;
+
+            }
+
+    
+        $yourevent->save();
+        return back();
     }
 
     /**

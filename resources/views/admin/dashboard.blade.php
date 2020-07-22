@@ -125,25 +125,26 @@
                                <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-12 div-styles">
-                                        <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid rounded-circle">
-                                        <div class="form-row">
-                                        <!-- <button type="submit" class="" data-toggle="modal" data-target="#addProfile{{Auth::user()->id}}"><i class="material-icons">add</i></button> -->
-                                        <!-- <i class="material-icons text-center">add</i> -->
-                                            {{-- delete image  --}}
-                                                <!-- <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
-                                                    @csrf
-                                                    @method('delete') -->
-                                                    <!-- <i class="material-icons text-center">delete</i> -->
-                                                <!-- </form> -->
+                                    <div class="col-12 div-styles">
+                                            <div class="form-image text-center">
+                                                @if(Auth::user()->picture)
+                                                {{-- get profile from user insert --}}
+                                                    <img src="{{asset('image/'.Auth::user()->picture)}}" style="border-radius: 40px;" width="70" height="70"  class="img-thumnail"  id="img">
+                                                @else
+                                                {{-- default profile --}}
+                                                    <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid img-circle">
+                                                @endif
+                                            </div>
+                                        <div class="form-row ">
+                                            <div class="col-2"></div>
+                                            <div class="col-8">
+                                            </div>
+                                            <div class="col-2"></div>
                                         </div>
-
-
-                                        <form action="{{route('user.update',Auth::user()->id)}}" method="POST" >
+                                        <form action="{{route('user.update',Auth::user()->id)}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                                 <div class="form-row">
-
                                                     <div class="form-group col-md-6">
                                                         <label for="">Firstname</label>
                                                             <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
@@ -184,38 +185,6 @@
                                                 <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
                                                 <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
                                             </form>
-
-
-                                        </div>
-                                        <div class="col-3">
-
-                                                    <div class="modal" id="addProfile{{Auth::user()->id}}">
-                                                    <div class="modal-dialog">
-                                                    <div class="modal-content">
-
-                                                    <!-- Modal Header -->
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">App profile Picture</h4>
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    </div>
-                                                    <!-- Modal body -->
-                                                    <div class="modal-body">
-                                                        <div class="container">
-                                                            <form action="{{route('addProfilePic',Auth::user()->id)}}" method="post" enctype="multipart/form-data">
-                                                                @csrf
-                                                                @method("PUT")
-                                                                    <div class="form-group">
-                                                                        <input type="file"name="picture" id="img" class="form-control">
-                                                                        <button type="submit" class="btn btn-warning float-right" >ADD</button>
-                                                                        <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
-                                                                    </div>
-                                                                </form>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                                </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -255,6 +224,7 @@
 </body>
 </html>
 
+
 <script>
 $.ajax({
 //get api
@@ -280,10 +250,17 @@ $.ajax({
     for (let i = 0; i < data.Andorra.length; i++) {
       array.push(data.Andorra[i])
     }
-
 //declare select variable to give value to select box
     var select = document.getElementById("city");
-
+    //declare select variable to give value to select box
+    var eventCity = document.getElementById("eventCity");
+// Optional: Clear all existing options first:
+    eventCity.innerHTML = "<option disabled selected>Choose city</option>";
+// Loop options of event city:
+    for(var i = 0; i < array.length; i++) {
+     var city = array[i];
+     eventCity.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+    }
 // Loop options of city:
     for(var i = 0; i < array.length; i++) {
      var city = array[i];
@@ -291,6 +268,5 @@ $.ajax({
     }
    },
  });
-
 </script>
 
