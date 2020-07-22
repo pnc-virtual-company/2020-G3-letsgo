@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Auth;
 use App\Category;
+use DB;
 class CategoryController extends Controller
 {
     /**
@@ -37,11 +39,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $categories = new Category;
-        $categories -> name = $request -> get('category');
-        $categories -> user_id = auth::id();
-        $categories -> save();
+        //validate form input
+        $messages = ['name.required'=> 'Name is required'];
+        $this->validate($request, [
+            'name' => 'required|unique:categories| |max:255',
+        ],$messages);
+
+        //For Data insertion
+        $category = new Category;
+        $category -> name = $request-> name;
+        $category -> user_id = auth::id();
+        $category-> save();
         return back();
+
+
     }
 
     /**
@@ -76,7 +87,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $categories =Category::find($id);
+        $categories -> name = $request -> get('category');
+        $categories -> user_id = auth::id();
+        $categories -> save();
+        return back(); 
     }
 
     /**
@@ -91,5 +106,26 @@ class CategoryController extends Controller
         $categories -> user_id = auth::id();
         $categories->delete();
         return back();
+    }
+
+
+    //function to check if category already exist
+
+    public function existCategory(Request $request )
+    {
+            $category = $request->get('result');
+
+            if($request->ajax()){
+                $dataCategory = DB::table('categories')->where('name', $category)->get();
+                return $dataCategory;
+            }
+    }
+
+
+    
+    public function search(Request $request) {
+        $search = $request->get('search');
+        $categories = Category::where('name','LIKE','%'.$search.'%')->get();
+        return view ('Category.view_category',compact('categories'));
     }
 }
