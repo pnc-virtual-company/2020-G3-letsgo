@@ -10,7 +10,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('/js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -56,6 +55,14 @@
     .py-4{
         background-color: #f1fcfd;
     }
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
 
 </style>
 <body>
