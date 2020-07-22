@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\YourEvent;
 use App\Event;
+use Auth;
 class EventController extends Controller
 {
     /**
@@ -24,7 +27,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('your_event.view_your_event', compact('categories'));
     }
 
     /**
@@ -35,7 +39,24 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = new Event;
+        $event -> title = $request-> title;
+        $event -> category_id = $request-> category;
+        $event -> start_date = $request-> start_date;
+        $event -> end_date = $request-> end_date;
+        $event -> start_time = $request-> start_time;
+        $event -> end_time = $request-> end_time;
+        $event -> city = $request-> city;
+        $event -> user_id = auth::id();
+        $event -> description = $request-> description;
+        request()->validate([
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+        request()->picture->move(public_path('/image/'), $imageName);
+        $event -> picture = $imageName;
+        $event -> save();
+        return back();
     }
 
     /**

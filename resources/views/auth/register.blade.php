@@ -27,10 +27,10 @@
                                     @enderror
                                 </div>
                             </div>
-    
+
                             <div class="form-group row">
                                 <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
-    
+
                                 <div class="col-md-6">
                                     <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
 
@@ -59,13 +59,12 @@
                                     <select name="city" id="city" class="form-control" >
                                     <option disabled selected>Choose city</option>
                                     </select>
-
                                 </div>
 
                             </div>
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-    
+
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
@@ -76,7 +75,7 @@
                                     @enderror
                                 </div>
                             </div>
-    
+
                             <div class="form-group row">
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -103,8 +102,6 @@
     </div>
 </div>
 
-
-
 </body>
 
 <script>
@@ -114,6 +111,7 @@ $.ajax({
     "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
   dataType: "json",
   success: function (data) {
+
 //declare array variable to store city of each country
     let array =[];
 //loop city of Afghanistan country

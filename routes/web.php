@@ -27,7 +27,7 @@ Route::get('/', function (){
 
 // Event
 Route::resource('event','EventController');
-Route::resource('yourEvent','YourEventController');
+Route::resource('yourEvent','EventController');
 
 Route::resource('user','UserController');
 Route::put('addPriflePic/{id}', 'UserController@addProfilePicture')->name('addProfilePic');
