@@ -30,6 +30,7 @@ Route::resource('event','EventController');
 Route::resource('yourEvent','EventController');
 
 Route::resource('user','UserController');
+Route::put('updatePic/{id}','UserController@updateProfilePic')->name('updatepic');
 Route::resource('exploreEvent','ExploreEventController');
 
 Route::resource('Category','CategoryController');
