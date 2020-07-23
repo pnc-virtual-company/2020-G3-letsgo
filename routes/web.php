@@ -31,7 +31,7 @@ Route::resource('yourEvent','EventController');
 
 Route::resource('user','UserController');
 Route::resource('exploreEvent','ExploreEventController');
-
+Route::put('updatePic/{id}','UserController@updateProfilePic')->name('updatepic');
 Route::resource('Category','CategoryController');
 Route::get('/index','CategoryController@index')->name('index');
 // route to add category
