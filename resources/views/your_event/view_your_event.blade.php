@@ -105,7 +105,7 @@
                         <div class="col-3">
                         @if(Auth::user()->picture)
                                 {{-- get profile from user insert --}}
-                            <img src="{{asset('image/'.Auth::user()->picture)}}" width="100px" height="100px" id="">
+                            <img src="{{asset('image/event.png')}}" width="100px" height="100px" id="">
                         @else
                                 {{-- default profile --}}
                             <img src="{{asset('image/event.png')}}" width="100px" height="100px" id="">

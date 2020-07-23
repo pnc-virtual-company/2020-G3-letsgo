@@ -100,17 +100,17 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{route('yourEvent.create')}}">Your Event</a>
                         </li>
+                        @if(auth::user()->role == 1)
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <span class="caret">Manage</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('event.index')}}">Event</a>
-                            @if(auth::user()->role == 1)
                             <a class="dropdown-item" href="{{route('Category.index')}}">Categories</a>
-                            @endif
                             </div>
                         </li>
+                        @endif
                         <div class="modal" id="userPopup">
                             <div class="modal-dialog">
                              <div class="modal-content">

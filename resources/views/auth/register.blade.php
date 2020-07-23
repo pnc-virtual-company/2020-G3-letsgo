@@ -5,7 +5,7 @@
      <div class="col-4"></div>
      <div class="col-4">
             <div class="card mt-5">
-            <div class="card-header mt-3">
+            <div class="card-header ">
 			    		<h3 class="panel-title text-center">Create User</h3>
 			 			</div>
 			 			<div class="card-body">
