@@ -94,12 +94,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                <select name="city" id="eventCity" class="form-control" >
-                                    <option disabled selected>Choose city</option>
-                                </select>
+                                <select class="form-control" name="eventCity" id="eventCity">
+                                                        <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
+                                 </select>
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
+                                    <textarea name="description" id="" cols="63" rows="5" class="form-control" minLength="50" placeholder="Description"></textarea>
                                 </div>
                         </div>
                         <div class="col-3">

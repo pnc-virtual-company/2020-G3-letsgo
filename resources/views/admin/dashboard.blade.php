@@ -254,8 +254,7 @@ $.ajax({
     var select = document.getElementById("city");
     //declare select variable to give value to select box
     var eventCity = document.getElementById("eventCity");
-// Optional: Clear all existing options first:
-    eventCity.innerHTML = "<option disabled selected>Choose city</option>";
+
 // Loop options of event city:
     for(var i = 0; i < array.length; i++) {
      var city = array[i];
