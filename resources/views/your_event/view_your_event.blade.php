@@ -38,12 +38,12 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-     <!-- Trigger the modal with a button -->
+
+                {{-- ======================== create event =================== --}}
+
      <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i> Create</button>
-        <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Create Event</h3>
@@ -65,25 +65,25 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="title" id="title" placeholder="Title of event">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="Title">
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            StartDate: <input type="date" class="form-control" name="start_date" id="start-date" placeholder="Start Date">
+                                            StartDate: <input type="date" class="form-control" name="start_date" id="startDate">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             Start Time: <br>
-                                            <input type="time" name="start_time" placeholder="Time">
+                                            <input type="time" name="start_time"> 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            EndDate: <input type="date" class="form-control" name="end_date" id="end-date" placeholder="Start Date">
+                                            EndDate: <input type="date" class="form-control" name="end_date" id="endDate">
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -95,8 +95,8 @@
                                 </div>
                                 <div class="form-group">
                                 <select class="form-control" name="city" id="eventCity">
-                                                        <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
-                                 </select>
+                                <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
+                                </select>
                                 </div>
                                 <div class="form-group">
                                     <textarea name="description" minLength="50" required cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
@@ -119,32 +119,32 @@
         </div>
         </div>
         <br>
+        {{-- ======================== view event ================== --}}
+
         @foreach($events as $yourEvents)
         @if(auth::user()->id == $yourEvents->user_id)
         <p><strong>Friday,july 20</strong></p>
             <div class="card">
                 <div class="div-style">
-                <div class="col-2 time">
+                <div class="col-2 time" style="margin-top:8%">
                     <h5 class="text-secondary">{{$yourEvents->start_time}}</h5>
                 </div>
-                <div class="col-4 mt-3">
+                <div class="col-3 mt-5">
                     <h6>{{$yourEvents->category->name}}</h6>
                     <h3>{{$yourEvents->title}}</h3>
                     <p>5 Member</p>
                 </div>
-                <div class="col-2 image">
-            <img src="{{asset('image/'.$yourEvents->picture)}}" width="90" height="90" style="border-radius:15px;" alt="">
+                <div class="col-3 image mb-3">
+            <img src="{{asset('image/'.$yourEvents->picture)}}" width="100" height="100" style="border-radius:15px;" alt="">
                 </div>
-                <div class="col-4 ">
+                <div class="col-4 mt-4">
                   {{-- delete Event button --}}
                     <a href="{{route('delete',$yourEvents->id)}}" onclick="return confirm('Are you sure you want to delete this event?');"><button type="submit" class="btn-cancel"><strong>Cancel</strong></button></a>
 
                     {{-- Edit Event --}}
                     <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal1{{$yourEvents->id}}">Edit</button>
-                    <!-- Modal -->
                     <div id="myModal1{{$yourEvents->id}}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
-                        <!-- Modal content-->
                         <div class="modal-content">
                         <div class="modal-header">
                             <h3 class="modal-title">Edit Event</h3>
@@ -173,20 +173,20 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        StartDate: <input type="date" class="form-control" name="start_date" id="start-date" placeholder="Start Date" value="{{$yourEvents->start_date}}">
+                                                        StartDate: <input type="date" id="startDate" class="form-control" name="start_date" id="start-date" placeholder="Start Date" value="{{$yourEvents->start_date}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         Time: <br>
-                                                        <input type="time" name="start_time" placeholder="Time" value="{{$yourEvents->start_time}}">
+                                                        <input type="time" name="start_time"  placeholder="Time" value="{{$yourEvents->start_time}}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        EndDate: <input type="date" class="form-control" name="end_date" id="end-date" placeholder="End Date" value="{{$yourEvents->end_date}}">
+                                                        EndDate: <input type="date" id="endDate" class="form-control" name="end_date" id="end-date" placeholder="End Date" value="{{$yourEvents->end_date}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -197,10 +197,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                            <input type="text" name="city" class="form-control" value="{{$yourEvents->city}}">
-                                                {{-- <select class="form-control" name="eventCity" id="eventCity">
-                                                    <option name="city" value="{{$yourEvents->city}}" selected>{{$yourEvents->city}}</option>
-                                                 </select> --}}
+                                            
+                                                <select class="form-control" name="city" id="cityEvent">
+                                                    <option value="{{$yourEvents->city}}" selected>{{$yourEvents->city}}</option>
+                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description">{{$yourEvents->description}}</textarea>
@@ -250,7 +250,7 @@
             </div>
             <br>
             @endif
-@endforeach
+        @endforeach
                 </div>
                 </div>
             </div>
@@ -259,4 +259,55 @@
         </div>
     </div>
 </body>
+
+
+{{-- script to show city from json  --}}
+
+<script>
+    $.ajax({
+    //get api
+      url:
+        "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
+      dataType: "json",
+      success: function (data) {
+    //declare array variable to store city of each country
+        let array =[];
+    //loop city of Afghanistan country
+        for (let i = 0; i < data.Afghanistan.length; i++) {
+          array.push(data.Afghanistan[i])
+        }
+     //loop city of Albania country
+        for (let i = 0; i < data.Albania.length; i++) {
+          array.push(data.Albania[i])
+        }
+    //loop city of Algeria country
+        for (let i = 0; i < data.Algeria.length; i++) {
+          array.push(data.Algeria[i])
+        }
+    //loop city of Andorra country
+        for (let i = 0; i < data.Andorra.length; i++) {
+          array.push(data.Andorra[i])
+        }
+    //declare select variable to give value to select box
+        var select = document.getElementById("city");
+        //declare select variable to give value to select box
+        var cityEvent = document.getElementById("cityEvent");
+    
+    // Loop options of event city:
+        for(var i = 0; i < array.length; i++) {
+         var city = array[i];
+         cityEvent.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+        }
+    // Loop options of city:
+        for(var i = 0; i < array.length; i++) {
+         var city = array[i];
+         select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+        }
+       },
+     });
+    </script>
 @endsection
+
+
+
+

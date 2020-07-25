@@ -89,8 +89,8 @@ class UserController extends Controller
     {
         $image = User::findOrFail($id);
         
-        if(\File::exists(public_path("asset/userImage/{$image->picture}"))){
-            \File::delete(public_path("asset/userImage/{$image->picture}"));
+        if(\File::exists(public_path("image/{$image->picture}"))){
+            \File::delete(public_path("image/{$image->picture}"));
         }
         $image = User::findOrFail($id)->where('id', Auth::user()->id)->update([
             'picture' => 'user.png',
