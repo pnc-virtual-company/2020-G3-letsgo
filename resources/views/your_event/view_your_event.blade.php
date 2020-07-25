@@ -38,9 +38,7 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-
                 {{-- ======================== create event =================== --}}
-
      <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i> Create</button>
         <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -163,7 +161,6 @@
                                                       <option value="{{$category->id}}" {{$category->id==$yourEvents->category_id ?
                                                         'selected' : '' }} >{{$category->name}}
                                                     </option>
-
                                                         @endforeach
                                                 </select>
                                             </div>
@@ -210,12 +207,24 @@
                                         </form>
                                     </div>
                                     <div class="col-3">
-                                        <td> <img src="{{asset('image/'.$yourEvents->picture)}}" width="80" height="80" style="border-radius:15px;" alt=""><br><br></td>
-
-
-
-                                                <a href="" data-toggle="modal" data-target="#apdatePic{{$yourEvents->id}}"><i class="fa fa-lg fa-edit"></i></a>
-
+                                                @if($yourEvents->picture)
+                                                {{-- get profile from user insert --}}
+                                                    <img src="{{asset('image/'.$yourEvents->picture)}}" style="border-radius: 15px;" width="100" height="100"  class="img-thumnail"  id="img">
+                                                @else
+                                                {{-- default profile --}}
+                                                    <img class="mx-auto d-block" src="image/event.png"  width="100" style="border-radius: 15px;" height="100" alt="User" class="img-fluid img-circle">
+                                                @endif
+                                                    {{-- edit button --}}
+                                                    <div class="row">
+                                                        
+                                                        {{-- delete button --}}
+                                                        <form action="{{route('event.destroy',$yourEvents->id)}}" method="POST" >
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" style="margin-left: 20px" class="btn bnt-outline-default"> <li class="fa fa-trash text-primary" style="font-size:20px"></li></button>
+                                                        </form> 
+                                                        <a href="" style="margin-top:10%;margin:left:10px" data-toggle="modal" data-target="#apdatePic{{$yourEvents->id}}"><i class="fa fa-lg fa-edit"></i></a>
+                                                    </div>
                                                 <!-- Modal -->
                                                 <div id="apdatePic{{$yourEvents->id}}" class="modal fade" role="dialog">
                                                 <div class="modal-dialog">
@@ -227,7 +236,7 @@
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <form action="{{route('updateProfileEvent', Auth::user()->id == $yourEvents->id)}}" method="POST" enctype="multipart/form-data">
+                                                    <form action="{{route('updateProfileEvent',Auth::user()->id == $yourEvents->id)}}" method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             @method('PUT')
                                                             <input type="file" name="picture" >
@@ -259,8 +268,6 @@
         </div>
     </div>
 </body>
-
-
 {{-- script to show city from json  --}}
 
 <script>

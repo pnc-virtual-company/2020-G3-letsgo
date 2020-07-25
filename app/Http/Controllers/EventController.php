@@ -127,7 +127,19 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function destroy ($id)
+    {
+        $image = Event::findOrFail($id);
+        
+        if(\File::exists(public_path("image/{$image->picture}"))){
+            \File::delete(public_path("image/{$image->picture}"));
+        }
+        $image = Event::findOrFail($id)->where('id',$image->id)->update([
+            'picture' => 'event.png',
+        ]);
    
+        return back();
+    }
 
     public function delete($id)
     {
