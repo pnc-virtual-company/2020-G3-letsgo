@@ -210,12 +210,34 @@
                                         </form>
                                     </div>
                                     <div class="col-3">
-                                        <td> <img src="{{asset('image/'.$yourEvents->picture)}}" width="80" height="80" style="border-radius:15px;" alt=""><br><br></td>
+                                        {{-- <td> <img src="{{asset('image/'.$yourEvents->picture)}}" width="80" height="80" style="border-radius:15px;" alt=""><br><br></td>
+                                         --}}
 
+                                        {{-- @if ($yourEvents->picture)
+                                            
+                                        @else
+                                        <td> <img src="image/event.png" width="80" height="80" style="border-radius:15px;" alt=""><br><br></td>
+                                            
+                                        @endif --}}
+                                                @if($yourEvents->picture)
+                                                {{-- get profile from user insert --}}
+                                                    <img src="{{asset('image/'.$yourEvents->picture)}}" style="border-radius: 40px;" width="70" height="70"  class="img-thumnail"  id="img">
+                                                @else
+                                                {{-- default profile --}}
+                                                    <img class="mx-auto d-block" src="image/event.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid img-circle">
+                                                @endif
+                                              
 
-
-                                                <a href="" data-toggle="modal" data-target="#apdatePic{{$yourEvents->id}}"><i class="fa fa-lg fa-edit"></i></a>
-
+                                                    <a href="" data-toggle="modal" data-target="#apdatePic{{$yourEvents->id}}"><i class="fa fa-lg fa-edit"></i></a>
+                                                    <form action="{{route('event.destroy',$yourEvents->id)}}" method="POST" >
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"> <li class="fa fa-trash" style="font-size:20px"></li></button>
+                                                    </form>
+                                                    
+                                                    {{-- <a href="#" onclick="document.getElementById('deletePicEvent').submit()">
+                                                        <li class="fa fa-trash" style="font-size:20px"></li>
+                                                </a> --}}
                                                 <!-- Modal -->
                                                 <div id="apdatePic{{$yourEvents->id}}" class="modal fade" role="dialog">
                                                 <div class="modal-dialog">
@@ -233,6 +255,10 @@
                                                             <input type="file" name="picture" >
                                                             <button type="submit" class="btn btn-secondary">add</button>
                                                         </form>
+                                                        {{-- <form action="{{route('event.destroy',$yourEvents->id)}}" method="POST" id="deletePicEvent">
+                                                            @csrf
+                                                            @method('delete')
+                                                        </form> --}}
                                                     </div>
                                                     </div>
 

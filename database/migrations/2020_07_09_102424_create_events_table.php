@@ -22,7 +22,7 @@ class CreateEventsTable extends Migration
             $table->time('end_time');
             $table->string('city');
             $table->string('description');
-            $table->string('picture');
+            $table->string('picture')->default('event.png');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('user_id');
