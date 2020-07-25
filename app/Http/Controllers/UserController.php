@@ -87,6 +87,27 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-       
+        $image = User::findOrFail($id);
+        
+        if(\File::exists(public_path("asset/userImage/{$image->picture}"))){
+            \File::delete(public_path("asset/userImage/{$image->picture}"));
+        }
+        $image = User::findOrFail($id)->where('id', Auth::user()->id)->update([
+            'picture' => 'user.png',
+        ]);
+   
+        return back();
+    }
+    function updateProfilePic($id){
+        $user = User::find($id);
+        request()->validate([
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+        request()->picture->move(public_path('image/'), $imageName);
+        $user -> picture = $imageName;
+        $user ->save();
+        return redirect('home');
+
     }
 }

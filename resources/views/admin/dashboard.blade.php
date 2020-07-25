@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{route('yourEvent.create')}}">Your Event</a>
+                            <a class="nav-link" href="{{route('event.create')}}">Your Event</a>
                         </li>
                         @if(auth::user()->role == 1)
                         <li class="nav-item dropdown">
@@ -134,7 +134,43 @@
                                                 {{-- default profile --}}
                                                     <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid img-circle">
                                                 @endif
+                                                <br><br>
+                                                <!-- Trigger the modal with a button -->
+                                                <a href="" data-toggle="modal" data-target="#apdatePic"><i class="fa fa-edit fa-lg"></i></a>
+
+                                                <!-- Modal -->
+                                                <div id="apdatePic" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Update User Profile</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <form action="{{route('updatepic',Auth::user()->id)}}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="file" name="picture">
+                                                            <button type="submit" class="btn btn-secondary">add</button>
+                                                        </form>
+                                                    </div>
+                                                    </div>
+
+                                                </div>
+                                                </div>
+                                                {{-- -----------------------delete profile button ---------------------------- --}}
+
+                                            <div class="form-image text-center">
+                                                <a href="#" onclick="document.getElementById('deleteProfile').submit()">
+                                                    <li class="fa fa-trash" style="font-size:20px"></li>
+                                                </a>
                                             </div>
+                                            <br>
+                                            {{-- ----------------------------------------------------------  --}}
+                                            </div>
+
                                         <div class="form-row ">
                                             <div class="col-2"></div>
                                             <div class="col-8">
@@ -185,6 +221,14 @@
                                                 <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
                                                 <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
                                             </form>
+
+                                            {{-- -------------------------form delete profile-----------------------  --}}
+
+                                            <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST" id="deleteProfile">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
+                                        {{-- ------------------------------------------------  --}}
                                         </div>
                                     </div>
                                 </div>
@@ -223,6 +267,7 @@
     </div>
 </body>
 </html>
+
 
 
 <script>
