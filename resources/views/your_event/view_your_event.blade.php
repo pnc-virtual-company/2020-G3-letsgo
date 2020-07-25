@@ -126,15 +126,15 @@
         <p><strong>Friday,july 20</strong></p>
             <div class="card">
                 <div class="div-style">
-                <div class="col-3 time" style="margin-top:7%">
+                <div class="col-2 time" style="margin-top:8%">
                     <h5 class="text-secondary">{{$yourEvents->start_time}}</h5>
                 </div>
-                <div class="col-3 mt-4">
+                <div class="col-3 mt-5">
                     <h6>{{$yourEvents->category->name}}</h6>
                     <h3>{{$yourEvents->title}}</h3>
                     <p>5 Member</p>
                 </div>
-                <div class="col-2 image mb-1">
+                <div class="col-3 image mb-3">
             <img src="{{asset('image/'.$yourEvents->picture)}}" width="100" height="100" style="border-radius:15px;" alt="">
                 </div>
                 <div class="col-4 mt-4">
@@ -250,7 +250,7 @@
             </div>
             <br>
             @endif
-@endforeach
+        @endforeach
                 </div>
                 </div>
             </div>
@@ -260,43 +260,6 @@
     </div>
 </body>
 
-
-{{-- disabled the date in the past  --}}
-<script>
-
-var dateToday = new Date();    
- $(function () {
-     $("#startDate").datepicker({ 
-         minDate: dateToday 
-     });
-    // $("#startDate").datepicker({
-    //     minDate: 1,
-    //     changeMonth: true,
-    //     changeYear: true,
-    //     dateFormat: 'dd-mm-yy',
-    //     onClose: function (selectedDate, instance) {
-    //     if (selectedDate != '') {
-    //     $("#endDate").datepicker("option", "minDate", selectedDate);
-    //     var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
-    //     date.setMonth(date.getMonth() + 3);
-    //     var minDate2 = new Date(selectedDate);
-    //     minDate2.setDate(minDate2.getDate());
-        
-    //     $("#endDate").datepicker("option", "minDate", minDate2);
-    //     $("#endDate").datepicker("option", "maxDate", date);
-    //     }
-    //     }
-    //     });
-    //     $("#endDate").datepicker({
-    //     minDate: 1,
-    //     changeMonth: true,
-    //     changeYear: true,
-    //     dateFormat: 'yy-mm-dd',
-    //     onClose: function (selectedDate) {
-    //     $("#startDate").datepicker("option", "maxDate", selectedDate);
-    //     }
-        });
-</script>
 
 {{-- script to show city from json  --}}
 
@@ -344,3 +307,7 @@ var dateToday = new Date();
      });
     </script>
 @endsection
+
+
+
+
