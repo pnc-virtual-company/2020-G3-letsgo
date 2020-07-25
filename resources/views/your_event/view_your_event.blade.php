@@ -38,12 +38,12 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-     <!-- Trigger the modal with a button -->
+
+                {{-- ======================== create event =================== --}}
+
      <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i> Create</button>
-        <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Create Event</h3>
@@ -65,25 +65,25 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="title" id="title" placeholder="Title of event">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="Title">
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            StartDate: <input type="date" class="form-control" name="start_date" id="start-date" placeholder="Start Date">
+                                            StartDate: <input type="date" class="form-control" name="start_date" id="startDate">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             Start Time: <br>
-                                            <input type="time" name="start_time" placeholder="Time">
+                                            <input type="time" name="start_time"> 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            EndDate: <input type="date" class="form-control" name="end_date" id="end-date" placeholder="Start Date">
+                                            EndDate: <input type="date" class="form-control" name="end_date" id="endDate">
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -119,20 +119,22 @@
         </div>
         </div>
         <br>
+        {{-- ======================== view event ================== --}}
+
         @foreach($events as $yourEvents)
         @if(auth::user()->id == $yourEvents->user_id)
         <p><strong>Friday,july 20</strong></p>
             <div class="card">
                 <div class="div-style">
-                <div class="col-3 time" style="margin-top:9%">
+                <div class="col-3 time" style="margin-top:7%">
                     <h5 class="text-secondary">{{$yourEvents->start_time}}</h5>
                 </div>
-                <div class="col-3 mt-5">
+                <div class="col-3 mt-4">
                     <h6>{{$yourEvents->category->name}}</h6>
                     <h3>{{$yourEvents->title}}</h3>
                     <p>5 Member</p>
                 </div>
-                <div class="col-3 image mb-5">
+                <div class="col-2 image mb-1">
             <img src="{{asset('image/'.$yourEvents->picture)}}" width="100" height="100" style="border-radius:15px;" alt="">
                 </div>
                 <div class="col-4 mt-4">
@@ -141,10 +143,8 @@
 
                     {{-- Edit Event --}}
                     <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal1{{$yourEvents->id}}">Edit</button>
-                    <!-- Modal -->
                     <div id="myModal1{{$yourEvents->id}}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
-                        <!-- Modal content-->
                         <div class="modal-content">
                         <div class="modal-header">
                             <h3 class="modal-title">Edit Event</h3>
@@ -173,20 +173,20 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        StartDate: <input type="date" class="form-control" name="start_date" id="start-date" placeholder="Start Date" value="{{$yourEvents->start_date}}">
+                                                        StartDate: <input type="date" id="startDate" class="form-control" name="start_date" id="start-date" placeholder="Start Date" value="{{$yourEvents->start_date}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         Time: <br>
-                                                        <input type="time" name="start_time" placeholder="Time" value="{{$yourEvents->start_time}}">
+                                                        <input type="time" name="start_time"  placeholder="Time" value="{{$yourEvents->start_time}}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        EndDate: <input type="date" class="form-control" name="end_date" id="end-date" placeholder="End Date" value="{{$yourEvents->end_date}}">
+                                                        EndDate: <input type="date" id="endDate" class="form-control" name="end_date" id="end-date" placeholder="End Date" value="{{$yourEvents->end_date}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -259,6 +259,46 @@
         </div>
     </div>
 </body>
+
+
+{{-- disabled the date in the past  --}}
+<script>
+
+var dateToday = new Date();    
+ $(function () {
+     $("#startDate").datepicker({ 
+         minDate: dateToday 
+     });
+    // $("#startDate").datepicker({
+    //     minDate: 1,
+    //     changeMonth: true,
+    //     changeYear: true,
+    //     dateFormat: 'dd-mm-yy',
+    //     onClose: function (selectedDate, instance) {
+    //     if (selectedDate != '') {
+    //     $("#endDate").datepicker("option", "minDate", selectedDate);
+    //     var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
+    //     date.setMonth(date.getMonth() + 3);
+    //     var minDate2 = new Date(selectedDate);
+    //     minDate2.setDate(minDate2.getDate());
+        
+    //     $("#endDate").datepicker("option", "minDate", minDate2);
+    //     $("#endDate").datepicker("option", "maxDate", date);
+    //     }
+    //     }
+    //     });
+    //     $("#endDate").datepicker({
+    //     minDate: 1,
+    //     changeMonth: true,
+    //     changeYear: true,
+    //     dateFormat: 'yy-mm-dd',
+    //     onClose: function (selectedDate) {
+    //     $("#startDate").datepicker("option", "maxDate", selectedDate);
+    //     }
+        });
+</script>
+
+{{-- script to show city from json  --}}
 
 <script>
     $.ajax({
