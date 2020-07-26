@@ -267,8 +267,7 @@
             <div class="col-md-1"></div>
         </div>
     </div>
-</body>
-{{-- script to show city from json  --}}
+</body>{{-- script to show city from json  --}}
 
 <script>
     $.ajax({
