@@ -38,12 +38,10 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-     <!-- Trigger the modal with a button -->
+                {{-- ======================== create event =================== --}}
      <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i> Create</button>
-        <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Create Event</h3>
@@ -53,7 +51,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-9">
-                        <form  action="{{route('yourEvent.store')}}" method="POST" enctype="multipart/form-data">
+                        <form  action="{{route('event.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
                                 <div class="form-group">
@@ -65,25 +63,25 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="title" id="title" placeholder="Title of event">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="Title">
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            StartDate: <input type="date" class="form-control" name="start_date" id="start-date" placeholder="Start Date">
+                                            StartDate: <input type="date" class="form-control" name="start_date" id="startDate">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             Start Time: <br>
-                                            <input type="time" name="start_time" placeholder="Time">
+                                            <input type="time" name="start_time"> 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            EndDate: <input type="date" class="form-control" name="end_date" id="end-date" placeholder="Start Date">
+                                            EndDate: <input type="date" class="form-control" name="end_date" id="endDate">
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -94,22 +92,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                <select name="city" id="eventCity" class="form-control" >
-                                    <option disabled selected>Choose city</option>
+                                <select class="form-control" name="city" id="eventCity">
+                                <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                                 </select>
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
+                                    <textarea name="description" minLength="50" required cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
                                 </div>
                         </div>
                         <div class="col-3">
-                        @if(Auth::user()->picture)
-                                {{-- get profile from user insert --}}
-                            <img src="{{asset('image/'.Auth::user()->picture)}}" width="100px" height="100px" id="">
-                        @else
                                 {{-- default profile --}}
-                            <img src="{{asset('image/event.png')}}" width="100px" height="100px" id="">
-                        @endif
+                            <img src="{{asset('image/event.png')}}" width="100px" height="100px" style="border-radius:15px;">
+
                             <input id="file" style="display:none;" type="file" name="picture">
                             <label for="file" class="btn"><i class="fa fa-plus text-dark"></i></label>
                         </div>
@@ -123,30 +117,32 @@
         </div>
         </div>
         <br>
+        {{-- ======================== view event ================== --}}
+
         @foreach($events as $yourEvents)
         @if(auth::user()->id == $yourEvents->user_id)
         <p><strong>Friday,july 20</strong></p>
             <div class="card">
                 <div class="div-style">
-                <div class="col-2 time">
+                <div class="col-2 time" style="margin-top:8%">
                     <h5 class="text-secondary">{{$yourEvents->start_time}}</h5>
                 </div>
-                <div class="col-4 mt-3">
+                <div class="col-3 mt-5">
                     <h6>{{$yourEvents->category->name}}</h6>
                     <h3>{{$yourEvents->title}}</h3>
                     <p>5 Member</p>
                 </div>
-                <div class="col-2 image">
-            <img src="{{asset('image/'.$yourEvents->picture)}}" width="50" height="50" style="border-radius:15px;" alt="">
+                <div class="col-3 image mb-3">
+            <img src="{{asset('image/'.$yourEvents->picture)}}" width="100" height="100" style="border-radius:15px;" alt="">
                 </div>
-                <div class="col-4 ">
-                    <a href="#"><button type="submit" class="btn-cancel"><strong>Cancel</strong></button></a>
-                    <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal1">Edit</button>
-                    <!-- Modal -->
-                    <div id="myModal1" class="modal fade" role="dialog">
+                <div class="col-4 mt-4">
+                  {{-- delete Event button --}}
+                    <a href="{{route('delete',$yourEvents->id)}}" onclick="return confirm('Are you sure you want to delete this event?');"><button type="submit" class="btn-cancel"><strong>Cancel</strong></button></a>
+
+                    {{-- Edit Event --}}
+                    <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal1{{$yourEvents->id}}">Edit</button>
+                    <div id="myModal1{{$yourEvents->id}}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
-                        <!-- Modal content-->
                         <div class="modal-content">
                         <div class="modal-header">
                             <h3 class="modal-title">Edit Event</h3>
@@ -156,62 +152,101 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-9">
-                                        <form action="">
+                                    <form action="{{route('event.update',$yourEvents->id)}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('put')
                                             <div class="form-group">
                                                 <select name="category" id="" class="form-control" >
-                                                    <option value="">event Category..</option>
-                                                    <option value="Soccer">Soccer</option>
-                                                    <option value="Music">Music</option>
+                                                        @foreach ($categories as $category)
+                                                      <option value="{{$category->id}}" {{$category->id==$yourEvents->category_id ?
+                                                        'selected' : '' }} >{{$category->name}}
+                                                    </option>
+                                                        @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+                                            <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="{{$yourEvents->title}}">
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        StartDate: <input type="date" class="form-control" name="start-date" id="start-date" placeholder="Start Date">
+                                                        StartDate: <input type="date" id="startDate" class="form-control" name="start_date" id="start-date" placeholder="Start Date" value="{{$yourEvents->start_date}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         Time: <br>
-                                                        <input type="time" name="start_time" placeholder="Time">
+                                                        <input type="time" name="start_time"  placeholder="Time" value="{{$yourEvents->start_time}}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        EndDate: <input type="date" class="form-control" name="end-date" id="end-date" placeholder="Start Date">
+                                                        EndDate: <input type="date" id="endDate" class="form-control" name="end_date" id="end-date" placeholder="End Date" value="{{$yourEvents->end_date}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         Time: <br>
-                                                        <input type="time" name="end_time" placeholder="Time">
+                                                        <input type="time" name="end_time" placeholder="Time" value="{{$yourEvents->end_time}}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <select name="city" id="city" class="form-control">
-                                                    <option value="">city...</option>
-                                                    <option value="Cambodia">Cambodia</option>
-                                                    <option value="Thailand">Thailand</option>
-                                                </select>
+                                            
+                                                <select class="form-control" name="city" id="cityEvent">
+                                                    <option value="{{$yourEvents->city}}" selected>{{$yourEvents->city}}</option>
+                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
+                                                <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description">{{$yourEvents->description}}</textarea>
                                             </div>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
                                             <button type="submit" class="btn btn-success">Submit</button>
                                         </form>
                                     </div>
                                     <div class="col-3">
-                                        <img src="1.png" width="100px;" height="100px;">
-                                        <i class="material-icons">add</i>
-                                        <i class="material-icons">edit</i>
-                                        <i class="material-icons">delete</i>
+                                                @if($yourEvents->picture)
+                                                {{-- get profile from user insert --}}
+                                                    <img src="{{asset('image/'.$yourEvents->picture)}}" style="border-radius: 15px;" width="100" height="100"  class="img-thumnail"  id="img">
+                                                @else
+                                                {{-- default profile --}}
+                                                    <img class="mx-auto d-block" src="image/event.png"  width="100" style="border-radius: 15px;" height="100" alt="User" class="img-fluid img-circle">
+                                                @endif
+                                                    {{-- edit button --}}
+                                                    <div class="row">
+                                                        
+                                                        {{-- delete button --}}
+                                                        <form action="{{route('event.destroy',$yourEvents->id)}}" method="POST" >
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" style="margin-left: 20px" class="btn bnt-outline-default"> <li class="fa fa-trash text-primary" style="font-size:20px"></li></button>
+                                                        </form> 
+                                                        <a href="" style="margin-top:10%;margin:left:10px" data-toggle="modal" data-target="#apdatePic{{$yourEvents->id}}"><i class="fa fa-lg fa-edit"></i></a>
+                                                    </div>
+                                                <!-- Modal -->
+                                                <div id="apdatePic{{$yourEvents->id}}" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Update Profile</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <form action="{{route('updateProfileEvent',Auth::user()->id == $yourEvents->id)}}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="file" name="picture" >
+                                                            <button type="submit" class="btn btn-secondary">add</button>
+                                                        </form>
+                                                    </div>
+                                                    </div>
+
+                                                </div>
+                                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +259,7 @@
             </div>
             <br>
             @endif
-@endforeach
+        @endforeach
                 </div>
                 </div>
             </div>
@@ -233,4 +268,53 @@
         </div>
     </div>
 </body>
+{{-- script to show city from json  --}}
+
+<script>
+    $.ajax({
+    //get api
+      url:
+        "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
+      dataType: "json",
+      success: function (data) {
+    //declare array variable to store city of each country
+        let array =[];
+    //loop city of Afghanistan country
+        for (let i = 0; i < data.Afghanistan.length; i++) {
+          array.push(data.Afghanistan[i])
+        }
+     //loop city of Albania country
+        for (let i = 0; i < data.Albania.length; i++) {
+          array.push(data.Albania[i])
+        }
+    //loop city of Algeria country
+        for (let i = 0; i < data.Algeria.length; i++) {
+          array.push(data.Algeria[i])
+        }
+    //loop city of Andorra country
+        for (let i = 0; i < data.Andorra.length; i++) {
+          array.push(data.Andorra[i])
+        }
+    //declare select variable to give value to select box
+        var select = document.getElementById("city");
+        //declare select variable to give value to select box
+        var cityEvent = document.getElementById("cityEvent");
+    
+    // Loop options of event city:
+        for(var i = 0; i < array.length; i++) {
+         var city = array[i];
+         cityEvent.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+        }
+    // Loop options of city:
+        for(var i = 0; i < array.length; i++) {
+         var city = array[i];
+         select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+        }
+       },
+     });
+    </script>
 @endsection
+
+
+
+

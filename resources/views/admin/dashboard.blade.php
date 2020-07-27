@@ -98,19 +98,19 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{route('yourEvent.create')}}">Your Event</a>
+                            <a class="nav-link" href="{{route('event.create')}}">Your Event</a>
                         </li>
+                        @if(auth::user()->role == 1)
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <span class="caret">Manage</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('event.index')}}">Event</a>
-                            @if(auth::user()->role == 1)
                             <a class="dropdown-item" href="{{route('Category.index')}}">Categories</a>
-                            @endif
                             </div>
                         </li>
+                        @endif
                         <div class="modal" id="userPopup">
                             <div class="modal-dialog">
                              <div class="modal-content">
@@ -129,14 +129,14 @@
                                             <div class="form-image text-center">
                                                 @if(Auth::user()->picture)
                                                 {{-- get profile from user insert --}}
-                                                    <img src="{{asset('image/'.Auth::user()->picture)}}" style="border-radius: 40px;" width="70" height="70"  class="img-thumnail"  id="img">
+                                                    <img src="{{asset('image/'.Auth::user()->picture)}}" style="border-radius: 40px;" width="80" height="80"  class="img-thumnail"  id="img">
                                                 @else
                                                 {{-- default profile --}}
-                                                    <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid img-circle">
+                                                    <img class="mx-auto d-block" src="image/user.png"  width="80" style="border-radius: 40px;" height="80" alt="User" class="img-fluid img-circle">
                                                 @endif
                                                 <br><br>
-                                                <!-- Trigger the modal with a button -->
-                                                <a href="" data-toggle="modal" data-target="#apdatePic"><i class="fa fa-edit fa-lg"></i></a>
+                                                 {{-- <!-- Trigger the modal with a button --> --}}
+                                                <a href="" data-toggle="modal" data-target="#apdatePic"><i class="fa fa-edit fa-lg"></i></a> 
 
                                                 <!-- Modal -->
                                                 <div id="apdatePic" class="modal fade" role="dialog">
@@ -150,14 +150,13 @@
                                                     </div>
                                                     <div class="modal-body">
                                                     <form action="{{route('updatepic',Auth::user()->id)}}" method="POST" enctype="multipart/form-data">
-                                                            @csrf
+                                                             @csrf
                                                             @method('PUT')
-                                                            <input type="file" name="picture" id="">
+                                                            <input type="file" name="picture" class="style:display=non">
                                                             <button type="submit" class="btn btn-secondary">add</button>
                                                         </form>
                                                     </div>
                                                     </div>
-
                                                 </div>
                                                 </div>
                                             </div>
@@ -175,14 +174,11 @@
                                                         <label for="">Firstname</label>
                                                             <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
                                                     </div>
-
                                                     <div class="form-group col-md-6">
                                                     <label for="">Lastname</label>
                                                         <input type="text" class="form-control" name="lastname" value="{{Auth::user()->lastname}}">
                                                 </div>
-
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label for="">Email</label>
                                                     <input type="email" class="form-control" name="email" value="{{Auth::user()->email}}">
@@ -193,24 +189,27 @@
                                                         <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                                                     </select>
                                                 </div>
-
                                                 <div class="form-row">
-
                                                     <div class="form-group col-md-6">
                                                     <label for="password">New Password</label>
                                                         <input  type="password" class="form-control" name="password" required  placeholder="new password">
                                                     </div>
-
                                                     <div class="form-group col-md-6">
                                                     <label for="password-confirm" class="">Confirm Password</label>
                                                         <input  type="password" class="form-control" name="confirm" required  placeholder="confirm password">
                                                 </div>
-
                                                 </div>
-
                                                 <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
                                                 <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
                                             </form>
+
+                                            {{-- -------------------------form delete profile-----------------------  --}}
+
+                                            <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST" id="deleteProfile">
+                                            @csrf
+                                            @method('delete')
+                                        </form>
+                                        {{-- ------------------------------------------------  --}}
                                         </div>
                                     </div>
                                 </div>
@@ -231,7 +230,6 @@
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -249,8 +247,6 @@
     </div>
 </body>
 </html>
-
-
 <script>
 $.ajax({
 //get api
@@ -280,8 +276,6 @@ $.ajax({
     var select = document.getElementById("city");
     //declare select variable to give value to select box
     var eventCity = document.getElementById("eventCity");
-// Optional: Clear all existing options first:
-    eventCity.innerHTML = "<option disabled selected>Choose city</option>";
 // Loop options of event city:
     for(var i = 0; i < array.length; i++) {
      var city = array[i];
@@ -295,4 +289,3 @@ $.ajax({
    },
  });
 </script>
-

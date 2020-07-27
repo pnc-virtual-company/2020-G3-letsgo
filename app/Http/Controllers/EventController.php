@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
-use App\YourEvent;
 use App\Event;
 use Auth;
 class EventController extends Controller
@@ -60,7 +59,7 @@ class EventController extends Controller
         $yourevent -> end_time = $request-> end_time;
         $yourevent -> city = $request-> city;
         $yourevent -> description = $request-> description;
-        $yourevent->user_id = auth::id();
+        $yourevent -> user_id = auth::id();
         if($request->picture != null){ 
             request()->validate([
                 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -107,7 +106,19 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Auth::id();
+        $event = Event::find($id);
+        $event ->title = $request->get('title');
+        $event ->category_id = $request->get('category');
+        $event ->start_date = $request->get('start_date');
+        $event ->end_date = $request->get('end_date');
+        $event ->start_time = $request->get('start_time');
+        $event ->end_time = $request->get('end_time');
+        $event ->city = $request->get('city');
+        $event ->description = $request->get('description');
+        $event ->user_id = $user;
+        $event->save();
+        return back();
     }
 
     /**
@@ -116,8 +127,40 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy ($id)
     {
-        //
+        $image = Event::findOrFail($id);
+        
+        if(\File::exists(public_path("image/{$image->picture}"))){
+            \File::delete(public_path("image/{$image->picture}"));
+        }
+        $image = Event::findOrFail($id)->where('id',$image->id)->update([
+            'picture' => 'event.png',
+        ]);
+   
+        return back();
+    }
+
+    public function delete($id)
+    {
+        $user_id = Auth::id();
+            $events=Event::where('id', $id)->where('user_id',$user_id);
+            if(!is_null($events)){
+                $events->delete();
+            } 
+        return back();
+    }
+
+    function updateProfileEvent($id){
+        $event = Event::find($id);
+        
+        request()->validate([
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+        request()->picture->move(public_path('image/'), $imageName);
+        $event -> picture = $imageName;
+        $event ->save();
+        return back();
     }
 }

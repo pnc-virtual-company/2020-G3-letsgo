@@ -87,7 +87,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-       
+        $image = User::findOrFail($id);
+        
+        if(\File::exists(public_path("image/{$image->picture}"))){
+            \File::delete(public_path("image/{$image->picture}"));
+        }
+        $image = User::findOrFail($id)->where('id', Auth::user()->id)->update([
+            'picture' => 'user.png',
+        ]);
+   
+        return back();
     }
     function updateProfilePic($id){
         $user = User::find($id);
