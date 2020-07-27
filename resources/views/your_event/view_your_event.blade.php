@@ -236,7 +236,7 @@
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <form action="{{route('updateProfileEvent',Auth::user()->id == $yourEvents->id)}}" method="POST" enctype="multipart/form-data">
+                                                    <form action="{{route('updateProfilePicEvent',$yourEvents->id)}}" method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             @method('PUT')
                                                             <input type="file" name="picture" >
