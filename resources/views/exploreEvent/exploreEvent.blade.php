@@ -1,71 +1,60 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 @extends('admin.dashboard')
 @section('content')
 
 <body class="body-background">
     <div class="container">
     <div class="row">
-    <div class="col-md-1"></div>
-      <div class="col-md-10">
-      <h3>Find your Event!</h3>
-        <div class="card-search">
-                <div class="col-4">
-                  <input type="text" class="form-control" placeholder="Search..">
-                  </div>
-                <div class="col-4">
-                 <label class="float-right">Not too far from city</label>
-                </div>
-                <div class="col-4">
-                <select class="form-control" name="city" id="city">
-                                                        <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
-                                                    </select>
-                </div>
-        </div>
-        <div class="event-join mt-5">
-        <input type="checkbox" id="" name="" value=""> Event you join only
-        </div>
-          <div class="date mt-5">
-             <p><strong>Friday,july 20</strong></p>
-          </div>
-            <div class="card">
-                <div class="div-style">
-                <div class="col-2 time">
-                    <h5 class="text-secondary">2:00 PM</h5>
-                </div>
-                <div class="col-4 mt-3">
-                    <h6>Music</h6>
-                    <h5>The Party for finish project</h5>
-                    <p>5 Member</p>
-                </div>
-                <div class="col-2 image">
-                    <p>picture</p>
-                </div>
-                <div class="col-4 ">
-                   <button href="" type="submit" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
-                </div>
-                </div>
-            </div>
-            <br>
-
-            <div class="card ">
-                <div class="div-style">
-                <div class="col-2 time">
-                    <h5 class="text-secondary">3:00 PM</h5>
-                </div>
-                <div class="col-4 mt-3">
-                    <h6>Sport</h6>
-                    <h5>football matching</h5>
-                    <p>10 Member</p>
-                </div>
-                <div class="col-2 image">
-                    <p>picture football</p>
-                </div>
-                <div class="col-4 ">
-                    <button href="" type="submit" class="btn-cancel btn-danger"><i class="fa fa-times-circle">Quit</i></button>
-                </div>
-                </div>
-            </div>
-      </div>
+      
       <div class="col-md-1"></div>
+        <div class="col-md-10">
+        <h3>Find your Event!</h3>
+          <div class="card-search">
+                  <div class="col-4">
+                    <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search..">
+                    </div>
+                  <div class="col-4">
+                   <label class="float-right">Not too far from city</label>
+                  </div>
+                  <div class="col-4">
+                  <select class="form-control" name="city" id="city">
+                    <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
+                  </select>
+                  </div>
+          </div>
+          <div class="event-join mt-5">
+            <input type="checkbox" id="" name="" value=""> Event you join only
+          </div>
+          <div class="date mt-5">
+            <p><strong>Friday,july 20</strong></p>
+          </div>
+          @foreach ($exploreEvents as $item)
+              <div class="card">
+                  <div class="div-style">
+                  <div class="col-2 time">
+                      <h5 class="text-secondary">{{$item->start_time}}</h5>
+                  </div>
+                  <div class="col-4 mt-3">
+                      <h6>{{$item->category->name}}</h6>
+                      <h5>{{$item->title}}</h5>
+                      <p>5 Member</p>
+                  </div>
+                  <div class="col-2 image ">
+                    <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px;">
+                  </div>
+                  <div class="col-4 ">
+                     <button href="" type="submit" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
+                    
+                    </div>
+                  </div>
+              </div>
+              <br>
+              @endforeach
+  
+        </div>
+        <div class="col-md-1"></div>
+      
     </div>
     </div>
 </body>
@@ -107,6 +96,16 @@ $.ajax({
  });
 
 </script>
-
 @endsection
+
+<script>
+  $(document).ready(function(){
+    $("#searchs").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $(".card").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 

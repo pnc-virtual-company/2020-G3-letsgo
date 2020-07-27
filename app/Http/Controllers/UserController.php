@@ -98,6 +98,7 @@ class UserController extends Controller
    
         return back();
     }
+    
     function updateProfilePic($id){
         $user = User::find($id);
         request()->validate([

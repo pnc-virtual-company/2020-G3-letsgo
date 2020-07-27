@@ -129,14 +129,14 @@
                                             <div class="form-image text-center">
                                                 @if(Auth::user()->picture)
                                                 {{-- get profile from user insert --}}
-                                                    <img src="{{asset('image/'.Auth::user()->picture)}}" style="border-radius: 40px;" width="70" height="70"  class="img-thumnail"  id="img">
+                                                    <img src="{{asset('image/'.Auth::user()->picture)}}" style="border-radius: 40px;" width="80" height="80"  class="img-thumnail"  id="img">
                                                 @else
                                                 {{-- default profile --}}
-                                                    <img class="mx-auto d-block" src="image/user.png"  width="40" style="border-radius: 25px;" height="40" alt="User" class="img-fluid img-circle">
+                                                    <img class="mx-auto d-block" src="image/user.png"  width="80" style="border-radius: 40px;" height="80" alt="User" class="img-fluid img-circle">
                                                 @endif
                                                 <br><br>
-                                                <!-- Trigger the modal with a button -->
-                                                <a href="" data-toggle="modal" data-target="#apdatePic"><i class="fa fa-edit fa-lg"></i></a>
+                                                 {{-- <!-- Trigger the modal with a button --> --}}
+                                                <a href="" data-toggle="modal" data-target="#apdatePic"><i class="fa fa-edit fa-lg"></i></a> 
 
                                                 <!-- Modal -->
                                                 <div id="apdatePic" class="modal fade" role="dialog">
@@ -150,27 +150,16 @@
                                                     </div>
                                                     <div class="modal-body">
                                                     <form action="{{route('updatepic',Auth::user()->id)}}" method="POST" enctype="multipart/form-data">
-                                                            @csrf
+                                                             @csrf
                                                             @method('PUT')
-                                                            <input type="file" name="picture">
+                                                            <input type="file" name="picture" class="style:display=non">
                                                             <button type="submit" class="btn btn-secondary">add</button>
                                                         </form>
                                                     </div>
                                                     </div>
-
                                                 </div>
                                                 </div>
-                                                {{-- -----------------------delete profile button ---------------------------- --}}
-
-                                            <div class="form-image text-center">
-                                                <a href="#" onclick="document.getElementById('deleteProfile').submit()">
-                                                    <li class="fa fa-trash" style="font-size:20px"></li>
-                                                </a>
                                             </div>
-                                            <br>
-                                            {{-- ----------------------------------------------------------  --}}
-                                            </div>
-
                                         <div class="form-row ">
                                             <div class="col-2"></div>
                                             <div class="col-8">
@@ -185,14 +174,11 @@
                                                         <label for="">Firstname</label>
                                                             <input type="text" class="form-control" name="firstname" value="{{Auth::user()->firstname}}">
                                                     </div>
-
                                                     <div class="form-group col-md-6">
                                                     <label for="">Lastname</label>
                                                         <input type="text" class="form-control" name="lastname" value="{{Auth::user()->lastname}}">
                                                 </div>
-
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label for="">Email</label>
                                                     <input type="email" class="form-control" name="email" value="{{Auth::user()->email}}">
@@ -203,21 +189,16 @@
                                                         <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                                                     </select>
                                                 </div>
-
                                                 <div class="form-row">
-
                                                     <div class="form-group col-md-6">
                                                     <label for="password">New Password</label>
                                                         <input  type="password" class="form-control" name="password" required  placeholder="new password">
                                                     </div>
-
                                                     <div class="form-group col-md-6">
                                                     <label for="password-confirm" class="">Confirm Password</label>
                                                         <input  type="password" class="form-control" name="confirm" required  placeholder="confirm password">
                                                 </div>
-
                                                 </div>
-
                                                 <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
                                                 <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
                                             </form>
@@ -249,7 +230,6 @@
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -267,9 +247,6 @@
     </div>
 </body>
 </html>
-
-
-
 <script>
 $.ajax({
 //get api

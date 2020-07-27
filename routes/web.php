@@ -28,9 +28,12 @@ Route::get('/', function (){
 // Event
 Route::resource('event','EventController');
 Route::get('delete/{id}','eventController@delete')->name('delete');
+Route::delete('deleteEvent/{id}','eventController@deleteEvent')->name('deleteEvent');
 Route::resource('user','UserController');
 Route::resource('exploreEvent','ExploreEventController');
-Route::put('updatePic/{id}','UserController@updateProfilePic')->name('updatepic');
+Route::put('updatepic/{id}','UserController@updateProfilePic')->name('updatepic');
+
+
 Route::resource('Category','CategoryController');
 Route::get('/index','CategoryController@index')->name('index');
 // route to add category
@@ -39,6 +42,7 @@ Route::post('/category/store/','CategoryController@store')->name('category.store
 Route::get('/category','CategoryController@existCategory')->name('category.exist');
 
 Route::get('/search','CategoryController@search');
-Route::put('updateProfileEvent/{id}', 'EventController@updateProfileEvent')->name('updateProfileEvent');
+Route::put('updateProfilePicEvent/{id}','EventController@updateProfilePicEvent')->name('updateProfilePicEvent');
+
 
 
