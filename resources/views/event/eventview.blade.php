@@ -7,19 +7,14 @@
 <div class="row">
 <div class="col-md-1"></div>
 <div class="col-md-10">
-<form action="/search" method="POST" role="search">
-        {{ csrf_field() }}
-        <div class="input-group">
-            <input type="text" class="form-control" name="q"
-                placeholder="Search users"> <span class="input-group-btn">
-                <button type="submit" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
+    <form action="">
+        <div class="form-group">
+          <i class="large material-icons form-control-feedback">search</i>
+          <input type="text" class="form-control search_event" placeholder="Search" onkeyup="myFunction()" id="searching">
         </div>
     </form>
     <h1 class="text-center mt-3">Event view</h1>
-   <table class="table table-warning table-hover mt-3" style="margin-top:15px">
+   <table class="table table-warning table-hover mt-3" style="margin-top:15px" id="table">
        <tr>
            <th>Organizer</th>
            <th>City</th>
@@ -63,6 +58,26 @@
 <div class="col-md-1"></div>
 </div>
 </div>
+
+
+{{-- style of search form  --}}
+
+<style>
+
+.search_event {
+width: 100%;
+padding-left: 2rem;
+border-radius: 20px;
+}
+
+.form-control-feedback {
+position: absolute;
+width: 2.375rem;
+text-align: center;
+color: rgb(56, 55, 55);
+margin-top: 8px;
+}
+</style>
 <style>
     .action_hidden{
         float: right;
@@ -72,5 +87,20 @@
     .action:hover+ .action_hidden{
         display:block;
     }
-</style
+</style>
+
+
+{{-- function can search event  --}}
+<script>
+    $(document).ready(function(){
+      $("#searching").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#table tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+  
+  
 @endsection
