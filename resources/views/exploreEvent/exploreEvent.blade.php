@@ -10,14 +10,14 @@
         <div class="card-search">
                 <div class="col-4">
                   <input type="text" class="form-control" placeholder="Search..">
-                  </div>
+                </div>
                 <div class="col-4">
                  <label class="float-right">Not too far from city</label>
                 </div>
                 <div class="col-4">
                 <select class="form-control" name="city" id="city">
-                                                        <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
-                                                    </select>
+                    <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
+                </select>
                 </div>
         </div>
         <div class="event-join mt-5">
