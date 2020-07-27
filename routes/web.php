@@ -42,6 +42,7 @@ Route::post('/category/store/','CategoryController@store')->name('category.store
 Route::get('/category','CategoryController@existCategory')->name('category.exist');
 
 Route::get('/search','CategoryController@search');
-Route::put('updateProfileEvent/{id}', 'EventController@updateProfileEvent')->name('updateProfileEvent');
+Route::put('updateProfilePicEvent/{id}','EventController@updateProfilePicEvent')->name('updateProfilePicEvent');
+
 
 
