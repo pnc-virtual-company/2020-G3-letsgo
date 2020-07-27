@@ -44,7 +44,7 @@
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px;">
                   </div>
                   <div class="col-4 ">
-                     <button href="" type="submit" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
+                     <button href="" type="submit" id="member" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
                     
                     </div>
                   </div>
@@ -58,6 +58,65 @@
     </div>
     </div>
 </body>
+
+{{-- ===================sript to increase member when click join button =====  --}}
+
+<script>
+
+$(document).ready(function(){
+    $('#member').on('click',function(){
+        var sum = $('#input').val();
+        increse(sum);
+    })
+    $('#one').on('click',function(){
+        var sum = $('#input').val();
+        dicrese(sum);
+    })
+})
+
+var increse = (member) => {
+     var add = parseInt(member) + 1;
+    if(add <= 15){
+        $('#input').val(add);
+        //  var count = add * 5;
+        //  $('#result').html(count);
+        compute(add);
+    }
+}
+
+var dicrese = (member) => {
+     var no = parseInt(member) - 1;
+     if(no >=0){
+        $('#input').val(no);
+        // var count =  no / 5;
+        //  $('#result').html(count);
+        compute(no);
+     }
+}
+
+function compute(num){
+    var computes = num * 5;
+    if(number == 0){
+        progressBar(result);
+    }else{
+        progressBar(result + 25);
+    }
+    $('#result').html(computes);
+}
+
+function progresssBar (pro){
+    $('#progress').width(pro + "%")
+    $('#progress').html(pro + "%")
+}
+
+
+
+
+</script>
+
+
+
+{{-- =============== script to view city from json ============= --}}
 <script>
 $.ajax({
 //get api
