@@ -13,8 +13,8 @@ class ExploreEventController extends Controller
      */
     public function index()
     {
-        $exploerEvent = Event::all();
-        return view('exploreEvent.exploreEvent',compact('exploerEvent'));
+        $exploreEvents = Event::all();
+        return view('exploreEvent.exploreEvent',compact('exploreEvents'));
     }
 
     /**
