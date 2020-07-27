@@ -59,6 +59,15 @@ class EventController extends Controller
         $yourevent -> end_time = $request-> end_time;
         $yourevent -> city = $request-> city;
         $yourevent -> description = $request-> description;
+        if($request->picture != null){ 
+            request()->validate([
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+                $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+                request()->picture->move(public_path('/image/'), $imageName);
+                $yourevent->picture = $imageName;
+
+            }
         $yourevent -> user_id = auth::id();
         $yourevent->save();
         return back();
@@ -106,13 +115,13 @@ class EventController extends Controller
         $event ->city = $request->get('city');
         $event ->description = $request->get('description');
         // $event->picture = $request->file('picture')->getClientOriginalName();
-        request()->validate([
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        $imageName = time().'.'.request()->picture->getClientOriginalExtension();
-        request()->picture->move(public_path('/image/'), $imageName);
-        $event -> picture = $imageName;
-        $event ->user_id = $user;
+        // request()->validate([
+        //     'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        // $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+        // request()->picture->move(public_path('/image/'), $imageName);
+        // $event -> picture = $imageName;
+        // $event ->user_id = $user;
         $event->save();
         return back();
     }

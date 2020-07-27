@@ -10,7 +10,7 @@
         <h3>Find your Event!</h3>
           <div class="card-search">
                   <div class="col-4">
-                    <input type="text" class="form-control" placeholder="Search..">
+                    <input type="text" name="searchs" id="" class="form-control" placeholder="Search..">
                     </div>
                   <div class="col-4">
                    <label class="float-right">Not too far from city</label>
@@ -111,6 +111,5 @@ $.ajax({
  });
 
 </script>
-
 @endsection
 
