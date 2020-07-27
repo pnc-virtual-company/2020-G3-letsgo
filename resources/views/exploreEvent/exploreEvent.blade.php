@@ -43,7 +43,6 @@
                   </div>
                   <div class="col-4 ">
                      <button href="" type="submit" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
-                    @include('detail')
                     </div>
                   </div>
               </div>
