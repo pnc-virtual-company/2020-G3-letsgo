@@ -163,4 +163,10 @@ class EventController extends Controller
         $event ->save();
         return back();
     }
+
+    function deleteEvent($id) {
+        $event = Event::find($id);
+        $event->delete();
+        return back();
+    }
 }
