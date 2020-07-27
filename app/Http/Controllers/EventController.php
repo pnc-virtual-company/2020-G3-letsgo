@@ -59,7 +59,6 @@ class EventController extends Controller
         $yourevent -> end_time = $request-> end_time;
         $yourevent -> city = $request-> city;
         $yourevent -> description = $request-> description;
-        $yourevent -> user_id = auth::id();
         if($request->picture != null){ 
             request()->validate([
                 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -69,8 +68,7 @@ class EventController extends Controller
                 $yourevent->picture = $imageName;
 
             }
-
-    
+        $yourevent -> user_id = auth::id();
         $yourevent->save();
         return back();
     }
@@ -116,7 +114,14 @@ class EventController extends Controller
         $event ->end_time = $request->get('end_time');
         $event ->city = $request->get('city');
         $event ->description = $request->get('description');
-        $event ->user_id = $user;
+        // $event->picture = $request->file('picture')->getClientOriginalName();
+        // request()->validate([
+        //     'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        // $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+        // request()->picture->move(public_path('/image/'), $imageName);
+        // $event -> picture = $imageName;
+        // $event ->user_id = $user;
         $event->save();
         return back();
     }
@@ -151,17 +156,18 @@ class EventController extends Controller
         return back();
     }
 
-    function updateProfileEvent($id){
-        $event = Event::find($id);
+    function updateProfilePicEvent($id){
         
+        $event = Event::find($id);
         request()->validate([
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $imageName = time().'.'.request()->picture->getClientOriginalExtension();
-        request()->picture->move(public_path('image/'), $imageName);
+        request()->picture->move(public_path('/image/'), $imageName);
         $event -> picture = $imageName;
         $event ->save();
         return back();
+
     }
 
     function deleteEvent($id) {
