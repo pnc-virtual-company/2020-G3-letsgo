@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 @extends('admin.dashboard')
 @section('content')
 
@@ -10,7 +12,7 @@
         <h3>Find your Event!</h3>
           <div class="card-search">
                   <div class="col-4">
-                    <input type="text" name="searchs" id="" class="form-control" placeholder="Search..">
+                    <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search..">
                     </div>
                   <div class="col-4">
                    <label class="float-right">Not too far from city</label>
@@ -43,7 +45,7 @@
                   </div>
                   <div class="col-4 ">
                      <button href="" type="submit" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
-                    @include('detail')
+                    
                     </div>
                   </div>
               </div>
@@ -95,4 +97,15 @@ $.ajax({
 
 </script>
 @endsection
+
+<script>
+  $(document).ready(function(){
+    $("#searchs").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $(".card").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 
