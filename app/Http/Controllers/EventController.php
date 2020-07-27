@@ -169,4 +169,10 @@ class EventController extends Controller
         return back();
 
     }
+
+    function deleteEvent($id) {
+        $event = Event::find($id);
+        $event->delete();
+        return back();
+    }
 }
