@@ -1,10 +1,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
+</script>
 @extends('admin.dashboard')
 @section('content')
 
 <body class="body-background">
     <div class="container">
+  
     <div class="row">
       
       <div class="col-md-1"></div>
@@ -18,7 +21,7 @@
                    <label class="float-right">Not too far from city</label>
                   </div>
                   <div class="col-4">
-                  <select class="form-control" name="city" id="city">
+                  <select class="form-control" name="city" id="cityOfEvent">
                     <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                   </select>
                   </div>
@@ -35,18 +38,22 @@
                   <div class="col-2 time">
                       <h5 class="text-secondary">{{$item->start_time}}</h5>
                   </div>
-                  <div class="col-4 mt-3">
+                  <div class="col-4 mt-4">
                       <h6>{{$item->category->name}}</h6>
                       <h5>{{$item->title}}</h5>
-                      <p>5 Member</p>
+                    @if ($item->joins->count('user_id')>1)
+                  <p>{{$item->joins->count('user_id')}} members going</p>                      
+                    @else
+                  <p>{{$item->joins->count('user_id')}} member going</p>                        
+                    @endif
                   </div>
-                  <div class="col-2 image ">
-                    <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px;">
+                  <div class="col-2 image " style="margin-bottom:1%">
+                    <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
-                  <div class="col-4 ">
-                     <button href="" type="submit" id="member" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
-                    
-                    </div>
+                  <div class="col-4" style="margin-top:5%">
+                    <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button>
+                              
+                  </div>
                   </div>
               </div>
               <br>
@@ -57,63 +64,8 @@
       
     </div>
     </div>
+
 </body>
-
-{{-- ===================sript to increase member when click join button =====  --}}
-
-<script>
-
-$(document).ready(function(){
-    $('#member').on('click',function(){
-        var sum = $('#input').val();
-        increse(sum);
-    })
-    $('#one').on('click',function(){
-        var sum = $('#input').val();
-        dicrese(sum);
-    })
-})
-
-var increse = (member) => {
-     var add = parseInt(member) + 1;
-    if(add <= 15){
-        $('#input').val(add);
-        //  var count = add * 5;
-        //  $('#result').html(count);
-        compute(add);
-    }
-}
-
-var dicrese = (member) => {
-     var no = parseInt(member) - 1;
-     if(no >=0){
-        $('#input').val(no);
-        // var count =  no / 5;
-        //  $('#result').html(count);
-        compute(no);
-     }
-}
-
-function compute(num){
-    var computes = num * 5;
-    if(number == 0){
-        progressBar(result);
-    }else{
-        progressBar(result + 25);
-    }
-    $('#result').html(computes);
-}
-
-function progresssBar (pro){
-    $('#progress').width(pro + "%")
-    $('#progress').html(pro + "%")
-}
-
-
-
-
-</script>
-
 
 
 {{-- =============== script to view city from json ============= --}}
@@ -144,7 +96,7 @@ $.ajax({
     }
 
 //declare select variable to give value to select box
-    var select = document.getElementById("city");
+    var select = document.getElementById("cityOfEvent");
 
 // Loop options of city:
     for(var i = 0; i < array.length; i++) {
@@ -155,7 +107,8 @@ $.ajax({
  });
 
 </script>
-@endsection
+
+{{-- ============= script to search ===========  --}}
 
 <script>
   $(document).ready(function(){
@@ -167,4 +120,5 @@ $.ajax({
     });
   });
 </script>
+@endsection
 

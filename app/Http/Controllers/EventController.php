@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Event;
 use Auth;
+use DB;
 class EventController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

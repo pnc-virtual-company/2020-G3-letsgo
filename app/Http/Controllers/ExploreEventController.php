@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
-
+use App\Join;
 class ExploreEventController extends Controller
 {
     /**
@@ -25,7 +25,7 @@ class ExploreEventController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
