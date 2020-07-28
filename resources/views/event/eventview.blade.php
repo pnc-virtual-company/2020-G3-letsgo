@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container" style="margin-top:5%">
+    <p>{{ $events->count() }}</p>
 <div class="row">
 <div class="col-md-1"></div>
 <div class="col-md-10">

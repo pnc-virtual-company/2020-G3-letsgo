@@ -1,10 +1,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
+</script>
 @extends('admin.dashboard')
 @section('content')
 
 <body class="body-background">
     <div class="container">
+      @if (Auth::user()->id == $join->user_id)
+    <p>{{$join->user->id->count()}}</p>
+          
+      @endif
     <div class="row">
       
       <div class="col-md-1"></div>
@@ -38,14 +44,19 @@
                   <div class="col-4 mt-3">
                       <h6>{{$item->category->name}}</h6>
                       <h5>{{$item->title}}</h5>
-                      <p>5 Member</p>
+                  {{-- <input type="text" style="border:1px solid white" class="text-center" id="input" value="0">              --}}
+
+                    {{-- <input type="number" disabled class="form-control text-center" id="input" value="0">                      --}}
                   </div>
                   <div class="col-2 image ">
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px;">
                   </div>
                   <div class="col-4 ">
-                     <button href="" type="submit" id="member" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
+                    {{-- <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button> --}}
                     
+            {{-- <input type="button" onclick="buttonChange()" value="Button Text" id="myButton1"> --}}
+            {{-- <button id="demo" onclick="myFunction()">Join</button> --}}
+            <input onclick="change()" type="button" value="Open Curtain" id="myButton1">
                     </div>
                   </div>
               </div>
@@ -57,62 +68,40 @@
       
     </div>
     </div>
+
 </body>
+
+<script>
+ function change() // no ';' here
+{
+    var elem = document.getElementById("myButton1");
+    if (elem.value=="Close Curtain") elem.value = "Open Curtain";
+    else elem.value = "Close Curtain";
+}
+</script>
+
+<script>
+  function myFunction() {
+    document.getElementById("demo").innerHTML = "Quit";
+  }
+  </script>
 
 {{-- ===================sript to increase member when click join button =====  --}}
 
-<script>
+{{-- <script>
+  $(document).ready(function(){
+    $('#two').on('click',function() {
+      var sum = $('#input').val();
+      increase(sum);
+    });
+  });
 
-$(document).ready(function(){
-    $('#member').on('click',function(){
-        var sum = $('#input').val();
-        increse(sum);
-    })
-    $('#one').on('click',function(){
-        var sum = $('#input').val();
-        dicrese(sum);
-    })
-})
+  function increase(member) {
+    var add = parseInt(member) + 1;
+    $('#input').val(add);
+  }
 
-var increse = (member) => {
-     var add = parseInt(member) + 1;
-    if(add <= 15){
-        $('#input').val(add);
-        //  var count = add * 5;
-        //  $('#result').html(count);
-        compute(add);
-    }
-}
-
-var dicrese = (member) => {
-     var no = parseInt(member) - 1;
-     if(no >=0){
-        $('#input').val(no);
-        // var count =  no / 5;
-        //  $('#result').html(count);
-        compute(no);
-     }
-}
-
-function compute(num){
-    var computes = num * 5;
-    if(number == 0){
-        progressBar(result);
-    }else{
-        progressBar(result + 25);
-    }
-    $('#result').html(computes);
-}
-
-function progresssBar (pro){
-    $('#progress').width(pro + "%")
-    $('#progress').html(pro + "%")
-}
-
-
-
-
-</script>
+</script> --}}
 
 
 
@@ -157,6 +146,7 @@ $.ajax({
 </script>
 @endsection
 
+
 <script>
   $(document).ready(function(){
     $("#searchs").on("keyup", function() {
@@ -167,4 +157,3 @@ $.ajax({
     });
   });
 </script>
-
