@@ -7,10 +7,7 @@
 
 <body class="body-background">
     <div class="container">
-      @if (Auth::user()->id == $join->user_id)
-    <p>{{$join->user->id->count()}}</p>
-          
-      @endif
+  
     <div class="row">
       
       <div class="col-md-1"></div>
@@ -24,7 +21,7 @@
                    <label class="float-right">Not too far from city</label>
                   </div>
                   <div class="col-4">
-                  <select class="form-control" name="city" id="city">
+                  <select class="form-control" name="city" id="cityOfEvent">
                     <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                   </select>
                   </div>
@@ -41,23 +38,22 @@
                   <div class="col-2 time">
                       <h5 class="text-secondary">{{$item->start_time}}</h5>
                   </div>
-                  <div class="col-4 mt-3">
+                  <div class="col-4 mt-4">
                       <h6>{{$item->category->name}}</h6>
                       <h5>{{$item->title}}</h5>
-                  {{-- <input type="text" style="border:1px solid white" class="text-center" id="input" value="0">              --}}
-
-                    {{-- <input type="number" disabled class="form-control text-center" id="input" value="0">                      --}}
+                    @if ($item->joins->count('user_id')>1)
+                  <p>{{$item->joins->count('user_id')}} members going</p>                      
+                    @else
+                  <p>{{$item->joins->count('user_id')}} member going</p>                        
+                    @endif
                   </div>
-                  <div class="col-2 image ">
-                    <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px;">
+                  <div class="col-2 image " style="margin-bottom:1%">
+                    <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
-                  <div class="col-4 ">
-                    {{-- <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button> --}}
-                    
-            {{-- <input type="button" onclick="buttonChange()" value="Button Text" id="myButton1"> --}}
-            {{-- <button id="demo" onclick="myFunction()">Join</button> --}}
-            <input onclick="change()" type="button" value="Open Curtain" id="myButton1">
-                    </div>
+                  <div class="col-4" style="margin-top:5%">
+                    <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button>
+                              
+                  </div>
                   </div>
               </div>
               <br>
@@ -70,39 +66,6 @@
     </div>
 
 </body>
-
-<script>
- function change() // no ';' here
-{
-    var elem = document.getElementById("myButton1");
-    if (elem.value=="Close Curtain") elem.value = "Open Curtain";
-    else elem.value = "Close Curtain";
-}
-</script>
-
-<script>
-  function myFunction() {
-    document.getElementById("demo").innerHTML = "Quit";
-  }
-  </script>
-
-{{-- ===================sript to increase member when click join button =====  --}}
-
-{{-- <script>
-  $(document).ready(function(){
-    $('#two').on('click',function() {
-      var sum = $('#input').val();
-      increase(sum);
-    });
-  });
-
-  function increase(member) {
-    var add = parseInt(member) + 1;
-    $('#input').val(add);
-  }
-
-</script> --}}
-
 
 
 {{-- =============== script to view city from json ============= --}}
@@ -133,7 +96,7 @@ $.ajax({
     }
 
 //declare select variable to give value to select box
-    var select = document.getElementById("city");
+    var select = document.getElementById("cityOfEvent");
 
 // Loop options of city:
     for(var i = 0; i < array.length; i++) {
@@ -144,8 +107,8 @@ $.ajax({
  });
 
 </script>
-@endsection
 
+{{-- ============= script to search ===========  --}}
 
 <script>
   $(document).ready(function(){
@@ -157,3 +120,5 @@ $.ajax({
     });
   });
 </script>
+@endsection
+
