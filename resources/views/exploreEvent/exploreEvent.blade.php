@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 @extends('admin.dashboard')
 @section('content')
 
@@ -10,7 +12,7 @@
         <h3>Find your Event!</h3>
           <div class="card-search">
                   <div class="col-4">
-                    <input type="text" class="form-control" placeholder="Search..">
+                    <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search..">
                     </div>
                   <div class="col-4">
                    <label class="float-right">Not too far from city</label>
@@ -42,37 +44,79 @@
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px;">
                   </div>
                   <div class="col-4 ">
-                     <button href="" type="submit" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
-                  </div>
+                     <button href="" type="submit" id="member" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
+                    
+                    </div>
                   </div>
               </div>
               <br>
               @endforeach
   
-              {{-- <div class="card ">
-                  <div class="div-style">
-                  <div class="col-2 time">
-                      <h5 class="text-secondary">3:00 PM</h5>
-                  </div>
-                  <div class="col-4 mt-3">
-                      <h6>Sport</h6>
-                      <h5>football matching</h5>
-                      <p>10 Member</p>
-                  </div>
-                  <div class="col-2 image">
-                      <p>picture football</p>
-                  </div>
-                  <div class="col-4 ">
-                      <button href="" type="submit" class="btn-cancel btn-danger"><i class="fa fa-times-circle">Quit</i></button>
-                  </div>
-                  </div>
-              </div> --}}
         </div>
         <div class="col-md-1"></div>
       
     </div>
     </div>
 </body>
+
+{{-- ===================sript to increase member when click join button =====  --}}
+
+<script>
+
+$(document).ready(function(){
+    $('#member').on('click',function(){
+        var sum = $('#input').val();
+        increse(sum);
+    })
+    $('#one').on('click',function(){
+        var sum = $('#input').val();
+        dicrese(sum);
+    })
+})
+
+var increse = (member) => {
+     var add = parseInt(member) + 1;
+    if(add <= 15){
+        $('#input').val(add);
+        //  var count = add * 5;
+        //  $('#result').html(count);
+        compute(add);
+    }
+}
+
+var dicrese = (member) => {
+     var no = parseInt(member) - 1;
+     if(no >=0){
+        $('#input').val(no);
+        // var count =  no / 5;
+        //  $('#result').html(count);
+        compute(no);
+     }
+}
+
+function compute(num){
+    var computes = num * 5;
+    if(number == 0){
+        progressBar(result);
+    }else{
+        progressBar(result + 25);
+    }
+    $('#result').html(computes);
+}
+
+function progresssBar (pro){
+    $('#progress').width(pro + "%")
+    $('#progress').html(pro + "%")
+}
+
+
+
+
+</script>
+
+
+
+{{-- =============== script to view city from json ============= --}}
 <script>
 $.ajax({
 //get api
@@ -111,6 +155,16 @@ $.ajax({
  });
 
 </script>
-
 @endsection
+
+<script>
+  $(document).ready(function(){
+    $("#searchs").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $(".card").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 
