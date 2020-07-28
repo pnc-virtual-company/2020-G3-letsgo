@@ -105,13 +105,7 @@ class EventController extends Controller
         $event ->end_time = $request->get('end_time');
         $event ->city = $request->get('city');
         $event ->description = $request->get('description');
-        // $event->picture = $request->file('picture')->getClientOriginalName();
-        request()->validate([
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        $imageName = time().'.'.request()->picture->getClientOriginalExtension();
-        request()->picture->move(public_path('/image/'), $imageName);
-        $event -> picture = $imageName;
+        $event->picture = $request->file('picture')->getClientOriginalName();
         $event ->user_id = $user;
         $event->save();
         return back();
