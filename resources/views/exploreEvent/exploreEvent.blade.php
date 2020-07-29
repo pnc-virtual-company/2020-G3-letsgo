@@ -1,10 +1,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
+</script>
 @extends('admin.dashboard')
 @section('content')
 
 <body class="body-background">
     <div class="container">
+  
     <div class="row">
       
       <div class="col-md-1"></div>
@@ -18,7 +21,7 @@
                    <label class="float-right">Not too far from city</label>
                   </div>
                   <div class="col-4">
-                  <select class="form-control" name="city" id="city">
+                  <select class="form-control" name="city" id="cityOfEvent">
                     <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                   </select>
                   </div>
@@ -30,7 +33,7 @@
             <p><strong>Friday,july 20</strong></p>
           </div>
           @foreach ($exploreEvents as $item)
-         
+        
               <div class="card">
               <a href="#" type="button" class="btn btn-fix" data-toggle="modal" data-target="#myModal{{$item->id}}">
 
@@ -43,16 +46,22 @@
                         ?>
                       </h5>
                   </div>
-                  <div class="col-4 mt-3">
+                  <div class="col-6 mt-4">
                       <h6>{{$item->category->name}}</h6>
                       <h5>{{$item->title}}</h5>
-                      <p>5 Member</p>
+                    @if ($item->joins->count('user_id')>1)
+                    <p>{{$item->joins->count('user_id')}} members going</p>                      
+                    @else
+                    <p>{{$item->joins->count('user_id')}} member going</p>                        
+                    @endif
                   </div>
-                  <div class="col-2 image ">
-                    <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px;">
+                  <div class="col-2 image " style="margin-bottom:1%">
+                    <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
-                  <div class="col-4 ">
-                     <button href="#" type="submit" id="member" class="btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>                 
+                  <div class="col-2" style="margin-top:5%">
+                    <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button>
+                              
+                  </div>
                   </div>
                   </div>
                 </a>
@@ -101,8 +110,9 @@
         <div class="col-md-1"></div>
       
     </div>
-    </div>
+
 </body>
+
 
 {{-- =============== script to view city from json ============= --}}
 <script>
@@ -132,7 +142,7 @@ $.ajax({
     }
 
 //declare select variable to give value to select box
-    var select = document.getElementById("city");
+    var select = document.getElementById("cityOfEvent");
 
 // Loop options of city:
     for(var i = 0; i < array.length; i++) {
@@ -143,7 +153,8 @@ $.ajax({
  });
 
 </script>
-@endsection
+
+{{-- ============= script to search ===========  --}}
 
 <script>
   $(document).ready(function(){
@@ -155,4 +166,5 @@ $.ajax({
     });
   });
 </script>
+@endsection
 
