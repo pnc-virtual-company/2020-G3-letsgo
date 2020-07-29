@@ -15,7 +15,11 @@
         <h3>Find your Event!</h3>
           <div class="card-search">
                   <div class="col-4">
-                    <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search..">
+                    <div class="form-group">
+                      <i class="large material-icons form-control-feedback">search</i>
+                      <input type="text"  name="searchs" id="searchs" class="form-control search_event" placeholder="Search" onkeyup="myFunction()" id="searching">
+                    </div>
+                    {{-- <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search.."> --}}
                     </div>
                   <div class="col-4">
                    <label class="float-right">Not too far from city</label>
@@ -33,9 +37,9 @@
             <p><strong>Friday,july 20</strong></p>
           </div>
           @foreach ($exploreEvents as $item)
-        
-              <div class="card" id="zoom-card">
               <a href="#" type="button" class="btn btn-fix" data-toggle="modal" data-target="#myModal{{$item->id}}">
+            @if ((Auth::user()->id != $item->user_id))
+              <div class="card">
                   <div class="div-style">
                   <div class="col-2 time">
                       <h5 class="text-secondary">
@@ -101,6 +105,7 @@
                 </div>
 
               <br>
+              @endif
               @endforeach
         </div>
         <div class="col-md-1"></div>
@@ -162,5 +167,20 @@ $.ajax({
     });
   });
 </script>
+<style>
+  .search_event {
+width: 100%;
+padding-left: 2rem;
+border-radius: 20px;
+}
+
+.form-control-feedback {
+position: absolute;
+width: 2.375rem;
+text-align: center;
+color: rgb(56, 55, 55);
+margin-top: 8px;
+}
+</style>
 @endsection
 
