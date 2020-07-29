@@ -19,7 +19,6 @@
                       <i class="large material-icons form-control-feedback">search</i>
                       <input type="text"  name="searchs" id="searchs" class="form-control search_event" placeholder="Search" onkeyup="myFunction()" id="searching">
                     </div>
-                    {{-- <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search.."> --}}
                     </div>
                   <div class="col-4">
                    <label class="float-right">Not too far from city</label>
@@ -37,7 +36,6 @@
             <p><strong>Friday,july 20</strong></p>
           </div>
           @foreach ($exploreEvents as $item)
-              <a href="#" type="button" class="btn btn-fix" data-toggle="modal" data-target="#myModal{{$item->id}}">
             @if ((Auth::user()->id != $item->user_id))
               <div class="card">
                   <div class="div-style">
@@ -63,9 +61,9 @@
                   </div>
                   <div class="col-4 mt-5">
                     <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button>                             
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
                   </div>
-                </a>
               </div>
             
               <!-- The Modal Detail of explore Event -->
