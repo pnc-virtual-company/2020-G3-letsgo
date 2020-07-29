@@ -137,7 +137,7 @@
                     <h3>{{$yourEvents->title}}</h3>
                     <p>5 Member</p>
                 </div>
-                <div class="col-3 image mb-3">
+                <div class="col-3 image mt-4">
             <img src="{{asset('image/'.$yourEvents->picture)}}" width="100" height="100" style="border-radius:15px;" alt="">
                 </div>
                 <div class="col-4 mt-4">

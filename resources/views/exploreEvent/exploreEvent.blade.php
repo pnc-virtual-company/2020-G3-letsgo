@@ -34,9 +34,8 @@
           </div>
           @foreach ($exploreEvents as $item)
         
-              <div class="card">
+              <div class="card" id="zoom-card">
               <a href="#" type="button" class="btn btn-fix" data-toggle="modal" data-target="#myModal{{$item->id}}">
-
                   <div class="div-style">
                   <div class="col-2 time">
                       <h5 class="text-secondary">
@@ -46,22 +45,20 @@
                         ?>
                       </h5>
                   </div>
-                  <div class="col-6 mt-4">
+                  <div class="col-3 mt-4">
                       <h6>{{$item->category->name}}</h6>
                       <h5>{{$item->title}}</h5>
-                    @if ($item->joins->count('user_id')>1)
-                    <p>{{$item->joins->count('user_id')}} members going</p>                      
-                    @else
-                    <p>{{$item->joins->count('user_id')}} member going</p>                        
-                    @endif
+                        @if ($item->joins->count('user_id')>1)
+                        <p>{{$item->joins->count('user_id')}} members going</p>                      
+                        @else
+                        <p>{{$item->joins->count('user_id')}} member going</p>                        
+                        @endif
                   </div>
-                  <div class="col-2 image " style="margin-bottom:1%">
+                  <div class="col-3 image mt-2">
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
-                  <div class="col-2" style="margin-top:5%">
-                    <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button>
-                              
-                  </div>
+                  <div class="col-4 mt-5">
+                    <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button>                             
                   </div>
                   </div>
                 </a>
@@ -99,13 +96,12 @@
                       <div class="modal-body">
                       <p>{{$item->description}}</p>
                       </div>
-
                     </div>
                   </div>
                 </div>
+
               <br>
               @endforeach
-  
         </div>
         <div class="col-md-1"></div>
       
