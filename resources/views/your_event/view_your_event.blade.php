@@ -125,7 +125,12 @@
             <div class="card">
                 <div class="div-style">
                 <div class="col-2 time" style="margin-top:8%">
-                    <h5 class="text-secondary">{{$yourEvents->start_time}}</h5>
+                    <h5 class="text-secondary">
+                        <?php
+                        $currentDateTime = $yourEvents['start_time'];
+                        echo $newDateTime = date(' h:i A', strtotime($currentDateTime));
+                        ?>
+                    </h5>
                 </div>
                 <div class="col-3 mt-5">
                     <h6>{{$yourEvents->category->name}}</h6>

@@ -32,7 +32,6 @@
        <td class="action">{{$event->start_date}}</td>
        <td class="action_hidden">
         <a href="{{route('deleteEvent',$event->id)}}" class="text-danger" data-toggle="modal" data-target="#delete{{$event->id}}"><span class="material-icons text-danger">delete</span></a>
-        @method('DELETE')
     </td>
     <div class="modal" id="delete{{$event->id}}">
         <div class="modal-dialog">
@@ -88,7 +87,6 @@ margin-top: 8px;
         display:block;
     }
 </style>
-
 
 {{-- function can search event  --}}
 <script>

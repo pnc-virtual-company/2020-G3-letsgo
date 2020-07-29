@@ -22,7 +22,7 @@
                     <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                   </select>
                   </div>
-          </div>
+          </div><br>
           <div class="event-join mt-5">
             <input type="checkbox" id="" name="" value=""> Event you join only
           </div>
@@ -30,10 +30,18 @@
             <p><strong>Friday,july 20</strong></p>
           </div>
           @foreach ($exploreEvents as $item)
+         
               <div class="card">
+              <a href="#" type="button" class="btn btn-fix" data-toggle="modal" data-target="#myModal{{$item->id}}">
+
                   <div class="div-style">
                   <div class="col-2 time">
-                      <h5 class="text-secondary">{{$item->start_time}}</h5>
+                      <h5 class="text-secondary">
+                        <?php
+                          $currentDateTime = $item['start_time'];
+                          echo $newDateTime = date(' h:i A', strtotime($currentDateTime));
+                        ?>
+                      </h5>
                   </div>
                   <div class="col-4 mt-3">
                       <h6>{{$item->category->name}}</h6>
@@ -44,11 +52,48 @@
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px;">
                   </div>
                   <div class="col-4 ">
-                     <button href="" type="submit" id="member" class=" btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>
-                    
+                     <button href="#" type="submit" id="member" class="btn-edit btn-success"><i class="fa fa-check-circle">Join</i></button>                 
+                  </div>
+                  </div>
+                </a>
+              </div>
+            
+              <!-- The Modal Detail of explore Event -->
+                <div class="modal fade" id="myModal{{$item->id}}" >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <div class="col-6 mt-5">
+                          <img src="{{asset('image/' .$item->picture)}}" width="200px" height="200px">
+                        </div>
+                        <div class="col-6">
+                          <p><strong>{{$item->category->name}}</strong></p>
+                          <h2><strong>{{$item->title}}</strong></h2>
+                          <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{$item->city}}</p>
+                          <p><i class="fa fa-users" aria-hidden="true"></i> </p>
+                          <p><i class="fa fa-user" aria-hidden="true"></i> Organized by: {{$item->user->firstname}}</p>
+                          <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->start_date}} - 
+                          <?php
+                            $startTime = $item['start_time'];
+                            $endTime = $item['end_time'];
+                            echo $newDateTime = date(' h:i A', strtotime($startTime));
+                            echo "</br> to";
+                            echo $newDateTime = date(' h:i A', strtotime($endTime));
+                          ?></p>
+                          <button href="#" type="submit" id="member" class="btn-edit float-right" style="border-radius: 10px;"><i class="fa fa-check-circle">Join</i></button>                 
+                        </div>
+                      </div>
+
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                      <p>{{$item->description}}</p>
+                      </div>
+
                     </div>
                   </div>
-              </div>
+                </div>
               <br>
               @endforeach
   
@@ -58,63 +103,6 @@
     </div>
     </div>
 </body>
-
-{{-- ===================sript to increase member when click join button =====  --}}
-
-<script>
-
-$(document).ready(function(){
-    $('#member').on('click',function(){
-        var sum = $('#input').val();
-        increse(sum);
-    })
-    $('#one').on('click',function(){
-        var sum = $('#input').val();
-        dicrese(sum);
-    })
-})
-
-var increse = (member) => {
-     var add = parseInt(member) + 1;
-    if(add <= 15){
-        $('#input').val(add);
-        //  var count = add * 5;
-        //  $('#result').html(count);
-        compute(add);
-    }
-}
-
-var dicrese = (member) => {
-     var no = parseInt(member) - 1;
-     if(no >=0){
-        $('#input').val(no);
-        // var count =  no / 5;
-        //  $('#result').html(count);
-        compute(no);
-     }
-}
-
-function compute(num){
-    var computes = num * 5;
-    if(number == 0){
-        progressBar(result);
-    }else{
-        progressBar(result + 25);
-    }
-    $('#result').html(computes);
-}
-
-function progresssBar (pro){
-    $('#progress').width(pro + "%")
-    $('#progress').html(pro + "%")
-}
-
-
-
-
-</script>
-
-
 
 {{-- =============== script to view city from json ============= --}}
 <script>
