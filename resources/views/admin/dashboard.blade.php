@@ -58,6 +58,9 @@
     .py-4{
         background-color: #f1fcfd;
     }
+    #zoom-card:hover {
+    transform: scale(1.1); 
+}
 </style>
 <body>
     <div id="app">
@@ -240,50 +243,6 @@
                 </div>
             </div>
         </nav>
-         <!------------------ Change password------------->
-         <div id="pwdPopup" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Change Password</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{route('changePassword')}}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <input id="old-password" placeholder="Password" type="password" class="form-control" name="old-password" required >
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                             <div class="form-group">
-                                <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="new password" required  >
-
-                                @error('new-password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <input id="password-confirm"  type="password" class="form-control " placeholder="Confirm password"  name="password-confirmation" required autocomplete="new-password">
-                                  <span id="error" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-default text-primary float-right">Save Change</button>
-                    </form>
-                </div>
-                </div>
-            </div>
-            </div>
-{{----------------- End change password -------------------}}
 
         <main class="py-4">
             @yield('content')
