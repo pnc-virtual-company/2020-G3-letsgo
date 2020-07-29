@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\User;
 use Image;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -110,5 +111,25 @@ class UserController extends Controller
         $user ->save();
         return redirect('home');
 
+    }
+    public function changePassword(Request $request){
+        request()->validate([
+            'old-password' => 'required|min:8',
+            'new-password' => 'required|min:8',
+            'password-confirmation' => 'required|min:8',
+        ]);
+            $old_pwd = $request->get('old-password');
+            $value = Auth::user()->password;
+            $verify_password = Hash::check($old_pwd,$value);
+            if($verify_password){
+                $new_pwd = $request->get('new-password');
+                $confirm_pwd = $request->get('password-confirmation');
+                if($new_pwd == $confirm_pwd){
+                    $user = User::find(Auth::id());
+                    $user->password = Hash::make($new_pwd);
+                    $user->save();
+                    return back();
+                }
+             }
     }
 }
