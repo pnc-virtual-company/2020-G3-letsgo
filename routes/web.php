@@ -30,6 +30,7 @@ Route::resource('event','EventController');
 Route::get('delete/{id}','eventController@delete')->name('delete');
 Route::delete('deleteEvent/{id}','eventController@deleteEvent')->name('deleteEvent');
 Route::resource('user','UserController');
+Route::put('changePassword','UserController@changePassword')->name('changePassword');
 Route::resource('exploreEvent','ExploreEventController');
 Route::put('updatepic/{id}','UserController@updateProfilePic')->name('updatepic');
 

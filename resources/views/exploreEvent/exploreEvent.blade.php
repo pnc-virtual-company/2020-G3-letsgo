@@ -33,6 +33,7 @@
             <p><strong>Friday,july 20</strong></p>
           </div>
           @foreach ($exploreEvents as $item)
+          @if ((Auth::user()->id != $item->user_id))
               <div class="card">
                   <div class="div-style">
                   <div class="col-2 time">
@@ -57,6 +58,7 @@
                   </div>
               </div>
               <br>
+              @endif
               @endforeach
   
         </div>
