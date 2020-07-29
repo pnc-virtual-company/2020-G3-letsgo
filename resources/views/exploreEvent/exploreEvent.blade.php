@@ -15,9 +15,12 @@
         <h3>Find your Event!</h3>
           <div class="card-search">
                   <div class="col-4">
-                    <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search..">
-   
-                  </div>
+                    <div class="form-group">
+                      <i class="large material-icons form-control-feedback">search</i>
+                      <input type="text"  name="searchs" id="searchs" class="form-control search_event" placeholder="Search" onkeyup="myFunction()" id="searching">
+                    </div>
+                    {{-- <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search.."> --}}
+                    </div>
                   <div class="col-4">
                    <label class="float-right">Not too far from city</label>
                   </div>
@@ -26,7 +29,7 @@
                     <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                   </select>
                   </div>
-          </div>
+          </div><br>
           <div class="event-join mt-5">
             <input type="checkbox" id="" name="" value=""> Event you join only
           </div>
@@ -34,21 +37,28 @@
             <p><strong>Friday,july 20</strong></p>
           </div>
           @foreach ($exploreEvents as $item)
+              <a href="#" type="button" class="btn btn-fix" data-toggle="modal" data-target="#myModal{{$item->id}}">
+            @if ((Auth::user()->id != $item->user_id))
               <div class="card">
                   <div class="div-style">
                   <div class="col-2 time">
-                      <h5 class="text-secondary">{{$item->start_time}}</h5>
+                      <h5 class="text-secondary">
+                        <?php
+                          $currentDateTime = $item['start_time'];
+                          echo $newDateTime = date(' h:i A', strtotime($currentDateTime));
+                        ?>
+                      </h5>
                   </div>
-                  <div class="col-4 mt-4">
+                  <div class="col-3 mt-4">
                       <h6>{{$item->category->name}}</h6>
                       <h5>{{$item->title}}</h5>
-                    @if ($item->joins->count('user_id')>1)
-                  <p>{{$item->joins->count('user_id')}} members going</p>                      
-                    @else
-                  <p>{{$item->joins->count('user_id')}} member going</p>                        
-                    @endif
+                        @if ($item->joins->count('user_id')>1)
+                        <p>{{$item->joins->count('user_id')}} members going</p>                      
+                        @else
+                        <p>{{$item->joins->count('user_id')}} member going</p>                        
+                        @endif
                   </div>
-                  <div class="col-2 image " style="margin-bottom:1%">
+                  <div class="col-3 image mt-2">
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
                   <div class="col-4" style="margin-top:5%">
@@ -63,14 +73,51 @@
                     </form>      
                   </div>
                   </div>
+                </a>
               </div>
+            
+              <!-- The Modal Detail of explore Event -->
+                <div class="modal fade" id="myModal{{$item->id}}" >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <div class="col-6 mt-5">
+                          <img src="{{asset('image/' .$item->picture)}}" width="200px" height="200px">
+                        </div>
+                        <div class="col-6">
+                          <p><strong>{{$item->category->name}}</strong></p>
+                          <h2><strong>{{$item->title}}</strong></h2>
+                          <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{$item->city}}</p>
+                          <p><i class="fa fa-users" aria-hidden="true"></i> </p>
+                          <p><i class="fa fa-user" aria-hidden="true"></i> Organized by: {{$item->user->firstname}}</p>
+                          <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->start_date}} - 
+                          <?php
+                            $startTime = $item['start_time'];
+                            $endTime = $item['end_time'];
+                            echo $newDateTime = date(' h:i A', strtotime($startTime));
+                            echo "</br> to";
+                            echo $newDateTime = date(' h:i A', strtotime($endTime));
+                          ?></p>
+                          <button href="#" type="submit" id="member" class="btn-edit float-right" style="border-radius: 10px;"><i class="fa fa-check-circle">Join</i></button>                 
+                        </div>
+                      </div>
+
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                      <p>{{$item->description}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               <br>
+              @endif
               @endforeach
-  
         </div>
         <div class="col-md-1"></div>
       
-    </div>
     </div>
 
 </body>
@@ -129,5 +176,20 @@ $.ajax({
     });
   });
 </script>
+<style>
+  .search_event {
+width: 100%;
+padding-left: 2rem;
+border-radius: 20px;
+}
+
+.form-control-feedback {
+position: absolute;
+width: 2.375rem;
+text-align: center;
+color: rgb(56, 55, 55);
+margin-top: 8px;
+}
+</style>
 @endsection
 

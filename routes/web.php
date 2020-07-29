@@ -31,6 +31,7 @@ Route::resource('event','EventController');
 Route::get('delete/{id}','eventController@delete')->name('delete');
 Route::delete('deleteEvent/{id}','eventController@deleteEvent')->name('deleteEvent');
 Route::resource('user','UserController');
+Route::put('changePassword','UserController@changePassword')->name('changePassword');
 Route::resource('exploreEvent','ExploreEventController');
 Route::post('join/{id}','ExploreEventController@join')->name('join');
 Route::delete('quit/{id}','ExploreEventController@quit')->name('quit');

@@ -128,7 +128,6 @@ class EventController extends Controller
         $event ->end_time = $request->get('end_time');
         $event ->city = $request->get('city');
         $event ->description = $request->get('description');
-        $event->picture = $request->file('picture')->getClientOriginalName();
         $event ->user_id = $user;
         $event->save();
         return back();
