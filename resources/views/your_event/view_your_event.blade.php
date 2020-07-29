@@ -121,7 +121,7 @@
 
         @foreach($events as $yourEvents)
         @if(auth::user()->id == $yourEvents->user_id)
-        <p><strong>Friday,july 20</strong></p>
+        <p><strong>{{$yourEvents->start_date}}</strong></p>
             <div class="card">
                 <div class="div-style">
                 <div class="col-2 time" style="margin-top:8%">

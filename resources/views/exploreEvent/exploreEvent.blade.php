@@ -16,7 +16,8 @@
           <div class="card-search">
                   <div class="col-4">
                     <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search..">
-                    </div>
+   
+                  </div>
                   <div class="col-4">
                    <label class="float-right">Not too far from city</label>
                   </div>
@@ -51,8 +52,15 @@
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
                   <div class="col-4" style="margin-top:5%">
-                    <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button>
-                              
+                  <form action="{{route('join',$item->id)}}" method="POST">
+                      @csrf
+                      <button class="btn btn-success"><i id="join" class="fa fa-check-circle">Join</i></button>
+                    </form>
+                    <form action="{{route('quit',$item->id)}}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <button class="btn btn-danger"><i id="join" class="fa fa-check-circle">quit</i></button>
+                    </form>      
                   </div>
                   </div>
               </div>
@@ -66,6 +74,7 @@
     </div>
 
 </body>
+
 
 
 {{-- =============== script to view city from json ============= --}}

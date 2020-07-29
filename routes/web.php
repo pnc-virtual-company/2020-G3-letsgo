@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/groupby','EventController@groupBy');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,6 +32,8 @@ Route::get('delete/{id}','eventController@delete')->name('delete');
 Route::delete('deleteEvent/{id}','eventController@deleteEvent')->name('deleteEvent');
 Route::resource('user','UserController');
 Route::resource('exploreEvent','ExploreEventController');
+Route::post('join/{id}','ExploreEventController@join')->name('join');
+Route::delete('quit/{id}','ExploreEventController@quit')->name('quit');
 Route::put('updatepic/{id}','UserController@updateProfilePic')->name('updatepic');
 
 
