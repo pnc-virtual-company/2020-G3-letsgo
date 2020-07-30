@@ -70,9 +70,14 @@ class ExploreEventController extends Controller
     }
 
     public function quit($id) {
-        $join=Join::find($id);
-        $join->delete();
-        return back();
+        $user_id = Auth::id(); 
+        $event=event::find($id)->id;        
+        $join=Join::where('id', $id)
+            ->first();
+        if(!is_null($join)){
+        $comment->delete();
+        }
+    return back();
     }
 
     /**
