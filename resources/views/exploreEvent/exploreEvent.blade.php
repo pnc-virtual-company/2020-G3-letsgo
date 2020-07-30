@@ -65,11 +65,11 @@
                       @csrf
                       <button class="btn btn-success" style="margin-top:50%"><i id="join" class="fa fa-check-circle">Join</i></button>
                     </form>
-                    {{-- <form action="{{route('quit',$item->id)}}" method="POST">
+                    <form action="{{route('quit',$item->id)}}" method="POST">
                       @csrf
                       @method('delete')
                       <button class="btn btn-danger"><i id="join" class="fa fa-check-circle">quit</i></button>
-                    </form>       --}}
+                    </form>      
                     <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
                   </div>
