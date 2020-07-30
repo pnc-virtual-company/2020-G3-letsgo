@@ -89,7 +89,12 @@
                           <p><strong>{{$item->category->name}}</strong></p>
                           <h2><strong>{{$item->title}}</strong></h2>
                           <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{$item->city}}</p>
-                          <p><i class="fa fa-users" aria-hidden="true"></i> </p>
+                          <p><i class="fa fa-users" aria-hidden="true"></i>  
+                            @if ($item->joins->count('user_id')>1)
+                            {{$item->joins->count('user_id')}} members going                  
+                            @else
+                            {{$item->joins->count('user_id')}} member going                        
+                            @endif</p>
                           <p><i class="fa fa-user" aria-hidden="true"></i> Organized by: {{$item->user->firstname}}</p>
                           <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->start_date}} - 
                           <?php
