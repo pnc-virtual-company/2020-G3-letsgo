@@ -64,12 +64,10 @@
                   <form action="{{route('join',$item->id)}}" method="POST">
                       @csrf
                       <button class="btn btn-success" style="margin-top:50%"><i id="join" class="fa fa-check-circle">Join</i></button>
-                    </form>
-                    <form action="{{route('quit',$item->id)}}" method="POST">
-                      @csrf
-                      @method('delete')
-                      <button class="btn btn-danger"><i id="join" class="fa fa-check-circle">quit</i></button>
-                    </form>      
+                  </form>
+                    
+                      <button class="btn btn-default" onclick="document.getElementById('deleteMemberJoin').submit()">delete</button>
+                       
                     <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
                   </div>
@@ -119,6 +117,13 @@
               <br>
               @endif
               @endforeach
+
+                @foreach ($joins as $item)                  
+                <form action="{{route('quit',$item->id)}}" method="POST" id="deleteMemberJoin">
+                  @csrf
+                  @method('delete')
+                </form>
+                @endforeach
         </div>
         <div class="col-md-1"></div>
       
