@@ -5,7 +5,6 @@ use DB;
 use Auth;
 use Illuminate\Http\Request;
 use App\User;
-use Image;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -75,7 +74,7 @@ class UserController extends Controller
         $user->firstname = $request->get('firstname');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
-        $user->password = bcrypt($request->get('password'));
+        // $user->password = bcrypt($request->get('password'));
         $user->save();
         return view('home');
     }

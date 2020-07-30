@@ -192,16 +192,6 @@
                                                         <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                    <label for="password">New Password</label>
-                                                        <input  type="password" class="form-control" name="password" required  placeholder="new password">
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                    <label for="password-confirm" class="">Confirm Password</label>
-                                                        <input  type="password" class="form-control" name="confirm" required  placeholder="confirm password">
-                                                </div>
-                                                </div>
                                                 <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
                                                 <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
                                             </form>
@@ -228,6 +218,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a data-toggle="modal" data-target="#userPopup" class="dropdown-item " href="{{Auth::user()->id}}">Profile</a>
+                                <a data-toggle="modal" data-target="#pwdPopup" class="dropdown-item " href="{{Auth::user()->id}}">Change password</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -243,6 +234,44 @@
                 </div>
             </div>
         </nav>
+
+        {{-- -------------------------------------------------------Display Change Passowrd of User------------------------------------------------ --}}
+     <!-- Modal -->
+     <div id="pwdPopup" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title text-center">Change Password</h4>
+            </div>
+                <form action="{{route('changePassword')}}" method="POST">
+                    @csrf
+                    @method('PUT')
+                <div class="modal-body">
+                   <label for="">Old Pasword</label>
+                   <div class="form-group">      
+                    <input id="old-password" placeholder="Password" type="password" class="form-control" name="old-password" required >                       
+                    </div>
+                   
+                   <div class="form-group">      
+                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="new password" required  >
+                    </div>
+                   
+                   <div class="form-group">
+                    <input id="password-confirm"  type="password" class="form-control " placeholder="confirm password"  name="password-confirmation" required >
+                    <span id="error" class="text-danger"></span>
+                    </div>
+               </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">DISCARD</button>
+                 <button type="submit" id="change-password" class="btn text-warning float-right">UPDATE</button>
+               </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {{---------------- End Change Password ------------------}}
 
         <main class="py-4">
             @yield('content')
@@ -291,4 +320,23 @@ $.ajax({
     }
    },
  });
+</script>
+
+<script type="text/javaScript">
+    $(document).ready(function () {
+        $(document).on('keyup', function () {
+            var new_pwd = $('#new-password').val();
+            var confirm_pwd = $('#password-confirm').val();
+            if(confirm_pwd == new_pwd){
+                $('#error').html('');
+            }else if(confirm_pwd == ''){
+                $('#error').html('');
+            }else{
+                $('#error').html('Attribute confirmation does not match.');
+            }
+        }) 
+    });
+    $("#success-alert").fadeTo(6000, 1000).slideUp(1000, function(){
+    $("#success-alert").slideUp(1000);
+});
 </script>
