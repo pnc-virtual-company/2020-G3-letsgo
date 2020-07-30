@@ -58,9 +58,6 @@
     .py-4{
         background-color: #f1fcfd;
     }
-    #zoom-card:hover {
-    transform: scale(1.1); 
-}
 </style>
 <body>
     <div id="app">
