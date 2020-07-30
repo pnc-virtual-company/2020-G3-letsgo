@@ -19,7 +19,6 @@
                       <i class="large material-icons form-control-feedback">search</i>
                       <input type="text"  name="searchs" id="searchs" class="form-control search_event" placeholder="Search" onkeyup="myFunction()" id="searching">
                     </div>
-                    {{-- <input type="text" name="searchs" id="searchs" class="form-control" placeholder="Search.."> --}}
                     </div>
                   <div class="col-4">
                    <label class="float-right">Not too far from city</label>
@@ -37,7 +36,6 @@
             <p><strong>Friday,july 20</strong></p>
           </div>
           @foreach ($exploreEvents as $item)
-              <a href="#" type="button" class="btn btn-fix" data-toggle="modal" data-target="#myModal{{$item->id}}">
             @if ((Auth::user()->id != $item->user_id))
               <div class="card">
                   <div class="div-style">
@@ -61,21 +59,22 @@
                   <div class="col-3 image mt-2">
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
-                  <div class="col-4" style="margin-top:5%">
+                  <div class="col-4 mt-2">
+                    <div class="row">
                   <form action="{{route('join',$item->id)}}" method="POST">
                       @csrf
-                      <button class="btn btn-success"><i id="join" class="fa fa-check-circle">Join</i></button>
+                      <button class="btn btn-success" style="margin-top:50%"><i id="join" class="fa fa-check-circle">Join</i></button>
                     </form>
-                    <form action="{{route('quit',$item->id)}}" method="POST">
+                    {{-- <form action="{{route('quit',$item->id)}}" method="POST">
                       @csrf
                       @method('delete')
                       <button class="btn btn-danger"><i id="join" class="fa fa-check-circle">quit</i></button>
-                    </form>      
+                    </form>       --}}
+                    <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
                   </div>
-                </a>
               </div>
-            
+            </div>
               <!-- The Modal Detail of explore Event -->
                 <div class="modal fade" id="myModal{{$item->id}}" >
                   <div class="modal-dialog">
