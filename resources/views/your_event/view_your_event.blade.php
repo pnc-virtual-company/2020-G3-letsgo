@@ -118,10 +118,15 @@
         </div>
         <br>
         {{-- ======================== view event ================== --}}
-
+        <?php $data = $events?>
+        @foreach ($data as $item =>$events)
+            
         @foreach($events as $yourEvents)
         @if(auth::user()->id == $yourEvents->user_id)
+        @if ($yourEvents->start_date)
+            
         <p><strong>{{$yourEvents->start_date}}</strong></p>
+        @endif
             <div class="card">
                 <div class="div-style">
                 <div class="col-2 time" style="margin-top:8%">
@@ -265,6 +270,8 @@
             <br>
             @endif
         @endforeach
+        @endforeach
+
                 </div>
                 </div>
             </div>
