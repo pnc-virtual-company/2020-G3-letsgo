@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use Auth;
 use App\Join;
 class ExploreEventController extends Controller
 {
@@ -50,15 +51,28 @@ class ExploreEventController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    //  add member into event when click join 
     public function edit($id)
     {
-        //
+       
+
+    }
+
+    public function join($id) {
+        $user_id = Auth::id();
+        $join = new Join;
+        $event=event::find($id);
+        $join->user_id = $user_id;
+        $join->event_id = $event->id;
+        $join->save();
+        return back();
+    }
+
+    public function quit($id) {
+        $join=Join::find($id);
+        $join->delete();
+        return back();
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Category;
 use App\Event;
 use Auth;
 use DB;
+use Carbon;
 class EventController extends Controller
 {
 
@@ -15,9 +16,20 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function groupBy()
+      {
+        Event::all()->groupBy(function($date) {
+            dd(\Carbon\Carbon::parse($date->created_at)->format('d-M-y'));
+        })->orderBy('created_at');
+
+     }
+
+
     public function index()
     {
         $events = Event::all();
+        // dd($events);
         return view('event.eventview',compact('events'));
     }
 
@@ -29,7 +41,7 @@ class EventController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $events = Event::all();
+        $events = Event::all()->groupBy('start_date');
         return view('your_event.view_your_event', compact('events', 'categories'));
     }
 

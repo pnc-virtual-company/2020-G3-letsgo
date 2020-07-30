@@ -59,13 +59,22 @@
                   <div class="col-3 image mt-2">
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
-                  <div class="col-4 mt-5">
-                    <button class="btn btn-success" onclick=""  id="join" type="submit"><i id="join" class="fa fa-check-circle">Join</i></button>                             
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
+                  <div class="col-4 mt-2">
+                    <div class="row">
+                  <form action="{{route('join',$item->id)}}" method="POST">
+                      @csrf
+                      <button class="btn btn-success" style="margin-top:50%"><i id="join" class="fa fa-check-circle">Join</i></button>
+                    </form>
+                    {{-- <form action="{{route('quit',$item->id)}}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <button class="btn btn-danger"><i id="join" class="fa fa-check-circle">quit</i></button>
+                    </form>       --}}
+                    <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
                   </div>
               </div>
-            
+            </div>
               <!-- The Modal Detail of explore Event -->
                 <div class="modal fade" id="myModal{{$item->id}}" >
                   <div class="modal-dialog">
@@ -111,6 +120,7 @@
     </div>
 
 </body>
+
 
 
 {{-- =============== script to view city from json ============= --}}
