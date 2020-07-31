@@ -124,8 +124,8 @@
         @foreach($events as $yourEvents)
         @if(auth::user()->id == $yourEvents->user_id)
         @if ($yourEvents->start_date)
-            
-        <p><strong>{{$yourEvents->start_date}}</strong></p>
+        <?php $date = new DateTime($yourEvents->start_date);?>
+        <?php echo date_format($date, 'l,F Y'); ?>
         @endif
             <div class="card">
                 <div class="div-style">
