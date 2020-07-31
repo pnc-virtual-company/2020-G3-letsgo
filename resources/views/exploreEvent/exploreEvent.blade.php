@@ -32,19 +32,21 @@
           <div class="event-join mt-5">
             <input type="checkbox" id="" name="" value=""> Event you join only
           </div>
-          <div class="date mt-5">
-            <p><strong>Friday,july 20</strong></p>
-          </div>
           @foreach ($exploreEvents as $item)
-            @if ((Auth::user()->id != $item->user_id))
+            @if ((Auth::user()->id != $item->user_id))  
+            @if ($item->start_date)
+            {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
+            <?php $date = new DateTime($item->start_date);?>
+              <?php echo date_format($date, 'l,F Y'); ?>
+            @endif
               <div class="card">
                   <div class="div-style">
-                  <div class="col-2 time">
+                    <div class="col-2 time">
                       <h5 class="text-secondary">
-                        <?php
+                          <?php
                           $currentDateTime = $item['start_time'];
                           echo $newDateTime = date(' h:i A', strtotime($currentDateTime));
-                        ?>
+                          ?>
                       </h5>
                   </div>
                   <div class="col-3 mt-4">
@@ -65,11 +67,6 @@
                       @csrf
                       <button class="btn btn-success" style="margin-top:50%"><i id="join" class="fa fa-check-circle">Join</i></button>
                     </form>
-                    {{-- <form action="{{route('quit',$item->id)}}" method="POST">
-                      @csrf
-                      @method('delete')
-                      <button class="btn btn-danger"><i id="join" class="fa fa-check-circle">quit</i></button>
-                    </form>       --}}
                     <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
                   </div>
@@ -96,7 +93,7 @@
                             {{$item->joins->count('user_id')}} member going                        
                             @endif</p>
                           <p><i class="fa fa-user" aria-hidden="true"></i> Organized by: {{$item->user->firstname}}</p>
-                          <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->start_date}} - 
+                          <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->start_date}}  
                           <?php
                             $startTime = $item['start_time'];
                             $endTime = $item['end_time'];
