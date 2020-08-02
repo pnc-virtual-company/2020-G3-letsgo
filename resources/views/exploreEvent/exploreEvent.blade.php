@@ -30,19 +30,24 @@
           <div class="event-join mt-5">
             <input type="checkbox" id="" name="" value=""> Event you join only
           </div>
-          <div class="date mt-5">
-            <p><strong>Friday,july 20</strong></p>
-          </div>
+          <?php
+            $date = date('Y,m,d');
+          ?>
           @foreach ($exploreEvents as $item)
-            @if ((Auth::user()->id != $item->user_id))
+            @if (Auth::user()->id != $item->user_id && $item->end_date >= $date)  
+            @if ($item->start_date)
+            {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
+            <?php $date = new DateTime($item->start_date);?>
+              <?php echo date_format($date, 'l,F Y'); ?>
+            @endif
               <div class="card">
                   <div class="div-style">
-                  <div class="col-2 time">
+                    <div class="col-2 time">
                       <h5 class="text-secondary">
-                        <?php
+                          <?php
                           $currentDateTime = $item['start_time'];
                           echo $newDateTime = date(' h:i A', strtotime($currentDateTime));
-                        ?>
+                          ?>
                       </h5>
                   </div>
                   <div class="col-3 mt-4">
@@ -99,7 +104,7 @@
                             {{$item->joins->count('user_id')}} member going                        
                             @endif</p>
                           <p><i class="fa fa-user" aria-hidden="true"></i> Organized by: {{$item->user->firstname}}</p>
-                          <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->start_date}} - 
+                          <p><i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->start_date}}  
                           <?php
                             $startTime = $item['start_time'];
                             $endTime = $item['end_time'];
