@@ -1,13 +1,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
-</script>
+
 @extends('admin.dashboard')
 @section('content')
 
 <body class="body-background">
     <div class="container">
-  
     <div class="row">
       
       <div class="col-md-1"></div>
@@ -32,8 +30,11 @@
           <div class="event-join mt-5">
             <input type="checkbox" id="" name="" value=""> Event you join only
           </div>
+          <?php
+            $date = date('Y,m,d');
+          ?>
           @foreach ($exploreEvents as $item)
-            @if ((Auth::user()->id != $item->user_id))  
+            @if (Auth::user()->id != $item->user_id && $item->end_date >= $date)  
             @if ($item->start_date)
             {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
             <?php $date = new DateTime($item->start_date);?>
@@ -65,13 +66,23 @@
                     <div class="row">
                   <form action="{{route('join',$item->id)}}" method="POST">
                       @csrf
-                      <button class="btn btn-success" style="margin-top:50%"><i id="join" class="fa fa-check-circle">Join</i></button>
+                      <button class="btn btn-success" style="margin-top:50%;" id="join"><i class="fa fa-check-circle">Join</i></button>
+                  </form>
+                    @foreach ($item->joins as $join)                  
+                    <form action="{{route('quit',$join->id)}}" method="POST" id="">
+                      @csrf
+                      @method('delete')
+                      <button class="btn btn-danger" onclick="document.getElementById('quit').submit()" style="margin-top:50%" id="quit"><i class="fa fa-times-circle">Quit</i></button>
                     </form>
+                    @endforeach
+                       
                     <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
                   </div>
               </div>
             </div>
+
+
               <!-- The Modal Detail of explore Event -->
                 <div class="modal fade" id="myModal{{$item->id}}" >
                   <div class="modal-dialog">
@@ -116,6 +127,8 @@
               <br>
               @endif
               @endforeach
+
+              
         </div>
         <div class="col-md-1"></div>
       
@@ -123,6 +136,19 @@
 
 </body>
 
+
+
+
+<script>
+  $(document).ready(function(){
+  $("#join").click(function(){
+    $("#join").hide();
+  });
+  
+ 
+});
+
+</script>
 
 
 {{-- =============== script to view city from json ============= --}}
