@@ -8,6 +8,11 @@ use App\Category;
 use DB;
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +23,12 @@ class CategoryController extends Controller
         //
         $categories = Category::all();
         $categories -> user_id = auth::id();
-        return view ('Category.view_category',compact('categories'));
+        if(Auth::id()==1) {
+
+            return view ('Category.view_category',compact('categories'));
+        }else {
+            return redirect('home');
+        }
     }
 
     /**
