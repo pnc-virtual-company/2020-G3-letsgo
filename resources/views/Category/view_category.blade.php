@@ -25,7 +25,7 @@
 
        
         <!-- Form Add Category -->
-        <div class="modal" id="addCategory">
+        <div class="modal fade" id="addCategory">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -59,7 +59,7 @@
             </td>
 
             <!-- Form Update Category -->
-            <div class="modal" id="editCategory{{$category->id}}">
+            <div class="modal fade" id="editCategory{{$category->id}}">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -77,7 +77,7 @@
             </div>
 
             <!-- Form Remove Category -->
-            <div class="modal" id="removeCategory{{$category->id}}">
+            <div class="modal fade" id="removeCategory{{$category->id}}">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">

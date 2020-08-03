@@ -32,6 +32,7 @@
           <div class="event-join mt-5">
             <input type="checkbox" id="" name="" value=""> Event you join only
           </div>
+          <br>
           @foreach ($exploreEvents as $item)
             @if ((Auth::user()->id != $item->user_id))  
             @if ($item->start_date)
@@ -101,7 +102,10 @@
                             echo "</br> to";
                             echo $newDateTime = date(' h:i A', strtotime($endTime));
                           ?></p>
-                          <button href="#" type="submit" id="member" class="btn-edit float-right" style="border-radius: 10px;"><i class="fa fa-check-circle">Join</i></button>                 
+                          <form action="{{route('join',$item->id)}}" method="POST">
+                            @csrf
+                            <button style="border-radius: 5px; border:none; padding:10px;" class="float-right"><i id="join" class="fa fa-check-circle">Join</i></button>
+                          </form>
                         </div>
                       </div>
 
