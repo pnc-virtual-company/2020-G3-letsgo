@@ -90,7 +90,8 @@
                       </form>
                       @endif
                       @endforeach
-                      {{-- important don't chnage anythink --}}
+                      
+                      {{-- Don't change class name --}}
                       <form action="{{route('join', $item->id)}}" method="post">
                       @csrf
                       <div class="join_button">
@@ -101,7 +102,6 @@
                       </form>
                       {{-- end --}}
                     {{-- @endforeach --> --}}
-                  
 
                     <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
