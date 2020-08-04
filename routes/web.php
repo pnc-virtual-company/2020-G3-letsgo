@@ -49,4 +49,14 @@ Route::get('/search','CategoryController@search');
 Route::put('updateProfilePicEvent/{id}','EventController@updateProfilePicEvent')->name('updateProfilePicEvent');
 
 
+Route::resource('/exploreEvents', 'ExploreEventController');
+Route::get('/carlendar', 'ExploreEventController@viewByCarlendar')->name('viewByCarlendar');
+Route::post('/join/{id}', 'ExploreEventController@join')->name("join");
+Route::delete('/quit/{id}', 'ExploreEventController@quit')->name("quit");
+Route::get('/eventJoinOnly', 'ExploreEventController@eventJoinOnly')->name("eventJoinOnly");
+Route::put('/userCheck/{data}', 'ExploreEventController@userCheck')->name("userCheck");
+Route::put('/userNotCheck/{data}', 'ExploreEventController@userNotCheck')->name("userNotCheck");
+
+
+
 

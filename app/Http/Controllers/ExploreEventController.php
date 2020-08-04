@@ -4,27 +4,57 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\User;
 use Auth;
 use App\Join;
+use DB;
 class ExploreEventController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth']);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $exploreEvents = Event::all();
-        $joins = Join::all();
-        return view('exploreEvent.exploreEvent',compact('exploreEvents','joins'));
+        // dd( $exploreEvents);
+        $joins= Join::all();
+        $joinEvent = Join::where('user_id',Auth::id())->get();
+        return view('exploreEvent.exploreEvent',compact('exploreEvents', 'joins','joinEvent'));
     }
 
+
+    public function eventJoinOnly()
+    {
+        $exploreEvents = Event::all()->groupBy("startDate");
+        $joins= Join::all();
+        // dd( $exploreEvents);
+        $joinEvent = Join::where('user_id',Auth::id())->get();
+        return view('exploreEvent.eventJoinOnly',compact('exploreEvents', 'joins','joinEvent'));
+    }
+
+
+    public function userCheck($data)
+    {
+        $user = User::find(Auth::id());
+        $user -> check = $data;
+        $user->save();
+        return redirect('exploreEvent');
+    }
+    public function userNotCheck($data)
+    {
+        $user = User::find(Auth::id());
+        $user -> check = $data;
+        $user->save();
+        return redirect('eventJoinOnly');
+    }
+
+    //end view explore event by carlendar//
     /**
      * Show the form for creating a new resource.
      *
@@ -32,7 +62,7 @@ class ExploreEventController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -56,29 +86,33 @@ class ExploreEventController extends Controller
     {
         //
     }
-
-
-    //  add member into event when click join 
-    public function edit($id)
+    public function join($id)
     {
-       
 
-    }
-
-    public function join($id) {
-        $user_id = Auth::id();
+        $event = Event::find($id);
+        $user = Auth::id();
         $join = new Join;
-        $event=event::find($id);
-        $join->user_id = $user_id;
+        $join->user_id = $user;
         $join->event_id = $event->id;
         $join->save();
         return back();
     }
 
-    public function quit($id) {
-        $join =Join::find($id);
+    public function quit($id){     
+        $join = Join::find($id);
         $join->delete();
         return back();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
