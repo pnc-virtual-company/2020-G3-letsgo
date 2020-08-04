@@ -30,16 +30,20 @@
           <div class="event-join mt-5">
             <input type="checkbox" id="" name="" value=""> Event you join only
           </div>
-          <?php
-            $date = date('Y,m,d');
+          <br>
+          <br>
+          <?php               
+                    $date = date('Y-m-d');
           ?>
           @foreach ($exploreEvents as $item)
-            @if (Auth::user()->id != $item->user_id && $item->end_date >= $date)  
+            @if (Auth::user()->id != $item->user_id && $item->end_date >= $date )  
             @if ($item->start_date)
             {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
             <?php $date = new DateTime($item->start_date);?>
               <?php echo date_format($date, 'l,F Y'); ?>
             @endif
+            <br>
+            <br>
               <div class="card">
                   <div class="div-style">
                     <div class="col-2 time">
@@ -66,7 +70,7 @@
                     <div class="row">
                   <form action="{{route('join',$item->id)}}" method="POST">
                       @csrf
-                      <button class="btn btn-success" style="margin-top:50%;" id="join"><i class="fa fa-check-circle">Join</i></button>
+                      <button class="btn btn-success" onclick="hide()" style="margin-top:50%;" id="join"><i class="fa fa-check-circle">Join</i></button>
                   </form>
                     @foreach ($item->joins as $join)                  
                     <form action="{{route('quit',$join->id)}}" method="POST" id="">
@@ -138,17 +142,6 @@
 
 
 
-
-<script>
-  $(document).ready(function(){
-  $("#join").click(function(){
-    $("#join").hide();
-  });
-  
- 
-});
-
-</script>
 
 
 {{-- =============== script to view city from json ============= --}}
