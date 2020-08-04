@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('picture')->default('user.png');
             $table->string('password');
             $table->integer('role')->default(0);
+            $table->boolean('check')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

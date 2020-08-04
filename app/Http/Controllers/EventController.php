@@ -11,6 +11,10 @@ use Carbon;
 class EventController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +34,14 @@ class EventController extends Controller
     {
         $events = Event::all();
         // dd($events);
-        return view('event.eventview',compact('events'));
+        if(Auth::id() ==1) {
+
+            return view('event.eventview',compact('events'));
+        } else {
+            return redirect('home');
+
+        }
+
     }
 
     /**
