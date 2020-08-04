@@ -116,7 +116,7 @@
             </div>
         </div>
         </div>
-        <br>
+        <br><br>
         {{-- ======================== view event ================== --}}
         <?php $data = $events?>
         @foreach ($data as $item =>$events)

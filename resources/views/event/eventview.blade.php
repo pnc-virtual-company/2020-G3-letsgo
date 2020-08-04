@@ -33,7 +33,7 @@
        <td class="action_hidden">
         <a href="{{route('deleteEvent',$event->id)}}" class="text-danger" data-toggle="modal" data-target="#delete{{$event->id}}"><span class="material-icons text-danger">delete</span></a>
     </td>
-    <div class="modal" id="delete{{$event->id}}">
+    <div class="modal fade" id="delete{{$event->id}}">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">

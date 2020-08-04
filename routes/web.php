@@ -28,8 +28,8 @@ Route::get('/', function (){
 
 // Event
 Route::resource('event','EventController');
-Route::get('delete/{id}','eventController@delete')->name('delete');
-Route::delete('deleteEvent/{id}','eventController@deleteEvent')->name('deleteEvent');
+Route::get('delete/{id}','EventController@delete')->name('delete');
+Route::delete('deleteEvent/{id}','EventController@deleteEvent')->name('deleteEvent');
 Route::resource('user','UserController');
 Route::put('changePassword','UserController@changePassword')->name('changePassword');
 Route::resource('exploreEvent','ExploreEventController');
