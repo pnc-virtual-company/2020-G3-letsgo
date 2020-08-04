@@ -7,7 +7,7 @@
 <body class="body-background">
     <div class="container">
     <div class="row">
-      
+
       <div class="col-md-1"></div>
         <div class="col-md-10">
         <h3>Find your Event!</h3>
@@ -28,32 +28,32 @@
                   </div>
           </div><br>
           <div class="event-join mt-5">
-
-          {{--====== checkbox  ==========--}}
+           {{--====== checkbox  ==========--}}
                         <div class="form-check " style="margin-left:30px">
-                            @if (Auth::user()->check != 1)
-                                <input type="checkbox" id="checkbox" name="checkbox[]" value="{{Auth::user()->check}}" class="form-check-input"> 
+                            @if (Auth::user()->check == 1)
+                                <input type="checkbox" id="checkbox" name="checkbox[]" checked value="{{Auth::user()->check}}" class="form-check-input">  
                             @endif
                             <label class="form-check-label" for="checkbox">Event you join only</label>
                         </div>
-                        <form id="userNotCheck" action="{{route('userNotCheck',1)}}" method="post">
+                        <form id="userCheck" action="{{route('userCheck',0)}}" method="post">
                             @csrf
                             @method('put')
                         </form>
-                        {{--======end checkbox  ==========--}}
-      
+                          {{--======end checkbox  ==========--}}
+          </div>
           <?php
             $date = date('Y,m,d');
           ?>
-          @foreach ($exploreEvents as $item)
-            @if (Auth::id() != $item->user_id)
+          @foreach ($exploreEvents as $Join)
+            @foreach ($Join as $item)
+            @if (Auth::user()->id != $item->user_id)
+             @foreach ($joinEvent as $joinOnly)
+             @if($joinOnly->user_id == Auth::id() && $joinOnly->event_id == $item->id)
             @if ($item->start_date)
             {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
             <?php $date = new DateTime($item->start_date);?>
               <?php echo date_format($date, 'l,F Y'); ?>
             @endif
-            <br>
-            <br>
               <div class="card">
                   <div class="div-style">
                     <div class="col-2 time">
@@ -68,40 +68,28 @@
                       <h6>{{$item->category->name}}</h6>
                       <h5>{{$item->title}}</h5>
                         @if ($item->joins->count('user_id')>1)
-                        <p>{{$item->joins->count('user_id')}} members going</p>                      
+                        <p>{{$item->joins->count('user_id')}} members going</p>
                         @else
-                        <p>{{$item->joins->count('user_id')}} member going</p>                        
+                        <p>{{$item->joins->count('user_id')}} member going</p>
                         @endif
                   </div>
                   <div class="col-3 image mt-2">
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
                   <div class="col-4 mt-2">
-                    <div class="row" style="display: flex; justify-content:center; align-items:center">
-                      @foreach ($item->joins as $join)
-                      @if ($item->id == $join->event_id && $join->user_id == Auth::id())
-                      <form action="{{route('quit', $join->id)}}" method="post">
+                    <!-- <div class="row">
+                  <form action="{{route('join',$item->id)}}" method="POST">
                       @csrf
-                      @method("delete")
-                      <button type="submit" class="btn btn-sm btn btn-danger mt-4 quit-nutton">
-                      <i class="fa fa-times-circle"></i>
-                      <b>Quit</b>
-                      </button>
-                      </form>
-                      @endif
-                      @endforeach
-                      {{-- important don't chnage anythink --}}
-                      <form action="{{route('join', $item->id)}}" method="post">
+                      <button class="btn btn-success" style="margin-top:50%;" id="join"><i class="fa fa-check-circle">Join</i></button>
+                  </form>
+                    @foreach ($item->joins as $join)
+                    <form action="{{route('quit',$join->id)}}" method="POST" id="">
                       @csrf
-                      <div class="join_button">
-                      <input type="hidden" class="event_id" value="{{$item->id}}">
-                      </div>
-                      <div class="show_join_button" >
-                      </div>
-                      </form>
-                      {{-- end --}}
-                    {{-- @endforeach --> --}}
-                  
+                      @method('delete')
+                      <button class="btn btn-danger" onclick="document.getElementById('quit').submit()" style="margin-top:50%" id="quit"><i class="fa fa-times-circle">Quit</i></button>
+                    </form>
+                    @endforeach -->
+
 
                     <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
@@ -124,7 +112,7 @@
                           <p><strong>{{$item->category->name}}</strong></p>
                           <h2><strong>{{$item->title}}</strong></h2>
                           <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{$item->city}}</p>
-                          <p><i class="fa fa-users" aria-hidden="true"></i>
+                          <p><i class="fa fa-users" aria-hidden="true"></i>  
                             @if ($item->joins->count('user_id')>1)
                             {{$item->joins->count('user_id')}} members going                  
                             @else
@@ -153,7 +141,10 @@
 
               <br>
               @endif
-              @endforeach
+             @endforeach
+           @endif
+         @endforeach
+     @endforeach
 
               
         </div>
@@ -165,6 +156,16 @@
 
 
 
+<!--
+<script>
+  $(document).ready(function(){
+  $("#join").click(function(){
+    $("#join").hide();
+  });
+
+
+});
+</script> -->
 
 
 {{-- =============== script to view city from json ============= --}}
@@ -214,17 +215,17 @@ $.ajax({
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
     });
-     // check only user event
-     $("#checkbox").on('click', function () {
+    // check only user event
+    $("#checkbox").on('click', function () {
                 var data = checkbox_event();
-                if (data == 0) {
-                    $('#userNotCheck').submit();
+                if (data == 1) {
+                    $('#userCheck').submit();
                 }
-     });
+            });
   });
 
-   // ------------------- importand ---------------------//
-   joinButton()
+     // ------------------- importand ---------------------//
+     joinButton()
         function joinButton(){
             var eventJoin = {!! json_encode($joinEvent, JSON_HEX_TAG) !!}
             var user_id = {!! json_encode(Auth::id(), JSON_HEX_TAG) !!}
@@ -252,7 +253,6 @@ $.ajax({
         }
         // -----------------------end---------------------------
 
-
    // return value of checkbox
    function checkbox_event(){
                 var checkBox = document.getElementById('checkbox');
@@ -265,7 +265,7 @@ $.ajax({
                 {
                     var value = document.getElementById('checkbox').value;
                     return value;
-                }
+                }      
         }
         // end click
 </script>
