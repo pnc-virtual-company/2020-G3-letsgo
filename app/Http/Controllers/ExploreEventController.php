@@ -16,7 +16,8 @@ class ExploreEventController extends Controller
     public function index()
     {
         $exploreEvents = Event::all();
-        return view('exploreEvent.exploreEvent',compact('exploreEvents'));
+        $joins = Join::all();
+        return view('exploreEvent.exploreEvent',compact('exploreEvents','joins'));
     }
 
     /**
@@ -70,7 +71,7 @@ class ExploreEventController extends Controller
     }
 
     public function quit($id) {
-        $join=Join::find($id);
+        $join =Join::find($id);
         $join->delete();
         return back();
     }
