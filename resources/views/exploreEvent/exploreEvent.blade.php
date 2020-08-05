@@ -52,6 +52,8 @@
             <?php $date = new DateTime($item->start_date);?>
               <?php echo date_format($date, 'l,F Y'); ?>
             @endif
+            <br>
+            <br>
               <div class="card">
                   <div class="div-style">
                     <div class="col-2 time">
@@ -75,30 +77,31 @@
                     <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
                   </div>
                   <div class="col-4 mt-2">
-                  <div class="row" style="display: flex; justify-content:center; align-items:center">
-                                            @foreach ($item->joins as $join)
-                                                @if ($item->id == $join->event_id && $join->user_id == Auth::id())
-                                                    <form action="{{route('quit', $join->id)}}" method="post">
-                                                        @csrf
-                                                        @method("delete")
-                                                        <button type="submit" class="btn btn-sm btn btn-danger mt-4 quit-nutton">
-                                                            <i class="fa fa-times-circle"></i>
-                                                            <b>Quit</b>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            @endforeach
-
-                                            {{-- Don't change class name --}}
-                                            <form action="{{route('join', $item->id)}}" method="post">
-                                                @csrf
-                                                <div class="join_button">
-                                                    <input type="hidden" class="event_id" value="{{$item->id}}">
-                                                </div>
-                                                <div class="show_join_button" >
-                                                </div>
-                                            </form>
-                                            {{-- end --}}
+                    <div class="row" style="display: flex; justify-content:center; align-items:center">
+                      @foreach ($item->joins as $join)
+                      @if ($item->id == $join->event_id && $join->user_id == Auth::id())
+                      <form action="{{route('quit', $join->id)}}" method="post">
+                      @csrf
+                      @method("delete")
+                      <button type="submit" class="btn btn-sm btn btn-danger mt-4 quit-nutton">
+                      <i class="fa fa-times-circle"></i>
+                      <b>Quit</b>
+                      </button>
+                      </form>
+                      @endif
+                      @endforeach
+                      
+                      {{-- Don't change class name --}}
+                      <form action="{{route('join', $item->id)}}" method="post">
+                      @csrf
+                      <div class="join_button">
+                      <input type="hidden" class="event_id" value="{{$item->id}}">
+                      </div>
+                      <div class="show_join_button" >
+                      </div>
+                      </form>
+                      {{-- end --}}
+                    {{-- @endforeach --> --}}
 
                     <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
@@ -162,16 +165,6 @@
 
 
 
-<!--
-<script>
-  $(document).ready(function(){
-  $("#join").click(function(){
-    $("#join").hide();
-  });
-
-
-});
-</script> -->
 
 
 {{-- =============== script to view city from json ============= --}}
