@@ -43,7 +43,7 @@
                         {{--======end checkbox  ==========--}}
 
                         <div class="container">
-                          <div class="row" style="margin-left: 83%">
+                          <div class="row float-right">
                             <ul class="nav nav-tabs ml">
                             <li class="nav-item">
                               <a class="nav-link" href="{{ url('exploreEvent') }}">Card</a>
@@ -54,6 +54,8 @@
                             </ul>
                           </div>
                       </div>
+                      <br>
+                      <br>
                             <?php
             $date = date('Y-m-d');
           ?>
