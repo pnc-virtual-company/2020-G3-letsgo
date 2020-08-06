@@ -49,7 +49,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function yourEvent()
     {
         $categories = Category::all();
         $events = Event::all()->groupBy('start_date');
