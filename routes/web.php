@@ -27,18 +27,22 @@ Route::get('/', function (){
 });
 
 // Event
-Route::resource('event','EventController');
+
+Route::resource('manage/event','EventController');
+Route::get('yourEvent','EventController@yourEvent')->name('yourEvent');
 Route::get('delete/{id}','EventController@delete')->name('delete');
 Route::delete('deleteEvent/{id}','EventController@deleteEvent')->name('deleteEvent');
+
 Route::resource('user','UserController');
 Route::put('changePassword','UserController@changePassword')->name('changePassword');
-Route::resource('exploreEvent','ExploreEventController');
 Route::post('join/{id}','ExploreEventController@join')->name('join');
 Route::delete('quit/{id}','ExploreEventController@quit')->name('quit');
 Route::put('updatepic/{id}','UserController@updateProfilePic')->name('updatepic');
 
+// explore Event 
+Route::resource('exploreEvent','ExploreEventController');
 
-Route::resource('Category','CategoryController');
+Route::resource('/manage/Category','CategoryController');
 Route::get('/index','CategoryController@index')->name('index');
 // route to add category
 Route::post('/category/store/','CategoryController@store')->name('category.store');
