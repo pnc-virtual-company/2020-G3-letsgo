@@ -47,7 +47,7 @@
           ?>
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id)
-           
+
             @if (Auth::user()->city == $item->city && $item->end_date >= $date)
             @if ($item->start_date)
             {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
