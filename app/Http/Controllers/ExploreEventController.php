@@ -22,7 +22,6 @@ class ExploreEventController extends Controller
     public function index(Request $request)
     {
         $exploreEvents = Event::all();
-        // dd( $exploreEvents);
         $joins= Join::all();
         $joinEvent = Join::where('user_id',Auth::id())->get();
         return view('exploreEvent.exploreEvent',compact('exploreEvents', 'joins','joinEvent'));
