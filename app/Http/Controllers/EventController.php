@@ -41,15 +41,16 @@ class EventController extends Controller
             return redirect('home');
 
         }
-
+       
     }
+    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function yourEvent()
     {
         $categories = Category::all();
         $events = Event::all()->groupBy('start_date');
@@ -192,5 +193,9 @@ class EventController extends Controller
         $event = Event::find($id);
         $event->delete();
         return back();
+    }
+    public function calendarView(){
+        $events = Event::all();
+        return view('exploreEvent.calendar',compact('events'));
     }
 }

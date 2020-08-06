@@ -30,6 +30,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.2.0/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.2.0/main.min.css">
 </head>
 <style>
     .div-style{
@@ -57,6 +60,21 @@
     }
     .py-4{
         background-color: #f1fcfd;
+    }
+
+    /* menu  */
+
+    .active{
+        /* text-decoration:underline; */
+        border-bottom: 3px solid currentColor;
+        display: inline-block;
+        color: orange;
+        
+    }
+    ul,li,a{
+        padding:5px;
+        font-size:15px;
+
     }
 </style>
 <body>
@@ -92,22 +110,20 @@
                                 </li>
                             @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a  class="nav-link " href="{{route('exploreEvent.index')}}" role="button" >
+                        <li class="nav-item {{(request()->segment(1) == 'exploreEvent') ? 'active' : '',ucfirst(request()->segment(1))}} ">
+                        <a  class="nav-link" href="{{route('exploreEvent.index')}}" role="button" >
                             <span class="">Explore Event</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{route('event.create')}}">Your Event</a>
+                        <li class="nav-item {{(request()->segment(1) == 'yourEvent') ? 'active' : '',ucfirst(request()->segment(1))}} ">
+                            <a class="nav-link " href="{{route('yourEvent')}}">Your Event</a>
                         </li>
                         @if(auth::user()->role == 1)
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <span class="caret">Manage</span>
-                            </a>
+                            <a id="navbarDropdown" class=" dropdtn  nav-link dropdown-toggle {{request()->is('manage/*') ? 'active' : ''}}" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span class="caret">Manage</span></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('event.index')}}">Event</a>
-                            <a class="dropdown-item" href="{{route('Category.index')}}">Categories</a>
+                            <a class="dropdown-item {{(request()->segment(2) == 'event') ? 'active':'',ucfirst(request()->segment(1))}}" href="{{route('event.index')}}">Event</a>
+                            <a class="dropdown-item {{(request()->segment(2)=='Category') ? 'active':'',ucfirst(request()->segment(1))}}" href="{{route('Category.index')}}">Categories</a>
                             </div>
                         </li>
                         @endif
@@ -208,7 +224,7 @@
                            </div>
                          </div>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link btn btn-warning dropdown-toggle " href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->firstname }} <span class="caret"></span>
                             </a>
                                 <!-- The Modal -->
