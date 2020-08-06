@@ -56,6 +56,11 @@ Route::delete('/quit/{id}', 'ExploreEventController@quit')->name("quit");
 Route::get('/eventJoinOnly', 'ExploreEventController@eventJoinOnly')->name("eventJoinOnly");
 Route::put('/userCheck/{data}', 'ExploreEventController@userCheck')->name("userCheck");
 Route::put('/userNotCheck/{data}', 'ExploreEventController@userNotCheck')->name("userNotCheck");
+Route::get('viewcalendar','eventController@calendarView')->name('calendarview');
+
+
+
+
 
 
 

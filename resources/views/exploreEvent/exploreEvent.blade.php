@@ -41,14 +41,26 @@
                             @method('put')
                         </form>
                         {{--======end checkbox  ==========--}}
-      
-          <?php
+
+                        <div class="container">
+                          <div class="row" style="margin-left: 83%">
+                            <ul class="nav nav-tabs ml">
+                            <li class="nav-item">
+                              <a class="nav-link" href="{{ url('exploreEvent') }}">Card</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="{{route('calendarview')}}">Calendar</a>
+                            </li>
+                            </ul>
+                          </div>
+                      </div>
+                            <?php
             $date = date('Y-m-d');
           ?>
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id)
            
-            @if (Auth::user()->city == $item->city && $item->end_date >= $date)
+            {{-- @if (Auth::user()->city == $item->city && $item->end_date >= $date) --}}
             @if ($item->start_date)
             {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
             <?php $date = new DateTime($item->start_date);?>
@@ -108,7 +120,7 @@
                   </div>
               </div>
             </div>
-            @endif
+            {{-- @endif --}}
 
 
               <!-- The Modal Detail of explore Event -->
@@ -183,8 +195,7 @@
               <br>
               @endif
               @endforeach
-
-              
+                          
         </div>
         <div class="col-md-1"></div>
       
@@ -236,6 +247,7 @@ $.ajax({
 {{-- ============= script to search ===========  --}}
 
 <script>
+  
   $(document).ready(function(){
     $("#searchs").on("keyup", function() {
       var value = $(this).val().toLowerCase();
