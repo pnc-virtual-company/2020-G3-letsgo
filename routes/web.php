@@ -27,11 +27,11 @@ Route::get('/', function (){
 });
 
 // Event
+
 Route::resource('manage/event','EventController');
 Route::get('yourEvent','EventController@yourEvent')->name('yourEvent');
 Route::get('delete/{id}','EventController@delete')->name('delete');
 Route::delete('deleteEvent/{id}','EventController@deleteEvent')->name('deleteEvent');
-
 
 Route::resource('user','UserController');
 Route::put('changePassword','UserController@changePassword')->name('changePassword');
@@ -60,6 +60,11 @@ Route::delete('/quit/{id}', 'ExploreEventController@quit')->name("quit");
 Route::get('/eventJoinOnly', 'ExploreEventController@eventJoinOnly')->name("eventJoinOnly");
 Route::put('/userCheck/{data}', 'ExploreEventController@userCheck')->name("userCheck");
 Route::put('/userNotCheck/{data}', 'ExploreEventController@userNotCheck')->name("userNotCheck");
+Route::get('viewcalendar','eventController@calendarView')->name('calendarview');
+
+
+
+
 
 
 

@@ -41,8 +41,9 @@ class EventController extends Controller
             return redirect('home');
 
         }
-
+       
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -192,5 +193,9 @@ class EventController extends Controller
         $event = Event::find($id);
         $event->delete();
         return back();
+    }
+    public function calendarView(){
+        $events = Event::all();
+        return view('exploreEvent.calendar',compact('events'));
     }
 }

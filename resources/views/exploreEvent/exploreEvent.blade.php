@@ -41,19 +41,31 @@
                             @method('put')
                         </form>
                         {{--======end checkbox  ==========--}}
-      
-          <?php
-            $date = date('Y,m,d');
+
+                        <div class="container">
+                          <div class="row" style="margin-left: 83%">
+                            <ul class="nav nav-tabs ml">
+                            <li class="nav-item">
+                              <a class="nav-link" href="{{ url('exploreEvent') }}">Card</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="{{route('calendarview')}}">Calendar</a>
+                            </li>
+                            </ul>
+                          </div>
+                      </div>
+                            <?php
+            $date = date('Y-m-d');
           ?>
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id)
+           
+            {{-- @if (Auth::user()->city == $item->city && $item->end_date >= $date) --}}
             @if ($item->start_date)
             {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
             <?php $date = new DateTime($item->start_date);?>
               <?php echo date_format($date, 'l,F Y'); ?>
             @endif
-            <br>
-            <br>
               <div class="card">
                   <div class="div-style">
                     <div class="col-2 time">
@@ -90,7 +102,8 @@
                       </form>
                       @endif
                       @endforeach
-                      {{-- important don't chnage anythink --}}
+                      
+                      {{-- Don't change class name --}}
                       <form action="{{route('join', $item->id)}}" method="post">
                       @csrf
                       <div class="join_button">
@@ -101,13 +114,13 @@
                       </form>
                       {{-- end --}}
                     {{-- @endforeach --> --}}
-                  
 
                     <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
                   </div>
                   </div>
               </div>
             </div>
+            {{-- @endif --}}
 
 
               <!-- The Modal Detail of explore Event -->
@@ -139,7 +152,35 @@
                             echo "</br> to";
                             echo $newDateTime = date(' h:i A', strtotime($endTime));
                           ?></p>
-                          <button href="#" type="submit" id="member" class="btn-edit float-right" style="border-radius: 10px;"><i class="fa fa-check-circle">Join</i></button>                 
+                           <div class="col-4 mt-2">
+                            <div class="row" style="display: flex; justify-content:center; align-items:center">
+                              @foreach ($item->joins as $join)
+                              @if ($item->id == $join->event_id && $join->user_id == Auth::id())
+                              <form action="{{route('quit', $join->id)}}" method="post">
+                              @csrf
+                              @method("delete")
+                              <button type="submit" class="btn btn-sm btn btn-danger mt-4 quit-nutton">
+                              <i class="fa fa-times-circle"></i>
+                              <b>Quit</b>
+                              </button>
+                              </form>
+                              @endif
+                              @endforeach
+                              
+                              {{-- Don't change class name --}}
+                              <form action="{{route('join', $item->id)}}" method="post">
+                              @csrf
+                              <div class="join_button">
+                              <input type="hidden" class="event_id" value="{{$item->id}}">
+                              </div>
+                              <div class="show_join_button" >
+                              </div>
+                              </form>
+                              {{-- end --}}
+                            {{-- @endforeach --> --}}
+        
+                          </div>
+                          </div>
                         </div>
                       </div>
 
@@ -154,8 +195,7 @@
               <br>
               @endif
               @endforeach
-
-              
+                          
         </div>
         <div class="col-md-1"></div>
       
@@ -207,6 +247,7 @@ $.ajax({
 {{-- ============= script to search ===========  --}}
 
 <script>
+  
   $(document).ready(function(){
     $("#searchs").on("keyup", function() {
       var value = $(this).val().toLowerCase();
