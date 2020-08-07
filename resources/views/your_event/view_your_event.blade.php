@@ -34,12 +34,13 @@
 }
 </style>
 <body class="body-background">
-    <div class="container">
+    <div class="container" style="margin-top:100px;">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
+            <h1 class="text-center mt-3">Your Events</h1>
                 {{-- ======================== create event =================== --}}
-     <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i> Create</button>
+     <button type="button" class="btn btn-warning float-right btn-lg" data-toggle="modal" data-target="#myModal" class="btn"><i class="fa fa-plus"></i>Add</button>
         <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -153,10 +154,12 @@
                 </div>
                 <div class="col-4 mt-4">
                   {{-- delete Event button --}}
-                    <a href="{{route('delete',$yourEvents->id)}}" onclick="return confirm('Are you sure you want to delete this event?');"><button type="submit" class="btn-cancel"><strong>Cancel</strong></button></a>
+                    <button type="submit" class="btn btn-danger btn-md mt-5" href="{{route('delete',$yourEvents->id)}}" onclick="return confirm('Are you sure you want to delete this event?');"><i class="fa fa-ban" aria-hidden="true">Cancel</i></button>
 
                     {{-- Edit Event --}}
-                    <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal1{{$yourEvents->id}}">Edit</button>
+                    <button type="button" class="btn btn-primary btn-md mt-5" data-toggle="modal" data-target="#myModal1{{$yourEvents->id}}"><i class="fa fa-pencil-square-o">Edit</i></button>
+
+
                     <div id="myModal1{{$yourEvents->id}}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">

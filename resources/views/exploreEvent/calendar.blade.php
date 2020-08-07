@@ -1,9 +1,7 @@
 @extends('admin.dashboard')
 @section('content')
-<div class="container mt-3">
-    <div class="container">
+<div class="container"  style="margin-top:100px;">
         <div class="row">
-          
           <div class="col-md-1"></div>
             <div class="col-md-10">
             <h3>Find your Event!</h3>
@@ -41,22 +39,28 @@
 </div>
 
 <div class="container">
-    <div class="row" style="margin-left: 83%">
-      <ul class="nav nav-tabs ml">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('exploreEvent') }}">Card</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('calendarview')}}">Calendar</a>
-      </li>
-      </ul>
+    <div class="row">
+       <div class="col-1"></div>
+       <div class="col-10">
+          <ul class="nav nav-tabs ml" style="float: right;">
+          <li class="nav-item">
+            <a class="btn btn-secondary" class="nav-link" href="{{ url('exploreEvent') }}"><i class="fa fa-id-card-o" aria-hidden="true">Card</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-secondary" class="nav-link" href="{{route('calendarview')}}"><i class="fa fa-calendar" aria-hidden="true">Calendar</i></a>
+          </li>
+          </ul>
+       </div>
+       <div class="col-1"></div>
     </div>
 </div>
-<div class="container">
+<div class="container mt-5">
     <div class="row">
-        <div class="col-12">
+        <div class="col-1"></div>
+        <div class="col-10">
             <div id="calendar"></div>
         </div>
+        <div class="col-1"></div>
     </div>
 </div>
 <script>

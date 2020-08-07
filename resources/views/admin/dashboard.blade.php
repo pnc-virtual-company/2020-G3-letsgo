@@ -61,9 +61,7 @@
     .py-4{
         background-color: #f1fcfd;
     }
-
     /* menu  */
-
     .active{
         /* text-decoration:underline; */
         border-bottom: 3px solid currentColor;
@@ -74,15 +72,14 @@
     ul,li,a{
         padding:5px;
         font-size:15px;
-
     }
 </style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="">
-                    <h5>Let's Go</h5>
+                <img src="{{asset('image/logo.png')}}" width="80px" height="80px" style="border-radius:40px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -262,17 +259,16 @@
                     @csrf
                     @method('PUT')
                 <div class="modal-body">
-                   <label for="">Old Pasword</label>
-                   <div class="form-group">      
-                    <input id="old-password" placeholder="Password" type="password" class="form-control" name="old-password" required >                       
+                   <div class="form-group">
+                    <input id="old-password" placeholder="Password" type="password" class="form-control" name="old-password" required >
                     </div>
-                   
+
                    <div class="form-group">      
-                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="new password" required  >
+                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="New password" required  >
                     </div>
                    
                    <div class="form-group">
-                    <input id="password-confirm"  type="password" class="form-control " placeholder="confirm password"  name="password-confirmation" required >
+                    <input id="password-confirm"  type="password" class="form-control " placeholder="Confirm password"  name="password-confirmation" required >
                     <span id="error" class="text-danger"></span>
                     </div>
                </div>

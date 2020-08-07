@@ -3,7 +3,7 @@
 @extends('admin.dashboard')
 
 @section('content')
-<div class="container" style="margin-top:5%">
+<div class="container" style="margin-top:100px;">
 <div class="row">
 <div class="col-md-1"></div>
 <div class="col-md-10">
@@ -13,7 +13,7 @@
           <input type="text" class="form-control search_event" placeholder="Search" onkeyup="myFunction()" id="searching">
         </div>
     </form>
-    <h1 class="text-center mt-3">Event view</h1>
+    <h1 class="text-center mt-3">All Events</h1>
    <table class="table table-warning table-hover mt-3" style="margin-top:15px" id="table">
        <tr>
            <th>Organizer</th>
@@ -42,8 +42,8 @@
                     @method('DELETE')
                     <h3 class="mb-4"><b>Remove Event</b></h3>
                     <p>Are you sure you want to delete the event?</p>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">DISCARD</button>
-                    <button type="submit" class="btn btn-warning float-right text-light ml-2">REMOVE</button>
+                    <a type="button" class="float-right text-primary" data-dismiss="modal">DISCARD</a>
+                    <a type="submit" class="float-right text-danger">REMOVE</a>
                 </form>
             </div>
         </div>
