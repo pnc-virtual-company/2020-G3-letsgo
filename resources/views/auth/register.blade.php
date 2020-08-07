@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('content')
 
-<body class="body-background" style="background: #f1fcfd">
-     <div class="col-4"></div>
-     <div class="col-4">
-            <div class="card mt-5">
-            <div class="card-header ">
+<body  style="background: #f1fcfd">
+       <div class="container-fluid">
+            <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                        <div class="card mt-5">
+                         <div class="card-header">
 			    		<h3 class="panel-title text-center">Create User</h3>
 			 			</div>
 			 			<div class="card-body">
@@ -15,7 +17,6 @@
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
                             <input id="firstname" type="text"  placeholder="First Name" class="form-control input-sm @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
-
                                     @error('firstname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -75,9 +76,12 @@
 			    	</div>
 	    		</div>
     		</div>
-            </div>
+        </div>
      </div>
-     <div class="col-4"></div>
+                        </div>
+                        <div class="col-md-4"></div>
+            </div>
+       </div>
 </body>
 
 <script>
@@ -120,4 +124,6 @@ $.ajax({
 
 </script>
 @endsection
+
+
 
