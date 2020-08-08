@@ -76,7 +76,7 @@
 </style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="">
                 <img src="{{asset('image/logo.png')}}" width="80px" height="80px" style="border-radius:40px;">
@@ -259,16 +259,17 @@
                     @csrf
                     @method('PUT')
                 <div class="modal-body">
-                   <div class="form-group">
-                    <input id="old-password" placeholder="Password" type="password" class="form-control" name="old-password" required >
-                    </div>
-
+                   <label for="">Old Pasword</label>
                    <div class="form-group">      
-                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="New password" required  >
+                    <input id="old-password" placeholder="Password" type="password" class="form-control" name="old-password" required >                       
+                    </div>
+                   
+                   <div class="form-group">      
+                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="new password" required  >
                     </div>
                    
                    <div class="form-group">
-                    <input id="password-confirm"  type="password" class="form-control " placeholder="Confirm password"  name="password-confirmation" required >
+                    <input id="password-confirm"  type="password" class="form-control " placeholder="confirm password"  name="password-confirmation" required >
                     <span id="error" class="text-danger"></span>
                     </div>
                </div>

@@ -116,7 +116,7 @@
                       </form>
                       {{-- end --}}
 
-                      <button type="button" style="margin:10px; margin-top:20px; border-radius: 5px; border:none;" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}"><i class="fa fa-info-circle" aria-hidden="true">View</i></button>
+                      <button type="button" style="margin:10px; margin-top:20px; border-radius: 5px; border:none;" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}"><i class="fa fa-info-circle" aria-hidden="true">Detail</i></button>
 
 
 
