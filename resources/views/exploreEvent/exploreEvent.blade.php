@@ -5,11 +5,12 @@
 @section('content')
 
 <body class="body-background">
-    <div class="container">
+    <div class="container"  style="margin-top:100px;">
     <div class="row">
       
       <div class="col-md-1"></div>
         <div class="col-md-10">
+        <h1 class="text-center mt-3">Explore Events</h1>
         <h3>Find your Event!</h3>
           <div class="card-search">
                   <div class="col-4">
@@ -46,10 +47,10 @@
                           <div class="row float-right">
                             <ul class="nav nav-tabs ml">
                             <li class="nav-item">
-                              <a class="nav-link" href="{{ url('exploreEvent') }}">Card</a>
+                              <a class="nav-link btn btn-secondary" href="{{ url('exploreEvent') }}"><i class="fa fa-id-card-o" aria-hidden="true">Card</i></a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="{{route('calendarview')}}">Calendar</a>
+                              <a class="nav-link btn btn-secondary" href="{{route('calendarview')}}"><i class="fa fa-calendar" aria-hidden="true">Calendar</i></a>
                             </li>
                             </ul>
                           </div>
@@ -68,7 +69,7 @@
               <?php echo date_format($date, 'l,F Y'); ?>
             @endif
               <div class="card">
-                  <div class="div-style">
+                  <div class="div-style mt-3">
                     <div class="col-2 time">
                       <h5 class="text-secondary">
                           <?php
@@ -103,7 +104,7 @@
                       </form>
                       @endif
                       @endforeach
-                      
+
                       {{-- Don't change class name --}}
                       <form action="{{route('join', $item->id)}}" method="post">
                       @csrf
@@ -114,9 +115,11 @@
                       </div>
                       </form>
                       {{-- end --}}
-                    {{-- @endforeach --> --}}
 
-                    <button type="button" style="margin:30px" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}" style="border-radius: 5px; border:none;"><i class="fa fa-info-circle" aria-hidden="true"> Detail</i></button>
+                      <button type="button" style="margin:10px; margin-top:20px; border-radius: 5px; border:none;" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}"><i class="fa fa-info-circle" aria-hidden="true">Detail</i></button>
+
+
+
                   </div>
                   </div>
               </div>

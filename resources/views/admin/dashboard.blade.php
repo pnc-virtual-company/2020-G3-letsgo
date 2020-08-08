@@ -61,9 +61,7 @@
     .py-4{
         background-color: #f1fcfd;
     }
-
     /* menu  */
-
     .active{
         /* text-decoration:underline; */
         border-bottom: 3px solid currentColor;
@@ -74,15 +72,14 @@
     ul,li,a{
         padding:5px;
         font-size:15px;
-
     }
 </style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="">
-                    <h5>Let's Go</h5>
+                <img src="{{asset('image/logo.png')}}" width="80px" height="80px" style="border-radius:40px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -127,17 +124,39 @@
                             </div>
                         </li>
                         @endif
-                        <div class="modal" id="userPopup">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link btn btn-warning dropdown-toggle " href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->firstname }} <span class="caret"></span>
+                            </a>
+                                <!-- The Modal -->
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a data-toggle="modal" data-target="#userPopup" class="dropdown-item " href="{{Auth::user()->id}}">Profile</a>
+                                <a data-toggle="modal" data-target="#pwdPopup" class="dropdown-item " href="{{Auth::user()->id}}">Change password</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ---------------------Edit user-------------------  -->
+        <div id="userPopup" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                              <div class="modal-content">
-                         
-                               <!-- Modal Header -->
                                <div class="modal-header">
                                  <h4 class="modal-title">Edit User</h4>
                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
                                </div>
-
-                               <!-- Modal body -->
                                <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
@@ -151,14 +170,12 @@
                                                     <img class="mx-auto d-block" src="image/user.png"  width="80" style="border-radius: 40px;" height="80" alt="User" class="img-fluid img-circle">
                                                 @endif
                                                 <br><br>
-                                                 {{-- <!-- Trigger the modal with a button --> --}}
+                                                
                                                 <a href="" data-toggle="modal" data-target="#apdatePic"><i class="fa fa-edit fa-lg"></i></a> 
 
-                                                <!-- Modal -->
                                                 <div id="apdatePic" class="modal fade" role="dialog">
                                                 <div class="modal-dialog">
 
-                                                    <!-- Modal content-->
                                                     <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title">Update User Profile</h4>
@@ -221,32 +238,9 @@
                                 </div>
                                </div>
                              </div>
-                           </div>
-                         </div>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link btn btn-warning dropdown-toggle " href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->firstname }} <span class="caret"></span>
-                            </a>
-                                <!-- The Modal -->
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a data-toggle="modal" data-target="#userPopup" class="dropdown-item " href="{{Auth::user()->id}}">Profile</a>
-                                <a data-toggle="modal" data-target="#pwdPopup" class="dropdown-item " href="{{Auth::user()->id}}">Change password</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
                             </div>
-                        </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                            </div>
+        <!-- --------------------------end edit user-------------------- -->
 
         {{-- -------------------------------------------------------Display Change Passowrd of User------------------------------------------------ --}}
      <!-- Modal -->

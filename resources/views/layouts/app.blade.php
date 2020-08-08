@@ -70,7 +70,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-lightblue shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="">
-                    <h5>Let's Go</h5>
+                <img src="{{asset('image/logo.png')}}" width="80px" height="80px" style="border-radius:40px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

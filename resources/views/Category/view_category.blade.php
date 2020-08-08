@@ -4,7 +4,7 @@
 @extends('admin.dashboard')
 
 @section('content')
-<div class="container">
+<div class="container"  style="margin-top:100px;">
   <div class="row">
 <div class="col-md-1"></div>
 <div class="col-md-10">
@@ -19,7 +19,7 @@
     <div class="row mt-5">
         <div class="col-md-11"></div>
         <div class="col-md-11">
-            <button class="btn btn-warning text-light" data-toggle="modal" data-target="#addCategory">Create</button>
+            <button class="btn btn-warning text-light" data-toggle="modal" data-target="#addCategory">Add New</button>
 
         </div>
 
@@ -37,8 +37,8 @@
                        <!-- alert text when category already exist -->
                         <span id="message" class="text-danger"></span>
 
-                        <button type="submit" class="btn btn-warning float-right text-light ml-2">CREATE</button>
-                        <button type="submit" class="btn btn-danger float-right" data-dismiss="modal">DISCARD</button>
+                        <a type="submit" class="text-primary float-right">CREATE</a>
+                        <a type="submit" class="text-danger float-right" data-dismiss="modal">DISCARD</a>
                     </form>
                 </div>
             </div>
@@ -68,8 +68,8 @@
                             @csrf
                             @method('PUT')
                             <input type="text" class="form-control mb-4" placeholder="Category name"  name="category" value="{{$category->name}}">
-                            <button type="submit" class="btn btn-warning float-right text-light ml-2">UPDATE</button>
-                            <button class="btn btn-danger float-right" data-dismiss="modal">DISCARD</button>
+                            <a type="submit" class="text-primary float-right">UPDATE</a>
+                            <a class="text-danger float-right" data-dismiss="modal">DISCARD</a>
                         </form>
                     </div>
                 </div>
@@ -86,8 +86,8 @@
                             @method('DELETE')
                             <h3 class="mb-4"><b>Remove Category</b></h3>
                             <p>Are you sure you want to delete the category?</p>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">DISCARD</button>
-                            <button type="submit" class="btn btn-warning float-right text-light ml-2">REMOVE</button>
+                            <a type="button" class="text-primary float-right" data-dismiss="modal">DISCARD</a>
+                            <a type="submit" class="text-danger float-right">REMOVE</a>
                         </form>
                     </div>
                 </div>
