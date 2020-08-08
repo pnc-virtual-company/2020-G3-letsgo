@@ -124,7 +124,32 @@
                             </div>
                         </li>
                         @endif
-                        <div class="modal" id="userPopup">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link btn btn-warning dropdown-toggle " href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->firstname }} <span class="caret"></span>
+                            </a>
+                                <!-- The Modal -->
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a data-toggle="modal" data-target="#userPopup" class="dropdown-item " href="{{Auth::user()->id}}">Profile</a>
+                                <a data-toggle="modal" data-target="#pwdPopup" class="dropdown-item " href="{{Auth::user()->id}}">Change password</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- ---------------------Edit user-------------------  -->
+        <div id="userPopup" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                              <div class="modal-content">
                          
@@ -218,32 +243,9 @@
                                 </div>
                                </div>
                              </div>
-                           </div>
-                         </div>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link btn btn-warning dropdown-toggle " href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->firstname }} <span class="caret"></span>
-                            </a>
-                                <!-- The Modal -->
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a data-toggle="modal" data-target="#userPopup" class="dropdown-item " href="{{Auth::user()->id}}">Profile</a>
-                                <a data-toggle="modal" data-target="#pwdPopup" class="dropdown-item " href="{{Auth::user()->id}}">Change password</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
                             </div>
-                        </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                            </div>
+        <!-- --------------------------end edit user-------------------- -->
 
         {{-- -------------------------------------------------------Display Change Passowrd of User------------------------------------------------ --}}
      <!-- Modal -->
