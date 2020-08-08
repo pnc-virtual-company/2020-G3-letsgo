@@ -76,7 +76,7 @@
 </style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="">
                 <img src="{{asset('image/logo.png')}}" width="80px" height="80px" style="border-radius:40px;">
