@@ -148,18 +148,15 @@
                 </div>
             </div>
         </nav>
+
         <!-- ---------------------Edit user-------------------  -->
         <div id="userPopup" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                              <div class="modal-content">
-                         
-                               <!-- Modal Header -->
                                <div class="modal-header">
                                  <h4 class="modal-title">Edit User</h4>
                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
                                </div>
-
-                               <!-- Modal body -->
                                <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
@@ -173,14 +170,12 @@
                                                     <img class="mx-auto d-block" src="image/user.png"  width="80" style="border-radius: 40px;" height="80" alt="User" class="img-fluid img-circle">
                                                 @endif
                                                 <br><br>
-                                                 {{-- <!-- Trigger the modal with a button --> --}}
+                                                
                                                 <a href="" data-toggle="modal" data-target="#apdatePic"><i class="fa fa-edit fa-lg"></i></a> 
 
-                                                <!-- Modal -->
                                                 <div id="apdatePic" class="modal fade" role="dialog">
                                                 <div class="modal-dialog">
 
-                                                    <!-- Modal content-->
                                                     <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title">Update User Profile</h4>
