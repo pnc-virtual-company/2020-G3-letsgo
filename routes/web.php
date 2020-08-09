@@ -30,7 +30,7 @@ Route::get('/', function (){
 
 Route::resource('manage/event','EventController');
 Route::get('yourEvent','EventController@yourEvent')->name('yourEvent');
-Route::get('delete/{id}','EventController@delete')->name('delete');
+Route::delete('delete/{id}','EventController@delete')->name('delete');
 Route::delete('deleteEvent/{id}','EventController@deleteEvent')->name('deleteEvent');
 
 Route::resource('user','UserController');

@@ -57,74 +57,67 @@
                       </div>
                       <br>
                       <br>
-                            <?php
+            <?php
             $date = date('Y-m-d');
           ?>
           @foreach ($exploreEvents as $item)
-            @if (Auth::id() != $item->user_id)
-            {{-- @if (Auth::user()->city == $item->city && $item->end_date >= $date) --}}
-            @if ($item->start_date)
-            {{-- <p><strong>{{$item->created_at}}</strong></p> --}}
-            <?php $date = new DateTime($item->start_date);?>
-              <?php echo date_format($date, 'l,F Y'); ?>
-            @endif
-              <div class="card">
-                  <div class="div-style mt-3">
-                    <div class="col-2 time">
-                      <h5 class="text-secondary">
-                          <?php
-                          $currentDateTime = $item['start_time'];
-                          echo $newDateTime = date(' h:i A', strtotime($currentDateTime));
-                          ?>
-                      </h5>
-                  </div>
-                  <div class="col-3 mt-4">
-                      <h6>{{$item->category->name}}</h6>
-                      <h5>{{$item->title}}</h5>
-                        @if ($item->joins->count('user_id')>1)
-                        <p>{{$item->joins->count('user_id')}} members going</p>                      
-                        @else
-                        <p>{{$item->joins->count('user_id')}} member going</p>                        
-                        @endif
-                  </div>
-                  <div class="col-3 image mt-2">
-                    <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
-                  </div>
-                  <div class="col-4 mt-2">
-                    <div class="row" style="display: flex; justify-content:center; align-items:center">
-                      @foreach ($item->joins as $join)
-                      @if ($item->id == $join->event_id && $join->user_id == Auth::id())
-                      <form action="{{route('quit', $join->id)}}" method="post">
-                      @csrf
-                      @method("delete")
-                      <button type="submit" class="btn btn-sm btn btn-danger mt-4 quit-nutton">
-                      <i class="fa fa-times-circle"></i>
-                      <b>Quit</b>
-                      </button>
-                      </form>
-                      @endif
-                      @endforeach
+            @if (Auth::id() != $item->user_id && $item->end_date >= $date)
+            @if (Auth::user()->city == $item->city)
+            <p>{{$item->start_date}}</p>
+      <div class="card">
+          <div class="div-style mt-3">
+            <div class="col-2 time">
+              <h5 class="text-secondary">
+                  <?php
+                  $currentDateTime = $item['start_time'];
+                  echo $newDateTime = date(' h:i A', strtotime($currentDateTime));
+                  ?>
+              </h5>
+          </div>
+          <div class="col-3 mt-4">
+              <h6>{{$item->category->name}}</h6>
+              <h5>{{$item->title}}</h5>
+                @if ($item->joins->count('user_id')>1)
+                <p>{{$item->joins->count('user_id')}} members going</p>                      
+                @else
+                <p>{{$item->joins->count('user_id')}} member going</p>                        
+                @endif
+          </div>
+          <div class="col-3 image mt-2">
+            <img src="{{asset('image/' .$item->picture)}}" width="100px" height="100px" style="border-radius:15px">
+          </div>
+          <div class="col-4 mt-2">
+            <div class="row" style="display: flex; justify-content:center; align-items:center">
+              @foreach ($item->joins as $join)
+              @if ($item->id == $join->event_id && $join->user_id == Auth::id())
+              <form action="{{route('quit', $join->id)}}" method="post">
+              @csrf
+              @method("delete")
+              <button type="submit" class="btn btn-sm btn btn-danger mt-4 quit-nutton">
+              <i class="fa fa-times-circle"></i>
+              <b>Quit</b>
+              </button>
+              </form>
+              @endif
+              @endforeach
 
-                      {{-- Don't change class name --}}
-                      <form action="{{route('join', $item->id)}}" method="post">
-                      @csrf
-                      <div class="join_button">
-                      <input type="hidden" class="event_id" value="{{$item->id}}">
-                      </div>
-                      <div class="show_join_button" >
-                      </div>
-                      </form>
-                      {{-- end --}}
-
-                      <button type="button" style="margin:10px; margin-top:20px; border-radius: 5px; border:none;" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}"><i class="fa fa-info-circle" aria-hidden="true">Detail</i></button>
-
-
-
-                  </div>
-                  </div>
+              {{-- Don't change class name --}}
+              <form action="{{route('join', $item->id)}}" method="post">
+              @csrf
+              <div class="join_button">
+              <input type="hidden" class="event_id" value="{{$item->id}}">
               </div>
-            </div>
-            {{-- @endif --}}
+              <div class="show_join_button" >
+              </div>
+              </form>
+              {{-- end --}}
+              <button type="button" style="margin:10px; margin-top:20px; border-radius: 5px; border:none;" class="btn btn-warning" data-toggle="modal" data-target="#myModal{{$item->id}}"><i class="fa fa-info-circle" aria-hidden="true">Detail</i></button>
+          </div>
+          </div>
+      </div>
+    </div>
+      @endif
+          @endif
 
 
               <!-- The Modal Detail of explore Event -->
@@ -180,9 +173,6 @@
                               <div class="show_join_button" >
                               </div>
                               </form>
-                              {{-- end --}}
-                            {{-- @endforeach --> --}}
-        
                           </div>
                           </div>
                         </div>
@@ -197,7 +187,6 @@
                 </div>
 
               <br>
-              @endif
               @endforeach
                           
         </div>
