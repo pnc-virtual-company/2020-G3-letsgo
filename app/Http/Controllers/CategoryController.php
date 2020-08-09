@@ -113,7 +113,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $categories = Category::find($id);
-        $categories -> user_id = auth::id();
+        $categories ->user_id = auth::id();
         $categories->delete();
         return back();
     }

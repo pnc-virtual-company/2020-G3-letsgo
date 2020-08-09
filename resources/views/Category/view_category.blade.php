@@ -36,8 +36,7 @@
 
                        <!-- alert text when category already exist -->
                         <span id="message" class="text-danger"></span>
-
-                        <a type="submit" class="text-primary float-right">CREATE</a>
+                        <button type="submit" class="text-primary btn btn-outline-default float-right">CREATE</button>
                         <a type="submit" class="text-danger float-right" data-dismiss="modal">DISCARD</a>
                     </form>
                 </div>
@@ -68,7 +67,7 @@
                             @csrf
                             @method('PUT')
                             <input type="text" class="form-control mb-4" placeholder="Category name"  name="category" value="{{$category->name}}">
-                            <a type="submit" class="text-primary float-right">UPDATE</a>
+                            <button type="submit" class="text-primary btn btn-outline-default float-right">UPDATE</button>
                             <a class="text-danger float-right" data-dismiss="modal">DISCARD</a>
                         </form>
                     </div>
@@ -87,7 +86,7 @@
                             <h3 class="mb-4"><b>Remove Category</b></h3>
                             <p>Are you sure you want to delete the category?</p>
                             <a type="button" class="text-primary float-right" data-dismiss="modal">DISCARD</a>
-                            <a type="submit" class="text-danger float-right">REMOVE</a>
+                            <button type="submit" class="text-danger btn btn-outline-default float-right">REMOVE</button>
                         </form>
                     </div>
                 </div>
