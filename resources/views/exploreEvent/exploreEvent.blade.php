@@ -67,7 +67,7 @@
             <?php $date = new DateTime($item->start_date);?>
               <?php echo date_format($date, 'l,F Y'); ?>
             @endif
-              <div class="card">
+              <div class="card searchCity">
                   <div class="div-style">
                     <div class="col-2 time">
                       <h5 class="text-secondary">
