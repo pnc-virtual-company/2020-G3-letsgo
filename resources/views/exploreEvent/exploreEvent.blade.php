@@ -55,11 +55,14 @@
                             </ul>
                           </div>
                       </div>
+                      <br>
+                      <br>
             <?php
             $date = date('Y-m-d');
           ?>
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id && $item->end_date >= $date)
+            @if (Auth::user()->city == $item->city)
             <p>{{$item->start_date}}</p>
       <div class="card">
           <div class="div-style mt-3">
@@ -113,8 +116,8 @@
           </div>
       </div>
     </div>
-            @endif
-            {{-- @endif --}}
+      @endif
+          @endif
 
 
               <!-- The Modal Detail of explore Event -->

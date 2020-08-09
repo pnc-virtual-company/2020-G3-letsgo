@@ -93,8 +93,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                <select class="form-control" name="city" id="eventCity">
-                                <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
+                                <select class="form-control" name="city" id="city">
+                                <option name="city" value="{{Auth::user()->city}}" selected >{{Auth::user()->city}}</option>
                                 </select>
                                 </div>
                                 <div class="form-group">
