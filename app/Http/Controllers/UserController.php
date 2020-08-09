@@ -79,9 +79,8 @@ class UserController extends Controller
         $user->firstname = $request->get('firstname');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
-        // $user->password = bcrypt($request->get('password'));
         $user->save();
-        return view('home');
+        return back();
     }
 
     /**
