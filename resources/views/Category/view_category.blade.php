@@ -85,8 +85,8 @@
                             @method('DELETE')
                             <h3 class="mb-4"><b>Remove Category</b></h3>
                             <p>Are you sure you want to delete the category?</p>
-                            <a type="button" class="text-primary float-right" data-dismiss="modal">DISCARD</a>
                             <button type="submit" class="text-danger btn btn-outline-default float-right">REMOVE</button>
+                            <a type="button" class="text-primary float-right" data-dismiss="modal">DISCARD</a>
                         </form>
                     </div>
                 </div>
