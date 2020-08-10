@@ -93,8 +93,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                <select class="form-control" name="city" id="city">
-                                <option name="city" value="{{Auth::user()->city}}" selected >{{Auth::user()->city}}</option>
+                                <select class="form-control" name="city" id="cityOfEvent">
+                                  <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                                 </select>
                                 </div>
                                 <div class="form-group">
@@ -229,8 +229,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                            
-                                                <select class="form-control" name="city" id="cityEvent">
+                                            <select class="form-control" name="city" id="updateEventCity">
                                                     <option value="{{$yourEvents->city}}" selected>{{$yourEvents->city}}</option>
                                                  </select>
                                             </div>
@@ -332,9 +331,9 @@
           array.push(data.Andorra[i])
         }
     //declare select variable to give value to select box
-        var select = document.getElementById("city");
+        var updateEventCity = document.getElementById("updateEventCity");
         //declare select variable to give value to select box
-        var cityEvent = document.getElementById("cityEvent");
+        var cityEvent = document.getElementById("cityOfEvent");
     
     // Loop options of event city:
         for(var i = 0; i < array.length; i++) {
@@ -344,7 +343,7 @@
     // Loop options of city:
         for(var i = 0; i < array.length; i++) {
          var city = array[i];
-         select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+         updateEventCity.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
         }
        },
      });

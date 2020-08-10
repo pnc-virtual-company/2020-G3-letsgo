@@ -7,7 +7,7 @@
 <body class="body-background">
     <div class="container"  style="margin-top:100px;">
     <div class="row">
-      
+
       <div class="col-md-1"></div>
         <div class="col-md-10">
         <h1 class="text-center mt-3">Explore Events</h1>
@@ -62,7 +62,6 @@
           ?>
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id && $item->end_date >= $date)
-            @if (Auth::user()->city == $item->city)
             <p>{{$item->start_date}}</p>
       <div class="card">
           <div class="div-style mt-3">
@@ -116,7 +115,6 @@
           </div>
       </div>
     </div>
-      @endif
           @endif
 
 
