@@ -63,7 +63,7 @@
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id && $item->end_date >= $date)
             <p>{{$item->start_date}}</p>
-      <div class="card">
+          <div class="card ">
           <div class="div-style mt-3">
             <div class="col-2 time">
               <h5 class="text-secondary">
@@ -178,12 +178,11 @@
 
                       <!-- Modal body -->
                       <div class="modal-body">
-                      <p>{{$item->description}}</p>
+                      <p style="word-wrap: break-word;">{{$item->description}}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-
               <br>
               @endforeach
                           
@@ -300,19 +299,20 @@ $.ajax({
                 }
         }
         // end click
+
 </script>
 <style>
-  .search_event {
-width: 100%;
-padding-left: 2rem;
-border-radius: 20px;
-}
-.form-control-feedback {
-position: absolute;
-width: 2.375rem;
-text-align: center;
-color: rgb(56, 55, 55);
-margin-top: 8px;
-}
+    .search_event {
+      width: 100%;
+      padding-left: 2rem;
+      border-radius: 20px;
+    }
+    .form-control-feedback {
+      position: absolute;
+      width: 2.375rem;
+      text-align: center;
+      color: rgb(56, 55, 55);
+      margin-top: 8px;
+    }
 </style>
 @endsection
