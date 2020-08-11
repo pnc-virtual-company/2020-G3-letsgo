@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                <select class="form-control" name="city" id="city">
+                                <select class="form-control" name="city" id="cityEvent">
                                 <option name="city" value="{{Auth::user()->city}}" selected >{{Auth::user()->city}}</option>
                                 </select>
                                 </div>

@@ -62,9 +62,9 @@
           ?>
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id && $item->end_date >= $date)
-            @if (Auth::user()->city == $item->city)
+            {{-- @if (Auth::user()->city == $item->city) --}}
             <p>{{$item->start_date}}</p>
-      <div class="card">
+      <div class="card " id="event-city">
           <div class="div-style mt-3">
             <div class="col-2 time">
               <h5 class="text-secondary">
@@ -117,7 +117,7 @@
       </div>
     </div>
       @endif
-          @endif
+          {{-- @endif --}}
 
 
               <!-- The Modal Detail of explore Event -->
@@ -302,6 +302,22 @@ $.ajax({
                 }
         }
         // end click
+
+
+        // List the city not far from
+          // var value = {!! json_encode(Auth::user()->city, JSON_HEX_TAG) !!}
+          // $("#event-city").filter(function() {
+          // $(this).toggle($(this).text().indexOf(value) > -1)
+          // });
+
+          // $("#cityOfEvent").on("change", function() {
+          // var value = $(this).val();
+          // // console.log(value)
+          // $("#event-city").filter(function() {
+          // $(this).toggle($(this).text().indexOf(value) > -1)
+          // });
+          // });
+
 </script>
 <style>
   .search_event {
