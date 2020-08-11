@@ -10,6 +10,7 @@
 
       <div class="col-md-1"></div>
         <div class="col-md-10">
+        <h1 class="text-center mt-3">Explore Events</h1>
         <h3>Find your Event!</h3>
           <div class="card-search">
                   <div class="col-4">

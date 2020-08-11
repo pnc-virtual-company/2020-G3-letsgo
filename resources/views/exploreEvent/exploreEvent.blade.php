@@ -7,7 +7,7 @@
 <body class="body-background">
     <div class="container"  style="margin-top:100px;">
     <div class="row">
-      
+
       <div class="col-md-1"></div>
         <div class="col-md-10">
         <h1 class="text-center mt-3">Explore Events</h1>
@@ -62,9 +62,8 @@
           ?>
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id && $item->end_date >= $date)
-            {{-- @if (Auth::user()->city == $item->city) --}}
             <p>{{$item->start_date}}</p>
-      <div class="card " id="event-city">
+          <div class="card ">
           <div class="div-style mt-3">
             <div class="col-2 time">
               <h5 class="text-secondary">
@@ -116,8 +115,7 @@
           </div>
       </div>
     </div>
-      @endif
-          {{-- @endif --}}
+          @endif
 
 
               <!-- The Modal Detail of explore Event -->
@@ -180,12 +178,11 @@
 
                       <!-- Modal body -->
                       <div class="modal-body">
-                      <p>{{$item->description}}</p>
+                      <p style="word-wrap: break-word;">{{$item->description}}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-
               <br>
               @endforeach
                           
@@ -303,34 +300,19 @@ $.ajax({
         }
         // end click
 
-
-        // List the city not far from
-          // var value = {!! json_encode(Auth::user()->city, JSON_HEX_TAG) !!}
-          // $("#event-city").filter(function() {
-          // $(this).toggle($(this).text().indexOf(value) > -1)
-          // });
-
-          // $("#cityOfEvent").on("change", function() {
-          // var value = $(this).val();
-          // // console.log(value)
-          // $("#event-city").filter(function() {
-          // $(this).toggle($(this).text().indexOf(value) > -1)
-          // });
-          // });
-
 </script>
 <style>
-  .search_event {
-width: 100%;
-padding-left: 2rem;
-border-radius: 20px;
-}
-.form-control-feedback {
-position: absolute;
-width: 2.375rem;
-text-align: center;
-color: rgb(56, 55, 55);
-margin-top: 8px;
-}
+    .search_event {
+      width: 100%;
+      padding-left: 2rem;
+      border-radius: 20px;
+    }
+    .form-control-feedback {
+      position: absolute;
+      width: 2.375rem;
+      text-align: center;
+      color: rgb(56, 55, 55);
+      margin-top: 8px;
+    }
 </style>
 @endsection

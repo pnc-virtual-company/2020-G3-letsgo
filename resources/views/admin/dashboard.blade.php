@@ -6,7 +6,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Let's Go Application</title>
+    <link rel="shortcut icon" href="{{asset('image/logo.png')}}" width="20px" height="20px">
     {{-- font-awesome --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Scripts -->
@@ -78,7 +79,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href="{{route('exploreEvent.index')}}">
                 <img src="{{asset('image/logo.png')}}" width="80px" height="80px" style="border-radius:40px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -256,17 +257,16 @@
                     @csrf
                     @method('PUT')
                 <div class="modal-body">
-                   <label for="">Old Pasword</label>
-                   <div class="form-group">      
+                   <div class="form-group">
                     <input id="old-password" placeholder="Password" type="password" class="form-control" name="old-password" required >                       
                     </div>
                    
                    <div class="form-group">      
-                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="new password" required  >
+                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="New password" required  >
                     </div>
                    
                    <div class="form-group">
-                    <input id="password-confirm"  type="password" class="form-control " placeholder="confirm password"  name="password-confirmation" required >
+                    <input id="password-confirm"  type="password" class="form-control " placeholder="Confirm password"  name="password-confirmation" required >
                     <span id="error" class="text-danger"></span>
                     </div>
                </div>
