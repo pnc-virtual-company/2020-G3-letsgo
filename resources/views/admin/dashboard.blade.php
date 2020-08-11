@@ -6,7 +6,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Let's Go Application</title>
+    <link rel="shortcut icon" href="{{asset('image/logo.png')}}" width="20px" height="20px">
     {{-- font-awesome --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Scripts -->
@@ -78,7 +79,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href="{{route('exploreEvent.index')}}">
                 <img src="{{asset('image/logo.png')}}" width="80px" height="80px" style="border-radius:40px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -256,17 +257,16 @@
                     @csrf
                     @method('PUT')
                 <div class="modal-body">
-                   <label for="">Old Pasword</label>
-                   <div class="form-group">      
+                   <div class="form-group">
                     <input id="old-password" placeholder="Password" type="password" class="form-control" name="old-password" required >                       
                     </div>
                    
                    <div class="form-group">      
-                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="new password" required  >
+                   <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="New password" required  >
                     </div>
                    
                    <div class="form-group">
-                    <input id="password-confirm"  type="password" class="form-control " placeholder="confirm password"  name="password-confirmation" required >
+                    <input id="password-confirm"  type="password" class="form-control " placeholder="Confirm password"  name="password-confirmation" required >
                     <span id="error" class="text-danger"></span>
                     </div>
                </div>
@@ -287,47 +287,40 @@
 </body>
 </html>
 <script>
-$.ajax({
-//get api
-  url:
-    "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
-  dataType: "json",
-  success: function (data) {
-//declare array variable to store city of each country
-    let array =[];
-//loop city of Afghanistan country
-    for (let i = 0; i < data.Afghanistan.length; i++) {
-      array.push(data.Afghanistan[i])
-    }
- //loop city of Albania country
-    for (let i = 0; i < data.Albania.length; i++) {
-      array.push(data.Albania[i])
-    }
-//loop city of Algeria country
-    for (let i = 0; i < data.Algeria.length; i++) {
-      array.push(data.Algeria[i])
-    }
-//loop city of Andorra country
-    for (let i = 0; i < data.Andorra.length; i++) {
-      array.push(data.Andorra[i])
-    }
-//declare select variable to give value to select box
-    var select = document.getElementById("city");
+    $.ajax({
+    //get api
+      url:
+        "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
+      dataType: "json",
+      success: function (data) {
+    //declare array variable to store city of each country
+        let array =[];
+    //loop city of Afghanistan country
+        for (let i = 0; i < data.Afghanistan.length; i++) {
+          array.push(data.Afghanistan[i])
+        }
+     //loop city of Albania country
+        for (let i = 0; i < data.Albania.length; i++) {
+          array.push(data.Albania[i])
+        }
+    //loop city of Algeria country
+        for (let i = 0; i < data.Algeria.length; i++) {
+          array.push(data.Algeria[i])
+        }
+    //loop city of Andorra country
+        for (let i = 0; i < data.Andorra.length; i++) {
+          array.push(data.Andorra[i])
+        }
     //declare select variable to give value to select box
-    var eventCity = document.getElementById("eventCity");
-// Loop options of event city:
-    for(var i = 0; i < array.length; i++) {
-     var city = array[i];
-     eventCity.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
-    }
-// Loop options of city:
-    for(var i = 0; i < array.length; i++) {
-     var city = array[i];
-     select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
-    }
-   },
- });
-</script>
+        var select = document.getElementById("city");
+    // Loop options of city:
+        for(var i = 0; i < array.length; i++) {
+         var city = array[i];
+         select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+        }
+       },
+     });
+    </script>
 
 <script type="text/javaScript">
     $(document).ready(function () {

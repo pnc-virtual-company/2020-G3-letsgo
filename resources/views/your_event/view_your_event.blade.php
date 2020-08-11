@@ -93,8 +93,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                <select class="form-control" name="city" id="eventCity">
-                                <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
+                                <select class="form-control" name="city" id="cityOfEvent">
+                                  <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
                                 </select>
                                 </div>
                                 <div class="form-group">
@@ -154,8 +154,24 @@
                 </div>
                 <div class="col-4 mt-4">
                   {{-- delete Event button --}}
-                    <button type="submit" class="btn btn-danger btn-md mt-5" href="{{route('delete',$yourEvents->id)}}" onclick="return confirm('Are you sure you want to delete this event?');"><i class="fa fa-ban" aria-hidden="true">Cancel</i></button>
-
+                    <button type="submit" class="btn btn-danger btn-md mt-5" data-toggle="modal" data-target="#removeEvent{{$yourEvents->id}}" ><i class="fa fa-ban" aria-hidden="true">Cancel</i></button>
+                     <!-- Form Remove Category -->
+            <div class="modal fade" id="removeEvent{{$yourEvents->id}}">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form action="{{route('delete',$yourEvents->id)}}"  method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <h3 class="mb-4"><b>Remove Event</b></h3>
+                            <p>Are you sure you want to delete the event?</p>
+                            <a type="button" class="text-primary float-right" data-dismiss="modal">DISCARD</a>
+                            <button type="submit" class="text-danger btn btn-outline-default float-right">REMOVE</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
                     {{-- Edit Event --}}
                     <button type="button" class="btn btn-primary btn-md mt-5" data-toggle="modal" data-target="#myModal1{{$yourEvents->id}}"><i class="fa fa-pencil-square-o">Edit</i></button>
 
@@ -213,8 +229,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                            
-                                                <select class="form-control" name="city" id="cityEvent">
+                                            <select class="form-control" name="city" id="updateEventCity">
                                                     <option value="{{$yourEvents->city}}" selected>{{$yourEvents->city}}</option>
                                                  </select>
                                             </div>
@@ -316,9 +331,9 @@
           array.push(data.Andorra[i])
         }
     //declare select variable to give value to select box
-        var select = document.getElementById("city");
+        var updateEventCity = document.getElementById("updateEventCity");
         //declare select variable to give value to select box
-        var cityEvent = document.getElementById("cityEvent");
+        var cityEvent = document.getElementById("cityOfEvent");
     
     // Loop options of event city:
         for(var i = 0; i < array.length; i++) {
@@ -328,7 +343,7 @@
     // Loop options of city:
         for(var i = 0; i < array.length; i++) {
          var city = array[i];
-         select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
+         updateEventCity.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
         }
        },
      });

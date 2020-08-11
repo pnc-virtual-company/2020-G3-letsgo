@@ -43,7 +43,7 @@
                     <h3 class="mb-4"><b>Remove Event</b></h3>
                     <p>Are you sure you want to delete the event?</p>
                     <a type="button" class="float-right text-primary" data-dismiss="modal">DISCARD</a>
-                    <a type="submit" class="float-right text-danger">REMOVE</a>
+                    <button type="submit" class="text-danger btn btn-outline-default float-right">REMOVE</button>
                 </form>
             </div>
         </div>

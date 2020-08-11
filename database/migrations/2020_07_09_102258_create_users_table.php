@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
                 'lastname'=>'user',
                 'email'=>'admin@example.com',
                 'picture'=>'user.png',
-                'city'=>'Cambodia',
+                'city'=>'Herat',
                 'password'=>bcrypt('password'),
                 'role'=> 1,
                 'remember_token'=>Str::random(10)
