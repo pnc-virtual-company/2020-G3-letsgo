@@ -64,7 +64,7 @@
                         </div>
 
                 <div class="form-group ">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Create account') }}</a>
+                    <a href="{{ route('register') }}">{{ __('Create Account') }}</a>
                     <button type="submit" class="btn btn-primary float-right">Login</button>
                 </div>
             </form>

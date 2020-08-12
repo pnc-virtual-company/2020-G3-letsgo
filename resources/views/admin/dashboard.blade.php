@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{ asset('/js/app.js') }}" defer></script>
+    <script src="{{ asset('/js/listCity.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -219,9 +220,9 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="city" class="col-md-12">City</label>
-                                                    <select class="form-control" name="city" id="city">
-                                                        <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
-                                                    </select>
+                                                    <input name="city" value="{{Auth::user()->city}}" class="form-control autoSuggestion" list="result" placeholder="City" id="city" required >
+                                                    <datalist id="result">
+                                                    </datalist>
                                                 </div>
                                                 <button type="submit" class="btn btn-warning float-right" >UPDATE</button>
                                                 <button type="submit" class="btn btn-primary " data-dismiss="modal">DISCARD</button>
@@ -286,42 +287,6 @@
     </div>
 </body>
 </html>
-<script>
-    $.ajax({
-    //get api
-      url:
-        "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
-      dataType: "json",
-      success: function (data) {
-    //declare array variable to store city of each country
-        let array =[];
-    //loop city of Afghanistan country
-        for (let i = 0; i < data.Afghanistan.length; i++) {
-          array.push(data.Afghanistan[i])
-        }
-     //loop city of Albania country
-        for (let i = 0; i < data.Albania.length; i++) {
-          array.push(data.Albania[i])
-        }
-    //loop city of Algeria country
-        for (let i = 0; i < data.Algeria.length; i++) {
-          array.push(data.Algeria[i])
-        }
-    //loop city of Andorra country
-        for (let i = 0; i < data.Andorra.length; i++) {
-          array.push(data.Andorra[i])
-        }
-    //declare select variable to give value to select box
-        var select = document.getElementById("city");
-    // Loop options of city:
-        for(var i = 0; i < array.length; i++) {
-         var city = array[i];
-         select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
-        }
-       },
-     });
-    </script>
-
 <script type="text/javaScript">
     $(document).ready(function () {
         $(document).on('keyup', function () {

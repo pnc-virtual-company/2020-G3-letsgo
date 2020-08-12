@@ -93,9 +93,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                <select class="form-control" name="city" id="cityOfEvent">
-                                  <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
-                                </select>
+                                <input name="city" class="form-control autoSuggestion" value="{{Auth::user()->city}}" list="result" placeholder="City" required>
+                                <datalist id="result">
+                                </datalist>
                                 </div>
                                 <div class="form-group">
                                     <textarea name="description" minLength="50" required cols="63" rows="5" class="form-control" placeholder="Description"></textarea>
@@ -229,9 +229,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                            <select class="form-control" name="city" id="updateEventCity">
-                                                    <option value="{{$yourEvents->city}}" selected>{{$yourEvents->city}}</option>
-                                                 </select>
+                                                 <input class="form-control autoSuggestion" ​  value="{{$yourEvents->city}}"list="result" id="cities"​​​​​​​​​​​​​​ ​placeholder="Country name here .."  name="city" required>
+                                                <datalist id="result">
+                                                </datalist>
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="description" id="" cols="63" rows="5" class="form-control" placeholder="Description">{{$yourEvents->description}}</textarea>
@@ -250,7 +250,6 @@
                                                 @endif
                                                     {{-- edit button --}}
                                                     <div class="row">
-                                                        
                                                         {{-- delete button --}}
                                                         <form action="{{route('event.destroy',$yourEvents->id)}}" method="POST" >
                                                             @csrf
@@ -304,50 +303,6 @@
         </div>
     </div>
 </body>{{-- script to show city from json  --}}
-
-<script>
-    $.ajax({
-    //get api
-      url:
-        "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
-      dataType: "json",
-      success: function (data) {
-    //declare array variable to store city of each country
-        let array =[];
-    //loop city of Afghanistan country
-        for (let i = 0; i < data.Afghanistan.length; i++) {
-          array.push(data.Afghanistan[i])
-        }
-     //loop city of Albania country
-        for (let i = 0; i < data.Albania.length; i++) {
-          array.push(data.Albania[i])
-        }
-    //loop city of Algeria country
-        for (let i = 0; i < data.Algeria.length; i++) {
-          array.push(data.Algeria[i])
-        }
-    //loop city of Andorra country
-        for (let i = 0; i < data.Andorra.length; i++) {
-          array.push(data.Andorra[i])
-        }
-    //declare select variable to give value to select box
-        var updateEventCity = document.getElementById("updateEventCity");
-        //declare select variable to give value to select box
-        var cityEvent = document.getElementById("cityOfEvent");
-    
-    // Loop options of event city:
-        for(var i = 0; i < array.length; i++) {
-         var city = array[i];
-         cityEvent.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
-        }
-    // Loop options of city:
-        for(var i = 0; i < array.length; i++) {
-         var city = array[i];
-         updateEventCity.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
-        }
-       },
-     });
-    </script>
 @endsection
 
 
