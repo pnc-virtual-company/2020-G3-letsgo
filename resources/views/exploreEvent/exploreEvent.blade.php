@@ -60,7 +60,7 @@
             $date = date('Y-m-d');
           ?>
           @foreach ($exploreEvents as $item)
-            @if (Auth::id() != $item->user_id && $item->end_date >= $date)
+            @if (Auth::id() != $item->user_id)
           <div class="contain">
             <p>{{$item->start_date}}</p>
           <div class="card ">
