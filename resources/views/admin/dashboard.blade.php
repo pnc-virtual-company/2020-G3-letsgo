@@ -253,7 +253,7 @@
             <div class="modal-header">
               <h4 class="modal-title text-center">Change Password</h4>
             </div>
-                <form action="{{route('changePassword')}}" method="POST">
+                <form action="{{route('changePassword')}}"  method="POST">
                     @csrf
                     @method('PUT')
                 <div class="modal-body">
@@ -263,16 +263,18 @@
                    
                    <div class="form-group">      
                    <input id="new-password"  type="password" class="form-control " name="new-password" placeholder="New password" required  >
+                   <span id="messages_error" class="text-danger"></span>
                     </div>
                    
                    <div class="form-group">
                     <input id="password-confirm"  type="password" class="form-control " placeholder="Confirm password"  name="password-confirmation" required >
                     <span id="error" class="text-danger"></span>
+                    {{-- <span id="message" class="text-danger"></span> --}}
                     </div>
                </div>
                <div class="modal-footer">
                  <button type="button" class="btn btn-default" data-dismiss="modal">DISCARD</button>
-                 <button type="submit" id="change-password" class="btn text-warning float-right">UPDATE</button>
+                 <button type="submit" id="change-password" name="submit" class="btn text-warning float-right">UPDATE</button>
                </div>
             </form>
           </div>
@@ -327,16 +329,34 @@
         $(document).on('keyup', function () {
             var new_pwd = $('#new-password').val();
             var confirm_pwd = $('#password-confirm').val();
-            if(confirm_pwd == new_pwd){
+            if(confirm_pwd == new_pwd ){
                 $('#error').html('');
             }else if(confirm_pwd == ''){
                 $('#error').html('');
-            }else{
-                $('#error').html('Attribute confirmation does not match.');
+            }else {
+                $('#error').html('The password does not match.');
+            }
+            if(new_pwd < 8) {
+                $('#messages_error').html("password must be equal or longer than 8 charector");
+            }else if (new_pwd > 8){
+                $('#messages_error').html(" ");
             }
         }) 
+        // $(document).on('keydown', function () {
+        //     var new_pwd = $('#new-password').val();
+        //     var confirm_pwd = $('#password-confirm').val();
+        //     if (new_pwd == '') {
+        //         $('#messages_error').html('');
+        //     }else if(new_pwd > 8){
+        //         $('#messages_error').html('');
+        //     }else { 
+        //         $('#messages_error').html("password must be equal or longer than 8 charector");
+        //     }
+        // })
     });
-    $("#success-alert").fadeTo(6000, 1000).slideUp(1000, function(){
+    $("#success-alert").fadeTo(6000, 5000).slideDown(1000, function(){
     $("#success-alert").slideUp(1000);
 });
 </script>
+
+    

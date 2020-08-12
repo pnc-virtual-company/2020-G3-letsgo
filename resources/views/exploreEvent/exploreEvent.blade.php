@@ -61,8 +61,11 @@
             $date = date('Y-m-d');
           ?>
           @foreach ($exploreEvents as $item)
-            @if (Auth::id() != $item->user_id && $item->end_date >= $date)
-            <p>{{$item->start_date}}</p>
+            @if (Auth::id() != $item->user_id)
+            @if ($item->start_date)
+            <?php $date = new DateTime($item->start_date);?>
+            <?php echo date_format($date, 'l,F Y'); ?>
+            @endif
           <div class="card ">
           <div class="div-style mt-3">
             <div class="col-2 time">
