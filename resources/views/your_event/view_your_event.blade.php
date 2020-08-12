@@ -69,7 +69,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            StartDate: <input type="date" class="form-control" name="start_date" id="startDate">
+                                            StartDate: <input type="date" class="form-control" id="start_date" >
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -82,7 +82,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            EndDate: <input type="date" class="form-control" name="end_date" id="endDate">
+                                            EndDate: <input type="date" class="form-control" id="end_date" onchange="errEndDate()">
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -108,8 +108,15 @@
                             <input id="file" style="display:none;" type="file" name="picture">
                             <label for="file" class="btn"><i class="fa fa-plus text-dark"></i></label>
                         </div>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <div>
+                            <p id="errorDateInThePast"></p>
+                            <p id="errorEnddateSmallerThanStartD"></p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -302,8 +309,29 @@
             <div class="col-md-1"></div>
         </div>
     </div>
-</body>{{-- script to show city from json  --}}
+</body>
 @endsection
+    <script>
+        function errEndDate() {       
+        var startDate = document.getElementById('start_date').value;
+        var endDate = document.getElementById('end_date').value;
+        var todayDate = new Date();
+        var getStartDate = new Date(startDate);
+        var getEndDate = new Date(endDate);
+        if(getStartDate > getEndDate) {
+            $('#errorEnddateSmallerThanStartD').html('<strong class="text-danger alert">Error : End date cannot smaller than start date!!!</strong>');
+        }else {
+            $('#errorEnddateSmallerThanStartD').html('');
+        }
+        if(getEndDate < todayDate ) {
+            $('#errorDateInThePast').html('<strong class="text-danger alert">Error : Cannot create event in the past!!!</strong>');
+
+        }else {
+            $('#errorDateInThePast').html('');
+
+        }
+        }
+    </script>
 
 
 
