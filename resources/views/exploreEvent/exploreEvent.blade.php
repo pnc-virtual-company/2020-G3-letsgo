@@ -23,9 +23,8 @@
                    <label class="float-right">Not too far from city</label>
                   </div>
                   <div class="col-4">
-                  <select class="form-control" name="city" id="cityOfEvent">
-                    <option name="city" value="{{Auth::user()->city}}" selected>{{Auth::user()->city}}</option>
-                  </select>
+                  <input name="city"  class="form-control autoSuggestion"   list="result" placeholder="Country..." id="searchLocation" required>
+                  <datalist id="result"></datalist>
                   </div>
           </div><br>
           <div class="event-join mt-5">
@@ -62,10 +61,8 @@
           ?>
           @foreach ($exploreEvents as $item)
             @if (Auth::id() != $item->user_id)
-            @if ($item->start_date)
-            <?php $date = new DateTime($item->start_date);?>
-            <?php echo date_format($date, 'l,F Y'); ?>
-            @endif
+          <div class="contain">
+            <p>{{$item->start_date}}</p>
           <div class="card ">
           <div class="div-style mt-3">
             <div class="col-2 time">
@@ -79,6 +76,7 @@
           <div class="col-3 mt-4">
               <h6>{{$item->category->name}}</h6>
               <h5>{{$item->title}}</h5>
+              <h5 style="display:none;">{{$item->city}}</h5>
                 @if ($item->joins->count('user_id')>1)
                 <p>{{$item->joins->count('user_id')}} members going</p>                      
                 @else
@@ -117,6 +115,7 @@
           </div>
           </div>
       </div>
+    </div>
     </div>
           @endif
 
@@ -196,45 +195,20 @@
 
 </body>
 
-
-
-
-
 {{-- =============== script to view city from json ============= --}}
 <script>
-$.ajax({
-//get api
-  url:
-    "https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/6ee538beca8914133259b401ba47a550313e8984/countries.json?fbclid=IwAR0JKHrJJ4WeGRDp33cx87OuZljnPaouHhDZiad56_TRqF6tPxsc_CX3oPM",
-  dataType: "json",
-  success: function (data) {
-//declare array variable to store city of each country
-    let array =[];
-//loop city of Afghanistan country
-    for (let i = 0; i < data.Afghanistan.length; i++) {
-      array.push(data.Afghanistan[i])
-    }
- //loop city of Albania country
-    for (let i = 0; i < data.Albania.length; i++) {
-      array.push(data.Albania[i])
-    }
-//loop city of Algeria country
-    for (let i = 0; i < data.Algeria.length; i++) {
-      array.push(data.Algeria[i])
-    }
-//loop city of Andorra country
-    for (let i = 0; i < data.Andorra.length; i++) {
-      array.push(data.Andorra[i])
-    }
-//declare select variable to give value to select box
-    var select = document.getElementById("cityOfEvent");
-// Loop options of city:
-    for(var i = 0; i < array.length; i++) {
-     var city = array[i];
-     select.innerHTML += "<option value=\"" + city + "\">" + city + "</option>";
-    }
-   },
- });
+ //    List the city not far from
+ var value = {!! json_encode(Auth::user()->city, JSON_HEX_TAG) !!}.toLowerCase()
+                $(".contain").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+                $("#searchLocation").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $(".contain").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+
 </script>
 
 {{-- ============= script to search ===========  --}}
@@ -244,7 +218,7 @@ $.ajax({
   $(document).ready(function(){
     $("#searchs").on("keyup", function() {
       var value = $(this).val().toLowerCase();
-      $(".card").filter(function() {
+      $(".contain").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
     });
