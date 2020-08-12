@@ -302,24 +302,13 @@
                 $('#error').html('The password does not match.');
             }
             if(new_pwd < 8) {
-                $('#messages_error').html("password must be equal or longer than 8 charector");
-            }else if (new_pwd > 8){
+                $('#messages_error').html("password must be equal or longer than 8 characters");
+            }else {
                 $('#messages_error').html(" ");
             }
         }) 
-        // $(document).on('keydown', function () {
-        //     var new_pwd = $('#new-password').val();
-        //     var confirm_pwd = $('#password-confirm').val();
-        //     if (new_pwd == '') {
-        //         $('#messages_error').html('');
-        //     }else if(new_pwd > 8){
-        //         $('#messages_error').html('');
-        //     }else { 
-        //         $('#messages_error').html("password must be equal or longer than 8 charector");
-        //     }
-        // })
     });
-    $("#success-alert").fadeTo(6000, 5000).slideDown(1000, function(){
+    $("#success-alert").fadeTo(6000, 5000).slideUp(1000, function(){
     $("#success-alert").slideUp(1000);
 });
 </script>
